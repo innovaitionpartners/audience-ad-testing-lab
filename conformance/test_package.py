@@ -595,12 +595,12 @@ class PackageTests(unittest.TestCase):
             codex_plugin["policy"],
         )
 
-        for relative_path in (
-            ".claude-plugin/plugin.json",
-            ".codex-plugin/plugin.json",
-            "gemini-extension.json",
+        for relative_path, expected_version in (
+            (".claude-plugin/plugin.json", "1.0.0"),
+            (".codex-plugin/plugin.json", "1.0.0"),
+            ("gemini-extension.json", "0.3.1"),
         ):
-            self.assertEqual("0.3.1", json.loads(source(relative_path))["version"])
+            self.assertEqual(expected_version, json.loads(source(relative_path))["version"])
 
         codex_manifest = json.loads(source(".codex-plugin/plugin.json"))
         self.assertLessEqual(len(codex_manifest["interface"]["defaultPrompt"]), 3)

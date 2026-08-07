@@ -162,12 +162,12 @@ class RealWorldOutcomeDataPrepSkillContractTests(unittest.TestCase):
         plugin = plugins[0]
         self.assertIn("./skills/real-world-outcome-data-prep", plugin["skills"])
         self.assertEqual(4, len(plugin["skills"]))
-        for path in (
-            ".claude-plugin/plugin.json",
-            ".codex-plugin/plugin.json",
-            "gemini-extension.json",
+        for path, expected_version in (
+            (".claude-plugin/plugin.json", "1.0.0"),
+            (".codex-plugin/plugin.json", "1.0.0"),
+            ("gemini-extension.json", "0.3.1"),
         ):
-            self.assertEqual("0.3.1", json_document(path)["version"])
+            self.assertEqual(expected_version, json_document(path)["version"])
 
     def test_panel_builder_routes_raw_real_exports_to_data_prep(self):
         text = read("skills/audience-panel-builder/SKILL.md")
