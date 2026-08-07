@@ -29,10 +29,11 @@ turn:
 
 Audit stops after Response 2. Dogfood exits after report and audit. Provisional
 materialization is an internal run-local helper, not a user-facing response
-sequence. When creatives are supplied, Ad Testing Lab owns the user-facing
-route and its run-plan approval. The helper produces no Response 1 through 5:
-there is no research-plan approval, no research-brief approval, and no
-panel-package approval. It cannot call either canonical package entry point.
+sequence. When creatives are supplied, continue directly through Ad Testing
+Lab's co-shipped run-plan and synthetic-response workflow without introducing a
+second user-facing workflow. The helper produces no Response 1 through 5: there
+is no research-plan approval, no research-brief approval, and no panel-package
+approval. It cannot call either canonical package entry point.
 
 The reusable-panel sequence is:
 
@@ -113,12 +114,12 @@ Use `create_research_backed_panel` when no approved reusable panel exists.
 8. Render the real report and run the blind construction audit.
 9. Approve the exact audited panel under `panel_construction`.
 
-For Release B1 v3 work, stop after step 9 with the v3 brief, v3 panel,
-population frame, composition plan, validity profile, report, and audit.
-There is no v3 package, library resolution, quota/job allocation, profile
-assignment, test result, score, rank, or dashboard in this release. The
-package-proposal, build, registration, and library steps below remain the
-unchanged v2 flow.
+For v3 construction, step 9 completes the brief, panel, population frame,
+composition plan, validity profile, report, and audit. If synthetic reactions
+are requested, continue through the co-shipped B2 quota/job allocation,
+profile assignment, response collection, scoring, and dashboard workflow using
+the validated v3 panel. The package-proposal, build, registration, and library
+steps below remain the unchanged v2 flow and must not be used for v3 documents.
 
 For Release B2, an already approved and packaged v3 panel may continue into
 library resolution, frozen stage-roster allocation, profile binding, testing,
@@ -269,10 +270,10 @@ route separately when changes are needed.
 
 ## Provisional Route
 
-Use `provisional_immediate_panel` only as Ad Testing Lab's internal run-local
-helper. When creatives are supplied, Ad Testing Lab owns the user-facing
-provisional route; do not send the user to Panel Builder for a second workflow
-or approval sequence.
+Use `provisional_immediate_panel` only as an internal run-local helper. When
+creatives are supplied, continue directly through the co-shipped Ad Testing Lab
+provisional route; do not send the user through a second workflow or approval
+sequence.
 
 1. Accept the bounded audience scope, user-defined segments, and testing
    decision already collected for the creative run.
@@ -281,7 +282,8 @@ or approval sequence.
 3. Automatically set expiry from materialization time to no more than 30 days.
 4. Materialize only the bounded run-local panel allowed by the shared v2
    immediate-run contract.
-5. Return the run-local resolution to Ad Testing Lab for its run-plan approval.
+5. Continue with the run-local resolution into Ad Testing Lab's run-plan
+   approval and synthetic-response workflow.
 
 There is no research-plan approval, no research-brief approval, and no
 panel-package approval. Do not call the canonical proposal, build, or
