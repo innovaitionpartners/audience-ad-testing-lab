@@ -1,0 +1,19 @@
+{
+  "archetype_sensitivity": "leave_one_persona_archetype_out_top_k_consistent",
+  "bootstrap_resamples": 2000,
+  "calibration_basis": "profile_balanced_24_30_36_experimental_pending",
+  "capacity_policy_version": "dynamic-complete-exposure-experimental-v1",
+  "cutoff_tie_policy": "no_point_estimate_only_decision",
+  "finalist_inclusion_threshold": 0.9,
+  "grounded_profile_sensitivity": "leave_one_grounded_profile_out_top_k_consistent",
+  "human_market_calibration": false,
+  "minimum_archetype_diversity": 2,
+  "minimum_evaluable_archetype_exclusions": 2,
+  "minimum_evaluable_grounded_profile_exclusions": 2,
+  "minimum_grounded_profile_diversity": 2,
+  "nonfinalist_inclusion_threshold": 0.1,
+  "scope": "conditional_synthetic_run_only",
+  "usable_floor_source": "manifest_dynamic_capacity_by_profile",
+  "version": "complete-exposure-profile-stratified-v1",
+  "weighting": "frozen_profile_then_segment"
+}

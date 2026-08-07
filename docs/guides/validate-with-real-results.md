@@ -1,0 +1,55 @@
+# Prepare and validate with real campaign results
+
+## Use this when
+
+Use this process when ads tested by Ad Testing Lab will also run in a real campaign and you want to check whether the synthetic panel's ranking matched the campaign results.
+
+[Real-World Outcome Data Prep](../../skills/real-world-outcome-data-prep/README.md) handles the recordkeeping. Before launch, it records the panel's prediction, the exact ads, audience, success metric, campaign dates, and comparison rules. After the campaign, it imports the platform's aggregate results and packages them with the original record. It does not decide whether the panel was correct; Real-World Outcome Validation performs that separate comparison.
+
+The real-study sequence is:
+
+1. Record the panel's prediction and campaign plan before launch.
+2. Run the campaign.
+3. After confirming you are allowed to use the campaign data, import the original results file exported from the ad platform. It must contain totals by ad, not person-level rows.
+4. When Data Prep reports that the package is ready, start Real-World Outcome Validation. That workflow checks the predicted ranking against the campaign results.
+
+## Before launch: prepare the study
+
+1. Open the saved Ad Testing Lab prediction, the ads tested, the audience panel used, and the campaign plan.
+2. Confirm that those saved files have not changed, then copy the study details already recorded in them.
+3. Add only missing campaign details, such as the success metric, dates, time window for counting results, planned test groups, approver, or the IDs the ad platform assigned to each ad.
+4. Review the visible `study-summary.md`.
+5. Approve the summary and lock the prediction and plan before anyone views campaign results.
+
+If anyone has already viewed the campaign results, they may be summarized but cannot count as a preplanned test of the panel's ranking. Data Prep records the actual timing and never backdates the plan.
+
+## After the campaign: import results
+
+Upload the approved, locked prediction and campaign plan plus the original results files exported from a supported social, search, or programmatic ad platform. Data Prep keeps a locked copy of every accepted file, checks that it contains no prohibited person-level data, confirms that its columns match a supported platform format, and records every import as a new numbered version.
+
+It reports one of four readiness states:
+
+- `contract_ready`: all required files and checks passed, so Real-World Outcome Validation can begin;
+- `incomplete`: a required file or detail is missing or could not be verified, and the report names it;
+- `descriptive_only`: someone viewed results before the prediction and plan were locked, so the results can be summarized but cannot independently test the panel's ranking;
+- `blocked`: an approval, privacy, timing, file-integrity, or platform-import check failed, and the report names the failure.
+
+## What Data Prep does not do
+
+It does not rank ads using the campaign results, decide whether the panel matched the campaign, propose replacement audience profiles, or edit or publish any panel.
+
+## Separate outcome validation
+
+Real-World Outcome Validation compares the panel's ranking, recorded before launch, with approved aggregate campaign results collected afterward. It checks that the study was recorded before anyone saw results, each campaign result matches the correct ad, enough matched results remain to compare the ads, and the comparison uses the success metric and rules saved before launch.
+
+Validation can report that the panel's ranking matched the campaign results only after the software confirms that the original files have not changed, the plan was recorded before anyone saw results, each result matches the correct ad, enough matched results remain to compare the ads, and the comparison uses the success metric and rules saved before launch. A conclusion that the rankings matched applies only to the exact ranking recorded before launch, and the report states when that conclusion expires. The report separately identifies when the ranking did not match, the evidence was too limited, the study was invalid, or the results can only be summarized. Validation does not predict clicks, conversions, revenue, or lift, and it does not change the original panel, prompts, responses, scores, or test.
+
+Read [Calibration and real-world validation](../concepts/calibration-and-real-world-validation.md).
+
+## Later panel changes
+
+Changing a panel is a separate process that requires its own evidence and human approval. Validation never edits the panel automatically. The experimental persona behavior sandbox uses fictional data to test the software; it is not evidence that the audience model works in a real market.
+
+## Next step
+
+When Data Prep reports that the package is ready, start Real-World Outcome Validation with the saved prediction, campaign plan, original results files, and readiness report. Read [Outputs and files](../reference/outputs-and-files.md) if you need to inspect the files produced at each step.

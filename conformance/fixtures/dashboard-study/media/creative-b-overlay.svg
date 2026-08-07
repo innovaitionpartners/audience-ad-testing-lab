@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="628" viewBox="0 0 1200 628" role="img" aria-labelledby="title desc">
+  <title id="title">Computational saliency overlay</title>
+  <desc id="desc">Categorical overlay concentrates around the headline, cleared Tuesday calendar, and operating-model call to action.</desc>
+  <defs>
+    <radialGradient id="hot">
+      <stop offset="0" stop-color="#ff3b30" stop-opacity=".88"/>
+      <stop offset=".42" stop-color="#ffcc00" stop-opacity=".58"/>
+      <stop offset="1" stop-color="#1f7aff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="628" fill="#11152d" opacity=".2"/>
+  <ellipse cx="390" cy="178" rx="350" ry="145" fill="url(#hot)"/>
+  <ellipse cx="348" cy="382" rx="170" ry="132" fill="url(#hot)"/>
+  <ellipse cx="248" cy="506" rx="220" ry="110" fill="url(#hot)"/>
+</svg>

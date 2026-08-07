@@ -1,0 +1,57 @@
+{
+  "synthetic_replicate_jobs": [
+    {
+      "study_id": "study-screening-001",
+      "response_id": "response-screening-s1-0001",
+      "record_type": "screening_response",
+      "method": "partial_exposure_maxdiff",
+      "synthetic_replicate_id": "S1-replicate-0001",
+      "dispatch_id": "dispatch-S1-replicate-0001",
+      "persona_archetype_id": "persona-security-leader",
+      "segment_id": "S1",
+      "profile_snapshot": {
+        "profile_snapshot_id": "profile-snapshot-security-leader-v1",
+        "context_stratum_id": "active-evaluation"
+      },
+      "context_attribute_provenance": [
+        {
+          "attribute": "buying_stage",
+          "value": "active_evaluation",
+          "status": "observed",
+          "source_evidence": [
+            "approved-research-brief:E1"
+          ]
+        }
+      ],
+      "worker_context_isolation": "isolated",
+      "human_sample_independence": false,
+      "variation_ids": [
+        "V1",
+        "V3",
+        "V6",
+        "V7"
+      ],
+      "blind_labels": {
+        "V1": "D",
+        "V3": "B",
+        "V6": "C",
+        "V7": "A"
+      },
+      "shown_order": [
+        "V7",
+        "V3",
+        "V6",
+        "V1"
+      ],
+      "inclusion_probability": 0.5714285714285714,
+      "reaction_protocol": "progressive_reveal",
+      "reaction_prompts": [
+        "REACTION_ONLY_V7: profile-snapshot-security-leader-v1 sees blind creative A only.",
+        "REACTION_ONLY_V3: profile-snapshot-security-leader-v1 sees blind creative B only.",
+        "REACTION_ONLY_V6: profile-snapshot-security-leader-v1 sees blind creative C only.",
+        "REACTION_ONLY_V1: profile-snapshot-security-leader-v1 sees blind creative D only."
+      ],
+      "comparison_prompt": "COMPARE_V7_V3_V6_V1 only after the four validated reaction records are frozen."
+    }
+  ]
+}

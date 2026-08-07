@@ -1,0 +1,7 @@
+{
+  "aggregate": {
+    "eligible_exposure_count": 30,
+    "success_count": 0
+  },
+  "metric_family": "binary_proportion"
+}

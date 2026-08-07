@@ -1,0 +1,8 @@
+{
+  "export": {
+    "cohorts": [
+      {"cohort_label": "operations_leaders", "respondent_count": 420, "share": 0.38},
+      {"cohort_label": "finance_leaders", "respondent_count": 680, "share": 0.62}
+    ]
+  }
+}

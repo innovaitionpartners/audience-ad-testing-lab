@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "innovaition-ad-testing",
+  "description": "Open ad-testing tools from InnovAItion Partners.",
+  "owner": {
+    "name": "InnovAItion Partners"
+  },
+  "plugins": [
+    {
+      "name": "audience-ad-testing-lab",
+      "source": "./",
+      "strict": true,
+      "skills": [
+        "./skills/audience-data-lab",
+        "./skills/audience-ad-testing-lab",
+        "./skills/audience-panel-builder",
+        "./skills/real-world-outcome-data-prep"
+      ],
+      "description": "Privacy-reviewed audience data, evidence-grounded panel construction, model-conditional ad screening, real-world study preparation, uploaded result import, and marketer-ready dashboards",
+      "category": "marketing",
+      "tags": [
+        "advertising",
+        "audience-research",
+        "audience-panels",
+        "first-party-data",
+        "creative-testing",
+        "outcome-data-preparation"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "approval": {
+    "approval_note": "Approved for directional synthetic testing under the named proxy boundary.",
+    "approved_at": "2026-07-02T12:00:00Z",
+    "approved_by": "panel-owner",
+    "approved_for_panel_creation": true
+  },
+  "authorized_audience_import": null,
+  "brief_id": "marketing-leader-public-proxy-brief",
+  "claim_boundary": "Public proxy frame only. employed-person-proxy: Employer-reported employed persons, excluding self-employed people.; employer-establishment-proxy: Employer establishments in published CBP rows.; employer-firm-proxy: Employer firms in published SUSB rows. These proxies do not represent the full commercial target audience.",
+  "coverage": {
+    "buying_triggers": "thin",
+    "decision_criteria": "strong",
+    "fears_objections": "thin",
+    "media_behaviors": "empty",
+    "motivations_goals": "thin",
+    "pain_points_challenges": "thin",
+    "proof_needs": "thin"
+  },
+  "created_at": "2026-07-01T12:00:00Z",
+  "dimensional_validity": [
+    {
+      "dimension": "employment-status-geography",
+      "limitations": [
+        "The ACS/PUMS self-employed joint is unavailable."
+      ],
+      "status": "not_available"
+    },
+    {
+      "dimension": "occupation",
+      "limitations": [
+        "BLS occupation cells are modeled employer-reported proxies and exclude self-employed people."
+      ],
+      "status": "directional"
+    }
+  ],
+  "evidence_basis": "public",
+  "evidence_gaps": [
+    {
+      "gap": "The ACS/PUMS self-employed employment-status by geography joint is unavailable.",
+      "impact_on_panel": "The person proxy cannot support Tier 2 composition.",
+      "mitigation": "Downgrade to Tier 1 and retain the missing joint explicitly."
+    }
+  ],
+  "evidence_sources": [
+    {
+      "collection_method": "desk_research",
+      "confidence": "medium",
+      "date": "2026-07-24",
+      "evidence_id": "evidence-public-proxy",
+      "limits": "Persons, firms, and establishments remain separate; self-employed people are missing from the person proxy.",
+      "permitted_uses": [
+        "audience modeling",
+        "ad testing"
+      ],
+      "source_label": "Pinned BLS OEWS May 2025, Census SUSB 2022, and Census CBP 2023 extracts",
+      "source_url": "https://www.bls.gov/oes/",
+      "type": "public_research",
+      "usable_for": [
+        "named public proxy structure",
+        "proxy claim boundaries"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "category": "decision_criteria",
+      "confidence": "medium",
+      "creative_implications": [
+        "Use the panel directionally and retain the explicit proxy boundary."
+      ],
+      "evidence_ids": [
+        "evidence-public-proxy"
+      ],
+      "finding_id": "finding-public-proxy",
+      "inference_boundary": "The fixture supports only the named public proxies and cannot represent the full commercial target.",
+      "statement": "The named public sources support separate person, firm, and establishment proxy universes, not one universal audience denominator."
+    }
+  ],
+  "overlay_findings": [
+    "finding-public-proxy"
+  ],
+  "panel_tier": "tier_1",
+  "population_frame_result_sha256": "sha256:1d80e46c0d9c38196f45ea0fa728ac1df185037cf9427d5893ad37c4de185ecc",
+  "population_frame_sha256": null,
+  "privacy_confirmation": {
+    "confirmed": true,
+    "confirmed_at": "2026-07-02T12:00:00Z",
+    "confirmed_by": "research-approver",
+    "note": "Only pinned public aggregate observations are included."
+  },
+  "research_depth": "standard",
+  "research_mode": "public_research",
+  "research_questions": [
+    "Which public proxy boundaries can support directional creative testing?"
+  ],
+  "schema_version": "audience-research-brief-v3",
+  "scoped_approvals": [
+    {
+      "scope": "evidence-synthesis",
+      "status": "approved",
+      "target_sha256": "sha256:d14fa2f92362e9833455c1a5bf19dd4a0c2917c255e82a3c2846bdbc22d4d369"
+    },
+    {
+      "scope": "panel-construction",
+      "status": "approved",
+      "target_sha256": "sha256:5726dcc8e5ee9afceb142e5b9a5ab18b030ee7870772980f4b19a1e8dac125c3"
+    }
+  ],
+  "segment_hypotheses": [
+    {
+      "confidence": "medium",
+      "evidence_ids": [
+        "evidence-public-proxy"
+      ],
+      "finding_ids": [
+        "finding-public-proxy"
+      ],
+      "name": "Marketing-leader public proxy",
+      "origin": "research_derived",
+      "segment_id": "marketing-leader-proxy",
+      "why_it_matters_for_ad_testing": "It provides a bounded directional audience profile without claiming full-market prevalence."
+    }
+  ],
+  "status": "approved",
+  "structural_findings": [
+    "finding-public-proxy"
+  ],
+  "target_audience": {
+    "audience": "U.S. marketing and advertising decision-makers represented by the named public proxies",
+    "buying_context": "Evaluating campaign creative",
+    "category": "Marketing and advertising management",
+    "exclusions": [
+      "Self-employed people are outside the employer-reported person proxy"
+    ],
+    "geography": "United States",
+    "market": "United States employer economy"
+  },
+  "updated_at": "2026-07-02T12:00:00Z",
+  "workflow_state_binding": "marketing-leader-public-proxy-build"
+}

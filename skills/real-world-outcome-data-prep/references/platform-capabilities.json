@@ -1,0 +1,1966 @@
+[
+  {
+    "adapter_id": "meta-insights-api-json-v1",
+    "platform": "meta_ads",
+    "report_type": "insights_api_ad_daily",
+    "container": "json",
+    "locale": "invariant",
+    "schema_fingerprint": "sha256:c4e9e6d90bc9aff63c0ba64dfc742e914bf1428871661e896ec3f1f9f18a3830",
+    "row_grain": [
+      "account_id",
+      "campaign_id",
+      "adset_id",
+      "ad_id",
+      "date_start",
+      "date_stop"
+    ],
+    "identity_fields": [
+      "account_id",
+      "campaign_id",
+      "adset_id",
+      "ad_id",
+      "date_start",
+      "date_stop"
+    ],
+    "required_fields": [
+      "impressions",
+      "clicks",
+      "spend"
+    ],
+    "metric_fields": [
+      "actions"
+    ],
+    "time_basis": "configured_action_report_time",
+    "currency_basis": "account_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "immature"
+    ],
+    "non_personal_identity_fields": [
+      "account_id",
+      "campaign_id",
+      "adset_id",
+      "ad_id"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "impressions",
+    "official_documentation": [
+      "https://www.postman.com/meta/facebook-marketing-api/overview",
+      "https://github.com/facebook/facebook-python-business-sdk/blob/main/facebook_business/adobjects/adsinsights.py"
+    ],
+    "fixture_ids": [
+      "meta-insights-api-json-acme-v1"
+    ],
+    "maturity": "schema_tested",
+    "availability_reason": null,
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "meta-ads-manager-csv-en-us-v1",
+    "platform": "meta_ads",
+    "report_type": "ads_manager_standard",
+    "container": "csv",
+    "locale": "en-US",
+    "schema_fingerprint": "sha256:12132b8513e26ca4e1b84969b8c58305b2c2b52447c55a00fb37229f4c33ee93",
+    "row_grain": [
+      "Account ID",
+      "Campaign ID",
+      "Ad set ID",
+      "Ad ID",
+      "Day"
+    ],
+    "identity_fields": [
+      "Account ID",
+      "Campaign ID",
+      "Ad set ID",
+      "Ad ID",
+      "Day"
+    ],
+    "required_fields": [
+      "Impressions",
+      "Clicks",
+      "Amount spent (USD)"
+    ],
+    "metric_fields": [
+      "Results",
+      "Result indicator"
+    ],
+    "time_basis": "account_reporting_day",
+    "currency_basis": "column_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "suppressed",
+      "immature"
+    ],
+    "non_personal_identity_fields": [
+      "Account ID",
+      "Campaign ID",
+      "Ad set ID",
+      "Ad ID"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "Impressions",
+    "official_documentation": [
+      "https://www.facebook.com/business/help/131834970288134"
+    ],
+    "fixture_ids": [
+      "meta-ads-manager-csv-en-us-acme-v1"
+    ],
+    "maturity": "blocked",
+    "availability_reason": "blocked_pending_sanitized_sample",
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "meta-ads-manager-xlsx-en-us-v1",
+    "platform": "meta_ads",
+    "report_type": "ads_manager_standard",
+    "container": "xlsx",
+    "locale": "en-US",
+    "schema_fingerprint": "sha256:c5e33e9edfbdc88c280004860788c0f1754ca4b71402e5a2774b8ae32d8942db",
+    "row_grain": [
+      "Account ID",
+      "Campaign ID",
+      "Ad set ID",
+      "Ad ID",
+      "Reporting starts",
+      "Reporting ends"
+    ],
+    "identity_fields": [
+      "Account ID",
+      "Campaign ID",
+      "Ad set ID",
+      "Ad ID",
+      "Reporting starts",
+      "Reporting ends"
+    ],
+    "required_fields": [
+      "Impressions",
+      "Clicks",
+      "Amount spent (USD)"
+    ],
+    "metric_fields": [
+      "Results",
+      "Result indicator"
+    ],
+    "time_basis": "account_reporting_window",
+    "currency_basis": "column_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "suppressed",
+      "immature"
+    ],
+    "non_personal_identity_fields": [
+      "Account ID",
+      "Campaign ID",
+      "Ad set ID",
+      "Ad ID"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "Impressions",
+    "official_documentation": [
+      "https://www.facebook.com/business/help/131834970288134"
+    ],
+    "fixture_ids": [
+      "meta-ads-manager-xlsx-en-us-acme-v1"
+    ],
+    "maturity": "blocked",
+    "availability_reason": "blocked_pending_sanitized_sample",
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "google-ads-api-v23-ad-daily-json",
+    "platform": "google_ads",
+    "report_type": "api_v23_ad_daily",
+    "container": "json",
+    "locale": "invariant",
+    "schema_fingerprint": "sha256:234b3aceb30983432fedeabb5bc026bfaaeddbac26aa4459c3220e95d59b475f",
+    "row_grain": [
+      "customer_id",
+      "campaign_id",
+      "ad_group_id",
+      "ad_id",
+      "date"
+    ],
+    "identity_fields": [
+      "customer.id",
+      "campaign.id",
+      "ad_group.id",
+      "ad_group_ad.ad.id",
+      "segments.date"
+    ],
+    "required_fields": [
+      "metrics.impressions",
+      "metrics.clicks",
+      "metrics.cost_micros"
+    ],
+    "metric_fields": [
+      "metrics.conversions",
+      "metrics.all_conversions"
+    ],
+    "time_basis": "interaction_date",
+    "currency_basis": "customer_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "immature"
+    ],
+    "non_personal_identity_fields": [
+      "customer.id",
+      "campaign.id",
+      "ad_group.id",
+      "ad_group_ad.ad.id"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "metrics.impressions",
+    "official_documentation": [
+      "https://developers.google.com/google-ads/api/docs/reporting/overview"
+    ],
+    "fixture_ids": [
+      "google-ads-api-v23-ad-daily-json-acme-v1"
+    ],
+    "maturity": "schema_tested",
+    "availability_reason": null,
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "google-ads-ui-csv-en-us-v1",
+    "platform": "google_ads",
+    "report_type": "ui_ad_daily",
+    "container": "csv",
+    "locale": "en-US",
+    "schema_fingerprint": "sha256:38eb2a76aa1c9b51531a2ebebcc9a11c814a6e4741eb2e2165aa45b71d933676",
+    "row_grain": [
+      "Customer ID",
+      "Campaign ID",
+      "Ad group ID",
+      "Ad ID",
+      "Day"
+    ],
+    "identity_fields": [
+      "Customer ID",
+      "Campaign ID",
+      "Ad group ID",
+      "Ad ID",
+      "Day"
+    ],
+    "required_fields": [
+      "Impr.",
+      "Clicks",
+      "Cost"
+    ],
+    "metric_fields": [
+      "Conversions",
+      "All conv."
+    ],
+    "time_basis": "interaction_date",
+    "currency_basis": "customer_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "immature"
+    ],
+    "non_personal_identity_fields": [
+      "Customer ID",
+      "Campaign ID",
+      "Ad group ID",
+      "Ad ID"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "Impr.",
+    "official_documentation": [
+      "https://support.google.com/google-ads/answer/2454065"
+    ],
+    "fixture_ids": [
+      "google-ads-ui-csv-en-us-acme-v1"
+    ],
+    "maturity": "schema_tested",
+    "availability_reason": null,
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "google-ads-ui-excel-csv-en-us-v1",
+    "platform": "google_ads",
+    "report_type": "ui_excel_compatible_ad_daily",
+    "container": "csv",
+    "locale": "en-US",
+    "schema_fingerprint": "sha256:ac819701d3a907d55c7f877301f89e42df2ef9ee5f3f2a754664fef14fae02fe",
+    "row_grain": [
+      "Account",
+      "Campaign ID",
+      "Ad group ID",
+      "Ad ID",
+      "Day"
+    ],
+    "identity_fields": [
+      "Account",
+      "Campaign ID",
+      "Ad group ID",
+      "Ad ID",
+      "Day"
+    ],
+    "required_fields": [
+      "Impressions",
+      "Clicks",
+      "Currency",
+      "Cost"
+    ],
+    "metric_fields": [
+      "Conversions",
+      "All conversions"
+    ],
+    "time_basis": "interaction_date",
+    "currency_basis": "row_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "immature"
+    ],
+    "non_personal_identity_fields": [
+      "Account",
+      "Campaign ID",
+      "Ad group ID",
+      "Ad ID"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "Impressions",
+    "official_documentation": [
+      "https://support.google.com/google-ads/answer/2454065"
+    ],
+    "fixture_ids": [
+      "google-ads-ui-excel-csv-en-us-acme-v1"
+    ],
+    "maturity": "schema_tested",
+    "availability_reason": null,
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "google-ads-ui-tsv-en-us-v1",
+    "platform": "google_ads",
+    "report_type": "ui_ad_daily",
+    "container": "tsv",
+    "locale": "en-US",
+    "schema_fingerprint": "sha256:ad59a864b97319d08bad3fa13f00c07319b33de9e8e269f80dbc040b1ba404f3",
+    "row_grain": [
+      "Customer ID",
+      "Campaign ID",
+      "Ad group ID",
+      "Ad ID",
+      "Day"
+    ],
+    "identity_fields": [
+      "Customer ID",
+      "Campaign ID",
+      "Ad group ID",
+      "Ad ID",
+      "Day"
+    ],
+    "required_fields": [
+      "Impressions",
+      "Clicks",
+      "Cost"
+    ],
+    "metric_fields": [
+      "Conversions",
+      "All conversions"
+    ],
+    "time_basis": "interaction_date",
+    "currency_basis": "customer_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "immature"
+    ],
+    "non_personal_identity_fields": [
+      "Customer ID",
+      "Campaign ID",
+      "Ad group ID",
+      "Ad ID"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "Impressions",
+    "official_documentation": [
+      "https://support.google.com/google-ads/answer/2454065"
+    ],
+    "fixture_ids": [
+      "google-ads-ui-tsv-en-us-acme-v1"
+    ],
+    "maturity": "schema_tested",
+    "availability_reason": null,
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "google-ads-ui-xlsx-en-us-v1",
+    "platform": "google_ads",
+    "report_type": "ui_ad_daily",
+    "container": "xlsx",
+    "locale": "en-US",
+    "schema_fingerprint": "sha256:ad59a864b97319d08bad3fa13f00c07319b33de9e8e269f80dbc040b1ba404f3",
+    "row_grain": [
+      "Customer ID",
+      "Campaign ID",
+      "Ad group ID",
+      "Ad ID",
+      "Day"
+    ],
+    "identity_fields": [
+      "Customer ID",
+      "Campaign ID",
+      "Ad group ID",
+      "Ad ID",
+      "Day"
+    ],
+    "required_fields": [
+      "Impressions",
+      "Clicks",
+      "Cost"
+    ],
+    "metric_fields": [
+      "Conversions",
+      "All conversions"
+    ],
+    "time_basis": "interaction_date",
+    "currency_basis": "customer_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "immature"
+    ],
+    "non_personal_identity_fields": [
+      "Customer ID",
+      "Campaign ID",
+      "Ad group ID",
+      "Ad ID"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "Impressions",
+    "official_documentation": [
+      "https://support.google.com/google-ads/answer/2454065"
+    ],
+    "fixture_ids": [
+      "google-ads-ui-xlsx-en-us-acme-v1"
+    ],
+    "maturity": "schema_tested",
+    "availability_reason": null,
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "google-ads-ui-xml-en-us-v1",
+    "platform": "google_ads",
+    "report_type": "ui_ad_daily",
+    "container": "xml",
+    "locale": "en-US",
+    "schema_fingerprint": "sha256:3328f0b46e6f914c3c87474f54330c81f387eebeed1fffadf4844f7f476a4557",
+    "row_grain": [
+      "customerId",
+      "campaignId",
+      "adGroupId",
+      "adId",
+      "day"
+    ],
+    "identity_fields": [
+      "customerId",
+      "campaignId",
+      "adGroupId",
+      "adId",
+      "day"
+    ],
+    "required_fields": [
+      "impressions",
+      "clicks",
+      "cost"
+    ],
+    "metric_fields": [
+      "conversions",
+      "allConversions"
+    ],
+    "time_basis": "interaction_date",
+    "currency_basis": "customer_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "immature"
+    ],
+    "non_personal_identity_fields": [
+      "customerId",
+      "campaignId",
+      "adGroupId",
+      "adId"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "impressions",
+    "official_documentation": [
+      "https://support.google.com/google-ads/answer/2454065"
+    ],
+    "fixture_ids": [
+      "google-ads-ui-xml-en-us-acme-v1"
+    ],
+    "maturity": "blocked",
+    "availability_reason": "blocked_pending_sanitized_sample",
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "linkedin-ads-reporting-api-json-v1",
+    "platform": "linkedin_ads",
+    "report_type": "reporting_api_creative_daily",
+    "container": "json",
+    "locale": "invariant",
+    "schema_fingerprint": "sha256:77a0f6f08acbb49b2980cc912ac7699c07fd513731bc2c786bece69b27217bdd",
+    "row_grain": [
+      "account",
+      "campaign",
+      "creative",
+      "dateRange.start",
+      "dateRange.end"
+    ],
+    "identity_fields": [
+      "account",
+      "campaign",
+      "creative",
+      "dateRange.start",
+      "dateRange.end"
+    ],
+    "required_fields": [
+      "impressions",
+      "clicks",
+      "costInLocalCurrency"
+    ],
+    "metric_fields": [
+      "externalWebsiteConversions",
+      "oneClickLeads"
+    ],
+    "time_basis": "account_reporting_day",
+    "currency_basis": "account_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "modeled"
+    ],
+    "non_personal_identity_fields": [
+      "account",
+      "campaign",
+      "creative"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "impressions",
+    "official_documentation": [
+      "https://learn.microsoft.com/en-us/linkedin/marketing/integrations/ads-reporting/ads-reporting"
+    ],
+    "fixture_ids": [
+      "linkedin-ads-reporting-api-json-acme-v1"
+    ],
+    "maturity": "schema_tested",
+    "availability_reason": null,
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "linkedin-campaign-manager-csv-en-us-v1",
+    "platform": "linkedin_ads",
+    "report_type": "campaign_manager_creative_daily",
+    "container": "csv",
+    "locale": "en-US",
+    "schema_fingerprint": "sha256:239a3af8d1d82966a7347831583d00eb59de2cf37e6866b5e44a9dce1e059523",
+    "row_grain": [
+      "Account ID",
+      "Campaign ID",
+      "Creative ID",
+      "Start Date",
+      "End Date"
+    ],
+    "identity_fields": [
+      "Account ID",
+      "Campaign ID",
+      "Creative ID",
+      "Start Date",
+      "End Date"
+    ],
+    "required_fields": [
+      "Impressions",
+      "Clicks",
+      "Total Spent"
+    ],
+    "metric_fields": [
+      "Conversions",
+      "Leads"
+    ],
+    "time_basis": "account_reporting_day",
+    "currency_basis": "account_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "modeled"
+    ],
+    "non_personal_identity_fields": [
+      "Account ID",
+      "Campaign ID",
+      "Creative ID"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "Impressions",
+    "official_documentation": [
+      "https://www.linkedin.com/help/lms/answer/a425133"
+    ],
+    "fixture_ids": [
+      "linkedin-campaign-manager-csv-en-us-acme-v1"
+    ],
+    "maturity": "schema_tested",
+    "availability_reason": null,
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "tiktok-reporting-api-json-v1",
+    "platform": "tiktok_ads",
+    "report_type": "reporting_api_ad_daily",
+    "container": "json",
+    "locale": "invariant",
+    "schema_fingerprint": "sha256:d911e1b348a7e382327dcb748314e438b5f435677afd1b4fc165c67be5956d07",
+    "row_grain": [
+      "advertiser_id",
+      "campaign_id",
+      "adgroup_id",
+      "ad_id",
+      "stat_time_day"
+    ],
+    "identity_fields": [
+      "advertiser_id",
+      "campaign_id",
+      "adgroup_id",
+      "ad_id",
+      "stat_time_day"
+    ],
+    "required_fields": [
+      "impressions",
+      "clicks",
+      "spend"
+    ],
+    "metric_fields": [
+      "conversion",
+      "real_time_conversion"
+    ],
+    "time_basis": "advertiser_reporting_day",
+    "currency_basis": "advertiser_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "modeled"
+    ],
+    "non_personal_identity_fields": [
+      "advertiser_id",
+      "campaign_id",
+      "adgroup_id",
+      "ad_id"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "impressions",
+    "official_documentation": [
+      "https://business-api.tiktok.com/portal/docs?id=1738864835805186"
+    ],
+    "fixture_ids": [
+      "tiktok-reporting-api-json-acme-v1"
+    ],
+    "maturity": "schema_tested",
+    "availability_reason": null,
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "tiktok-custom-report-csv-en-us-v1",
+    "platform": "tiktok_ads",
+    "report_type": "custom_report_ad_daily",
+    "container": "csv",
+    "locale": "en-US",
+    "schema_fingerprint": "sha256:f141a9d1326f4f06ad31e1e61ca84e35fd79c8d9320005e8e78dcaf699806aba",
+    "row_grain": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Ad Group ID",
+      "Ad ID",
+      "Date"
+    ],
+    "identity_fields": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Ad Group ID",
+      "Ad ID",
+      "Date"
+    ],
+    "required_fields": [
+      "Impressions",
+      "Clicks",
+      "Cost"
+    ],
+    "metric_fields": [
+      "Conversions",
+      "Real-time conversions"
+    ],
+    "time_basis": "advertiser_reporting_day",
+    "currency_basis": "advertiser_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "modeled"
+    ],
+    "non_personal_identity_fields": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Ad Group ID",
+      "Ad ID"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "Impressions",
+    "official_documentation": [
+      "https://ads.tiktok.com/help/article/create-manage-reports"
+    ],
+    "fixture_ids": [
+      "tiktok-custom-report-csv-en-us-acme-v1"
+    ],
+    "maturity": "blocked",
+    "availability_reason": "blocked_pending_sanitized_sample",
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "tiktok-custom-report-xlsx-en-us-v1",
+    "platform": "tiktok_ads",
+    "report_type": "custom_report_ad_daily",
+    "container": "xlsx",
+    "locale": "en-US",
+    "schema_fingerprint": "sha256:1c3153e8282182ee038b1b4c034656a353a66658920921124fe5d1b640837d59",
+    "row_grain": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Ad group ID",
+      "Ad ID",
+      "Report date"
+    ],
+    "identity_fields": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Ad group ID",
+      "Ad ID",
+      "Report date"
+    ],
+    "required_fields": [
+      "Impressions",
+      "Clicks",
+      "Spend"
+    ],
+    "metric_fields": [
+      "Conversions",
+      "Real time conversions"
+    ],
+    "time_basis": "advertiser_reporting_day",
+    "currency_basis": "advertiser_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "modeled"
+    ],
+    "non_personal_identity_fields": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Ad group ID",
+      "Ad ID"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "Impressions",
+    "official_documentation": [
+      "https://ads.tiktok.com/help/article/create-manage-reports"
+    ],
+    "fixture_ids": [
+      "tiktok-custom-report-xlsx-en-us-acme-v1"
+    ],
+    "maturity": "blocked",
+    "availability_reason": "blocked_pending_sanitized_sample",
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "dv360-bid-manager-v2-standard-csv-v1",
+    "platform": "dv360",
+    "report_type": "bid_manager_v2_standard",
+    "container": "csv",
+    "locale": "invariant",
+    "schema_fingerprint": "sha256:f91fb3c7120133bcbef436e4a7758c37eb2d12348c6ce560bc6568e54c3b12fe",
+    "row_grain": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Insertion Order ID",
+      "Line Item ID",
+      "Creative ID",
+      "Date"
+    ],
+    "identity_fields": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Insertion Order ID",
+      "Line Item ID",
+      "Creative ID",
+      "Date"
+    ],
+    "required_fields": [
+      "Impressions",
+      "Clicks",
+      "Media Cost (Advertiser Currency)"
+    ],
+    "metric_fields": [
+      "Total Conversions"
+    ],
+    "time_basis": "advertiser_reporting_day",
+    "currency_basis": "advertiser_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "modeled"
+    ],
+    "non_personal_identity_fields": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Insertion Order ID",
+      "Line Item ID",
+      "Creative ID"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "Impressions",
+    "official_documentation": [
+      "https://developers.google.com/bid-manager/api/reference/rest/v2/queries"
+    ],
+    "fixture_ids": [
+      "dv360-bid-manager-v2-standard-csv-acme-v1"
+    ],
+    "maturity": "schema_tested",
+    "availability_reason": null,
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "dv360-bid-manager-v2-standard-xlsx-v1",
+    "platform": "dv360",
+    "report_type": "bid_manager_v2_standard",
+    "container": "xlsx",
+    "locale": "invariant",
+    "schema_fingerprint": "sha256:c27446eecfc58fc34328898e2d5d2d7e429892cda640dc5b995e32f98fbde657",
+    "row_grain": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Insertion Order ID",
+      "Line Item ID",
+      "Creative ID",
+      "Date"
+    ],
+    "identity_fields": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Insertion Order ID",
+      "Line Item ID",
+      "Creative ID",
+      "Date"
+    ],
+    "required_fields": [
+      "Impressions",
+      "Clicks",
+      "Media Cost"
+    ],
+    "metric_fields": [
+      "Total Conversions"
+    ],
+    "time_basis": "advertiser_reporting_day",
+    "currency_basis": "advertiser_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "modeled"
+    ],
+    "non_personal_identity_fields": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Insertion Order ID",
+      "Line Item ID",
+      "Creative ID"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "Impressions",
+    "official_documentation": [
+      "https://developers.google.com/bid-manager/api/reference/rest/v2/queries"
+    ],
+    "fixture_ids": [
+      "dv360-bid-manager-v2-standard-xlsx-acme-v1"
+    ],
+    "maturity": "schema_tested",
+    "availability_reason": null,
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "trade-desk-report-template-csv-v1",
+    "platform": "the_trade_desk",
+    "report_type": "report_template_ad_daily",
+    "container": "csv",
+    "locale": "invariant",
+    "schema_fingerprint": "sha256:9b208c57bc197186ee131c365ae5d455d16c1539c9213fcf80f1eddffe280307",
+    "row_grain": [
+      "AdvertiserId",
+      "CampaignId",
+      "AdGroupId",
+      "CreativeId",
+      "Date"
+    ],
+    "identity_fields": [
+      "AdvertiserId",
+      "CampaignId",
+      "AdGroupId",
+      "CreativeId",
+      "Date"
+    ],
+    "required_fields": [
+      "Impressions",
+      "Clicks",
+      "AdvertiserCost"
+    ],
+    "metric_fields": [
+      "Conversions"
+    ],
+    "time_basis": "report_template_timezone_day",
+    "currency_basis": "advertiser_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "modeled"
+    ],
+    "non_personal_identity_fields": [
+      "AdvertiserId",
+      "CampaignId",
+      "AdGroupId",
+      "CreativeId"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "Impressions",
+    "official_documentation": [
+      "https://partner.thetradedesk.com/v3/portal/data/doc/ReportingOverview"
+    ],
+    "fixture_ids": [
+      "trade-desk-report-template-csv-acme-v1"
+    ],
+    "maturity": "schema_tested",
+    "availability_reason": null,
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "trade-desk-report-template-tsv-v1",
+    "platform": "the_trade_desk",
+    "report_type": "report_template_ad_daily",
+    "container": "tsv",
+    "locale": "invariant",
+    "schema_fingerprint": "sha256:9b208c57bc197186ee131c365ae5d455d16c1539c9213fcf80f1eddffe280307",
+    "row_grain": [
+      "AdvertiserId",
+      "CampaignId",
+      "AdGroupId",
+      "CreativeId",
+      "Date"
+    ],
+    "identity_fields": [
+      "AdvertiserId",
+      "CampaignId",
+      "AdGroupId",
+      "CreativeId",
+      "Date"
+    ],
+    "required_fields": [
+      "Impressions",
+      "Clicks",
+      "AdvertiserCost"
+    ],
+    "metric_fields": [
+      "Conversions"
+    ],
+    "time_basis": "report_template_timezone_day",
+    "currency_basis": "advertiser_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "modeled"
+    ],
+    "non_personal_identity_fields": [
+      "AdvertiserId",
+      "CampaignId",
+      "AdGroupId",
+      "CreativeId"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "Impressions",
+    "official_documentation": [
+      "https://partner.thetradedesk.com/v3/portal/data/doc/ReportingOverview"
+    ],
+    "fixture_ids": [
+      "trade-desk-report-template-tsv-acme-v1"
+    ],
+    "maturity": "schema_tested",
+    "availability_reason": null,
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "trade-desk-report-type-xlsx-v1",
+    "platform": "the_trade_desk",
+    "report_type": "report_type_ad_daily",
+    "container": "xlsx",
+    "locale": "invariant",
+    "schema_fingerprint": "sha256:e9e9c384a660f0b71f46084562714ddf364d159243b4fdecccf036d145aa1e5c",
+    "row_grain": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Ad Group ID",
+      "Creative ID",
+      "Report Date"
+    ],
+    "identity_fields": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Ad Group ID",
+      "Creative ID",
+      "Report Date"
+    ],
+    "required_fields": [
+      "Impression Count",
+      "Click Count",
+      "Advertiser Cost"
+    ],
+    "metric_fields": [
+      "Conversion Count"
+    ],
+    "time_basis": "report_type_timezone_day",
+    "currency_basis": "advertiser_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "modeled"
+    ],
+    "non_personal_identity_fields": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Ad Group ID",
+      "Creative ID"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "Impression Count",
+    "official_documentation": [
+      "https://partner.thetradedesk.com/v3/portal/data/doc/ReportingOverview"
+    ],
+    "fixture_ids": [
+      "trade-desk-report-type-xlsx-acme-v1"
+    ],
+    "maturity": "schema_tested",
+    "availability_reason": null,
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "amazon-unified-reporting-ui-csv-v1",
+    "platform": "amazon_dsp",
+    "report_type": "unified_reporting_ui_ad_daily",
+    "container": "csv",
+    "locale": "invariant",
+    "schema_fingerprint": "sha256:bc38f6f6ca40cdd655d4667bd52fd3e34f896a9ed485121b6ef309f9973886e9",
+    "row_grain": [
+      "Advertiser ID",
+      "Order ID",
+      "Line item ID",
+      "Creative ID",
+      "Date"
+    ],
+    "identity_fields": [
+      "Advertiser ID",
+      "Order ID",
+      "Line item ID",
+      "Creative ID",
+      "Date"
+    ],
+    "required_fields": [
+      "Impressions delivered",
+      "Clicks delivered",
+      "Total cost"
+    ],
+    "metric_fields": [
+      "Purchases"
+    ],
+    "time_basis": "advertiser_reporting_day",
+    "currency_basis": "advertiser_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "modeled"
+    ],
+    "non_personal_identity_fields": [
+      "Advertiser ID",
+      "Order ID",
+      "Line item ID",
+      "Creative ID"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "Impressions delivered",
+    "official_documentation": [
+      "https://advertising.amazon.com/API/docs/en-us/guides/reporting/v3/overview"
+    ],
+    "fixture_ids": [
+      "amazon-unified-reporting-ui-csv-acme-v1"
+    ],
+    "maturity": "blocked",
+    "availability_reason": "blocked_pending_sanitized_sample",
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "amazon-unified-reporting-ui-xlsx-v1",
+    "platform": "amazon_dsp",
+    "report_type": "unified_reporting_ui_ad_daily",
+    "container": "xlsx",
+    "locale": "invariant",
+    "schema_fingerprint": "sha256:df9d3644d2491079bf2bf159eae80820a9adb0d5bf3d96e9e58964ba99464dd3",
+    "row_grain": [
+      "Advertiser",
+      "Order",
+      "Line item",
+      "Creative",
+      "Report date"
+    ],
+    "identity_fields": [
+      "Advertiser",
+      "Order",
+      "Line item",
+      "Creative",
+      "Report date"
+    ],
+    "required_fields": [
+      "Impressions",
+      "Clicks",
+      "Cost"
+    ],
+    "metric_fields": [
+      "Purchases"
+    ],
+    "time_basis": "advertiser_reporting_day",
+    "currency_basis": "advertiser_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "modeled"
+    ],
+    "non_personal_identity_fields": [
+      "Advertiser",
+      "Order",
+      "Line item",
+      "Creative"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "Impressions",
+    "official_documentation": [
+      "https://advertising.amazon.com/API/docs/en-us/guides/reporting/v3/overview"
+    ],
+    "fixture_ids": [
+      "amazon-unified-reporting-ui-xlsx-acme-v1"
+    ],
+    "maturity": "blocked",
+    "availability_reason": "blocked_pending_sanitized_sample",
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "amazon-unified-reporting-api-json-v1",
+    "platform": "amazon_dsp",
+    "report_type": "unified_reporting_api_ad_daily",
+    "container": "json",
+    "locale": "invariant",
+    "schema_fingerprint": "sha256:92ac35346ac8d5ca6a914d505ab3a598c1ff69988c8643a43f7768904713c186",
+    "row_grain": [
+      "advertiserId",
+      "orderId",
+      "lineItemId",
+      "creativeId",
+      "date"
+    ],
+    "identity_fields": [
+      "advertiserId",
+      "orderId",
+      "lineItemId",
+      "creativeId",
+      "date"
+    ],
+    "required_fields": [
+      "impressions",
+      "clicks",
+      "totalCost"
+    ],
+    "metric_fields": [
+      "purchases"
+    ],
+    "time_basis": "advertiser_reporting_day",
+    "currency_basis": "advertiser_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "modeled"
+    ],
+    "non_personal_identity_fields": [
+      "advertiserId",
+      "orderId",
+      "lineItemId",
+      "creativeId"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "impressions",
+    "official_documentation": [
+      "https://advertising.amazon.com/API/docs/en-us/guides/reporting/v3/overview"
+    ],
+    "fixture_ids": [
+      "amazon-unified-reporting-api-json-acme-v1"
+    ],
+    "maturity": "blocked",
+    "availability_reason": "blocked_pending_sanitized_sample",
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "xandr-advertiser-analytics-csv-v1",
+    "platform": "xandr",
+    "report_type": "advertiser_analytics",
+    "container": "csv",
+    "locale": "invariant",
+    "schema_fingerprint": "sha256:c03d0b9fc0ac607554c44507b305720bf616e9a9e35f61439d5a29711e3885f1",
+    "row_grain": [
+      "advertiser_id",
+      "campaign_id",
+      "insertion_order_id",
+      "line_item_id",
+      "creative_id",
+      "day"
+    ],
+    "identity_fields": [
+      "advertiser_id",
+      "campaign_id",
+      "insertion_order_id",
+      "line_item_id",
+      "creative_id",
+      "day"
+    ],
+    "required_fields": [
+      "imps",
+      "clicks",
+      "media_cost"
+    ],
+    "metric_fields": [
+      "post_click_convs",
+      "post_view_convs"
+    ],
+    "time_basis": "member_reporting_day",
+    "currency_basis": "advertiser_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "modeled"
+    ],
+    "non_personal_identity_fields": [
+      "advertiser_id",
+      "campaign_id",
+      "insertion_order_id",
+      "line_item_id",
+      "creative_id"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "imps",
+    "official_documentation": [
+      "https://learn.microsoft.com/en-us/xandr/digital-platform-api/network-advertiser-analytics"
+    ],
+    "fixture_ids": [
+      "xandr-advertiser-analytics-csv-acme-v1"
+    ],
+    "maturity": "schema_tested",
+    "availability_reason": null,
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "xandr-advertiser-analytics-excel-tsv-v1",
+    "platform": "xandr",
+    "report_type": "advertiser_analytics_excel",
+    "container": "tsv",
+    "locale": "invariant",
+    "schema_fingerprint": "sha256:2e40f297177cf7c683005badd8193ef55c822c363b478fff50b2d573c1f3f611",
+    "row_grain": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Insertion Order ID",
+      "Line Item ID",
+      "Creative ID",
+      "Day"
+    ],
+    "identity_fields": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Insertion Order ID",
+      "Line Item ID",
+      "Creative ID",
+      "Day"
+    ],
+    "required_fields": [
+      "Imps",
+      "Clicks",
+      "Media Cost"
+    ],
+    "metric_fields": [
+      "Post Click Convs",
+      "Post View Convs"
+    ],
+    "time_basis": "member_reporting_day",
+    "currency_basis": "advertiser_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "modeled"
+    ],
+    "non_personal_identity_fields": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Insertion Order ID",
+      "Line Item ID",
+      "Creative ID"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "Imps",
+    "official_documentation": [
+      "https://learn.microsoft.com/en-us/xandr/digital-platform-api/network-advertiser-analytics"
+    ],
+    "fixture_ids": [
+      "xandr-advertiser-analytics-excel-tsv-acme-v1"
+    ],
+    "maturity": "schema_tested",
+    "availability_reason": null,
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "xandr-advertiser-analytics-xlsx-v1",
+    "platform": "xandr",
+    "report_type": "advertiser_analytics",
+    "container": "xlsx",
+    "locale": "invariant",
+    "schema_fingerprint": "sha256:e864f3bbb316764bde706f7cc03ab799e9a3d87ea5b6a1721b6f514d8f285947",
+    "row_grain": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Insertion Order ID",
+      "Line Item ID",
+      "Creative ID",
+      "Date"
+    ],
+    "identity_fields": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Insertion Order ID",
+      "Line Item ID",
+      "Creative ID",
+      "Date"
+    ],
+    "required_fields": [
+      "Impressions",
+      "Clicks",
+      "Media Cost"
+    ],
+    "metric_fields": [
+      "Post-click Conversions",
+      "Post-view Conversions"
+    ],
+    "time_basis": "member_reporting_day",
+    "currency_basis": "advertiser_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "omitted_zero",
+      "fractional",
+      "modeled"
+    ],
+    "non_personal_identity_fields": [
+      "Advertiser ID",
+      "Campaign ID",
+      "Insertion Order ID",
+      "Line Item ID",
+      "Creative ID"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "Impressions",
+    "official_documentation": [
+      "https://learn.microsoft.com/en-us/xandr/digital-platform-api/network-advertiser-analytics"
+    ],
+    "fixture_ids": [
+      "xandr-advertiser-analytics-xlsx-acme-v1"
+    ],
+    "maturity": "schema_tested",
+    "availability_reason": null,
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  },
+  {
+    "adapter_id": "generic-dsp-mapping-v1",
+    "platform": "generic_dsp",
+    "report_type": "explicit_preregistered_mapping",
+    "container": "csv",
+    "locale": "invariant",
+    "schema_fingerprint": "sha256:9d8da7b5168e04f51e8f46bc9a6b0d9e416ac14a13c36e7c27b9b78ec7891694",
+    "row_grain": [
+      "platform",
+      "campaign_id",
+      "line_item_id",
+      "creative_id",
+      "date"
+    ],
+    "identity_fields": [
+      "platform",
+      "campaign_id",
+      "line_item_id",
+      "creative_id",
+      "date"
+    ],
+    "required_fields": [
+      "exposures",
+      "clicks",
+      "spend",
+      "currency"
+    ],
+    "metric_fields": [
+      "outcome_value",
+      "outcome_metric",
+      "value_state"
+    ],
+    "time_basis": "explicit_registered_basis",
+    "currency_basis": "explicit_row_currency",
+    "value_states": [
+      "observed",
+      "observed_zero",
+      "missing",
+      "suppressed",
+      "fractional",
+      "modeled",
+      "immature"
+    ],
+    "non_personal_identity_fields": [
+      "platform",
+      "campaign_id",
+      "line_item_id",
+      "creative_id"
+    ],
+    "prohibited_fields": [
+      "name",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "address",
+      "ip_address",
+      "device_id",
+      "cookie_id",
+      "user_id",
+      "person_id",
+      "lead_id",
+      "contact_id",
+      "respondent_id"
+    ],
+    "group_size_field": "exposures",
+    "official_documentation": [
+      "https://github.com/innovaitionpartners/audience-ad-testing-lab"
+    ],
+    "fixture_ids": [
+      "generic-dsp-mapping-csv-acme-v1"
+    ],
+    "maturity": "schema_tested",
+    "availability_reason": null,
+    "adapter_version": "1.0.0",
+    "reviewer": null,
+    "verified_at": null,
+    "contract_ready_permitted": false
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "study_id": "dashboard-copy-001",
+  "creatives": [
+    {
+      "variation_id": "copy-a",
+      "display_name": "Lead with the problem",
+      "format": "copy only",
+      "headline": "See the delay before it costs another week",
+      "body": "Find the stalled handoffs before the next planning cycle.",
+      "cta": "Review the workflow",
+      "input_fidelity": "supplied copy",
+      "media": []
+    },
+    {
+      "variation_id": "copy-b",
+      "display_name": "Lead with the benefit",
+      "format": "copy only",
+      "headline": "Give the team Tuesday back",
+      "body": "Replace recurring status chases with clearer ownership.",
+      "cta": "See the operating model",
+      "input_fidelity": "supplied copy",
+      "media": []
+    }
+  ]
+}

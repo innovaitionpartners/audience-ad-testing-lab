@@ -1,0 +1,29 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+tmp/
+*-workspace/
+
+# Product regression tests are public. Comparative evals, ablations, and
+# optimization artifacts are maintained in InnovAItion Partners' private
+# skills-development repository.
+/evals/
+/tests/evals-v2/
+/tests/
+/scripts/validate-claude-workflow.py
+/.ablate-stage/
+/dogfood/
+/optimizer-reports/
+
+# Maintainer-only implementation history belongs in the private sidecar.
+/docs/su?erpowers/
+
+# Generated local test and evaluation output.
+/tests/output/
+/tests/runs/
+
+# Security audit and agent workflows
+/.gemini_security/
+/.superpowers/
+/docs/superpowers/
+/docs/su?erpowers/

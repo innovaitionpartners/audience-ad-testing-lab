@@ -1,0 +1,33 @@
+{
+  "schema_version": "panel-workflow-state-v1",
+  "workflow_id": "operations-leaders-build",
+  "panel_id": "operations-leaders",
+  "panel_version": "1.0.0",
+  "state": "approved",
+  "updated_at": "2026-07-24T12:20:00Z",
+  "approvals": [
+    {
+      "scope": "evidence_synthesis",
+      "status": "approved",
+      "approved_by": "panel-owner",
+      "approved_at": "2026-07-24T12:20:00Z",
+      "target_sha256": "d4e5b0e3e0d3ee6e74a9a7195979d29c3a2c50fdf66603b82438fe0dcd2f8b35",
+      "note": "Approved exact synthesis bytes."
+    },
+    {
+      "scope": "panel_construction",
+      "status": "approved",
+      "approved_by": "panel-owner",
+      "approved_at": "2026-07-24T12:20:00Z",
+      "target_sha256": "24993586b2b1d27a17ae1a8584111c32d066def9afae21b75918914bb56bdb7d",
+      "note": "Approved exact panel bytes."
+    }
+  ],
+  "bindings": {
+    "brief_sha256": "d4bbeb00ccd8ec0c4cf63b5b706f77532c00fc362d33b10794d1ba0113c5ee27",
+    "panel_sha256": "24993586b2b1d27a17ae1a8584111c32d066def9afae21b75918914bb56bdb7d",
+    "report_inputs_sha256": null,
+    "audit_sha256": null,
+    "package_sha256": null
+  }
+}

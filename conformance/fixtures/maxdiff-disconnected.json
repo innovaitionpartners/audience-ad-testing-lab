@@ -1,0 +1,9 @@
+{
+  "description": "Two internally connected four-creative components with no bridging record.",
+  "observations": [
+    {"response_id":"D01","segment_id":"S1","persona_archetype_id":"A1","assigned_variation_ids":["V1","V2","V3","V4"],"comparative_choice":{"status":"best_worst","best_variation_id":"V1","weakest_variation_id":"V4"},"usable_maxdiff_block":true},
+    {"response_id":"D02","segment_id":"S1","persona_archetype_id":"A2","assigned_variation_ids":["V1","V2","V3","V4"],"comparative_choice":{"status":"best_worst","best_variation_id":"V2","weakest_variation_id":"V3"},"usable_maxdiff_block":true},
+    {"response_id":"D03","segment_id":"S1","persona_archetype_id":"A1","assigned_variation_ids":["V5","V6","V7","V8"],"comparative_choice":{"status":"best_worst","best_variation_id":"V5","weakest_variation_id":"V8"},"usable_maxdiff_block":true},
+    {"response_id":"D04","segment_id":"S1","persona_archetype_id":"A2","assigned_variation_ids":["V5","V6","V7","V8"],"comparative_choice":{"status":"best_worst","best_variation_id":"V6","weakest_variation_id":"V7"},"usable_maxdiff_block":true}
+  ]
+}

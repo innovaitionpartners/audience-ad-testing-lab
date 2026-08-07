@@ -1,0 +1,84 @@
+{
+  "study_id": "dashboard-acme-001",
+  "estimand": "centered_protocol_relative_log_utility",
+  "stability_diagnostic": "conditional_within_run_top_k_inclusion_frequency",
+  "requested_top_k": 2,
+  "utilities": {
+    "creative-a": 1.12,
+    "creative-b": 0.43,
+    "creative-c": -0.18,
+    "creative-d": -1.37
+  },
+  "ranked_ids": ["creative-a", "creative-b", "creative-c", "creative-d"],
+  "top_k_inclusion_frequencies": {
+    "creative-a": 0.96,
+    "creative-b": 0.72,
+    "creative-c": 0.28,
+    "creative-d": 0.04
+  },
+  "classifications": {
+    "creative-a": "unresolved",
+    "creative-b": "unresolved",
+    "creative-c": "unresolved",
+    "creative-d": "unresolved"
+  },
+  "archetype_sensitivity": {
+    "method": "leave_one_persona_archetype_out",
+    "unique_archetypes": 2,
+    "attempted_fits": 2,
+    "successful_fits": 2,
+    "successful_fit_rate": 1.0,
+    "top_k_consistent": false,
+    "top_k_changed_for": ["arch-operator"]
+  },
+  "model_diagnostics": {
+    "usable_observation_count": 1,
+    "recovery_calibration_status": "exploratory_only",
+    "usable_participations_per_creative": {
+      "creative-a": 1,
+      "creative-b": 1,
+      "creative-c": 1,
+      "creative-d": 1
+    },
+    "connected": true,
+    "overall_one_block_deletion_resilient": false,
+    "gates": {
+      "connected": true,
+      "identified": true,
+      "usable_coverage": false,
+      "planned_coverage": true,
+      "block_resilience": false,
+      "converged": true,
+      "stability": true,
+      "archetype_sensitivity": false,
+      "versioned_dimensions": false,
+      "model_matches_recovery_config": true
+    },
+    "versioned_dimension_gates": {
+      "library_size_band": false,
+      "shortlist_size_band": true,
+      "segment_count_band": true,
+      "tie_inability_band": true,
+      "utility_separation_band": true
+    },
+    "bootstrap": {
+      "successful_fit_count": 2000,
+      "attempted_fit_count": 2000,
+      "successful_fit_rate": 1.0
+    }
+  },
+  "recovery_config_version": "dashboard-fixture-exploratory-v1",
+  "validity_status": "exploratory",
+  "validity_reasons": [
+    "usable_participation_floor_not_met",
+    "one_block_deletion_resilience_not_met",
+    "shortlist_sensitive_to_archetype_omission",
+    "recovery_configuration_band_not_met",
+    "recovery_configuration_exploratory_only"
+  ],
+  "interpretation_limits": [
+    "Utilities are centered and protocol-relative.",
+    "Conditional stability reflects this synthetic model-call run only.",
+    "Results do not establish human-response or campaign-performance validity."
+  ]
+}

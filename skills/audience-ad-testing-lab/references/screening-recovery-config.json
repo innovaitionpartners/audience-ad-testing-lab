@@ -1,0 +1,21 @@
+{
+  "version": "screening-recovery-v0-unvalidated",
+  "calibration_status": "exploratory_only",
+  "library_size_bands": [
+    {"name": "partial_exposure_library", "minimum": 7, "maximum": 100}
+  ],
+  "shortlist_size_bands": [
+    {"name": "deep_review_shortlist", "minimum": 3, "maximum": 6}
+  ],
+  "segment_count": {"minimum": 1, "maximum": 12},
+  "tie_inability_band": {"minimum_rate": 0.0, "maximum_rate": 0.25},
+  "utility_separation_band": {"minimum_log_utility_gap": 0.0, "maximum_log_utility_gap": 4.0},
+  "planned_participation_floor": 9,
+  "usable_participation_floor": 8,
+  "bootstrap_count": 2000,
+  "successful_fit_floor": 0.95,
+  "shortlist_thresholds": {
+    "clear_finalist": 0.90,
+    "clear_non_finalist": 0.10
+  }
+}

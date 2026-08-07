@@ -1,0 +1,41 @@
+{
+  "study_id": "dashboard-acme-001",
+  "status": "available",
+  "provider": "SUM",
+  "method": "computational saliency",
+  "revealed_at": "2026-07-21T15:05:00Z",
+  "entries": [
+    {
+      "variation_id": "creative-a",
+      "representation_id": "creative-a-static-01",
+      "content_hash": "sha256:817a3c9edf59e87254983c2f2234554b4280836903a6e8ff79c23690899491ed",
+      "original_path": "media/creative-a.svg",
+      "overlay_path": "media/creative-a-overlay.svg",
+      "overlay_content_hash": "sha256:2a8b2adea6041673ebfc6e859c1f6630d35d0f1d78ec2bf501e18667f3f8acdf",
+      "predeclared_target": "Proof point and request-demo CTA",
+      "target_declared_at": "2026-07-21T15:04:00Z",
+      "categorical_alignment": "partially_aligned",
+      "provider": "SUM",
+      "limitations": [
+        "Predicted visual attention is not eye tracking or respondent preference.",
+        "The overlay does not estimate thumb-stop, click-through, conversion, or revenue impact."
+      ]
+    },
+    {
+      "variation_id": "creative-b",
+      "representation_id": "creative-b-static-01",
+      "content_hash": "sha256:828abc47d16eaabe437045373dcf3111746f95db1a436b2fb3f76e0ef8bb94c6",
+      "original_path": "media/creative-b.svg",
+      "overlay_path": "media/creative-b-overlay.svg",
+      "overlay_content_hash": "sha256:bf293b9e6a88035c706adc23132a49419070347e00b3856a033958aafb99cb36",
+      "predeclared_target": "Recovered calendar time and operating-model CTA",
+      "target_declared_at": "2026-07-21T15:04:00Z",
+      "categorical_alignment": "aligned",
+      "provider": "SUM",
+      "limitations": [
+        "Predicted visual attention is not eye tracking or respondent preference.",
+        "The overlay does not estimate thumb-stop, click-through, conversion, or revenue impact."
+      ]
+    }
+  ]
+}

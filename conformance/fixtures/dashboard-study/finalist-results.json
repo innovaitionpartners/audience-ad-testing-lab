@@ -1,0 +1,72 @@
+{
+  "study_id": "dashboard-acme-001",
+  "approved_finalist_ids": ["creative-a", "creative-b"],
+  "roster_decision": {
+    "status": "approved_with_override",
+    "approved_at": "2026-07-21T15:00:00Z",
+    "approved_by": "study owner",
+    "override": true,
+    "override_reason": "Study owner selected the finalist set after an exploratory run; no clear synthetic shortlist is claimed.",
+    "changed_after_saliency_reveal": false
+  },
+  "accepted_response_records": 1,
+  "accepted_unique_replicates": 1,
+  "unique_job_slots_consumed": 1,
+  "total_model_calls": 1,
+  "first_choice_counts": {
+    "creative-a": 1,
+    "creative-b": 0
+  },
+  "conditional_first_choice_share": {
+    "creative-a": 1.0,
+    "creative-b": 0.0
+  },
+  "rubric_summary": {
+    "creative-a": {
+      "comprehension": {"mean": 4.6, "distribution": {"4": 3, "5": 5}},
+      "relevance": {"mean": 4.5, "distribution": {"4": 4, "5": 4}},
+      "credibility": {"mean": 4.1, "distribution": {"3": 1, "4": 5, "5": 2}},
+      "offer_appeal": {"mean": 4.0, "distribution": {"3": 2, "4": 4, "5": 2}},
+      "motivation": {"mean": 4.2, "distribution": {"3": 1, "4": 4, "5": 3}},
+      "attention_potential": {"mean": 4.0, "distribution": {"3": 2, "4": 4, "5": 2}},
+      "friction": {"mean": 2.0, "distribution": {"1": 2, "2": 4, "3": 2}},
+      "overall_response": {"mean": 4.3, "distribution": {"3": 1, "4": 4, "5": 3}}
+    },
+    "creative-b": {
+      "comprehension": {"mean": 4.7, "distribution": {"4": 2, "5": 6}},
+      "relevance": {"mean": 4.1, "distribution": {"3": 1, "4": 5, "5": 2}},
+      "credibility": {"mean": 3.4, "distribution": {"2": 1, "3": 4, "4": 2, "5": 1}},
+      "offer_appeal": {"mean": 4.2, "distribution": {"3": 1, "4": 4, "5": 3}},
+      "motivation": {"mean": 4.5, "distribution": {"4": 4, "5": 4}},
+      "attention_potential": {"mean": 4.3, "distribution": {"3": 1, "4": 4, "5": 3}},
+      "friction": {"mean": 2.2, "distribution": {"1": 1, "2": 5, "3": 1, "4": 1}},
+      "overall_response": {"mean": 4.1, "distribution": {"3": 1, "4": 5, "5": 2}}
+    }
+  },
+  "model_conditional_agreement": {
+    "ranking_consistency": "moderate",
+    "notes": "The first choice was directionally consistent, with credible disagreement on proof versus motivation."
+  },
+  "segment_contrasts": [
+    {
+      "segment_id": "growth-leader",
+      "summary": "Growth leaders leaned toward the concrete delay framing."
+    },
+    {
+      "segment_id": "operations-leader",
+      "summary": "Operations leaders responded to capacity framing but questioned proof."
+    }
+  ],
+  "testing_map": [
+    {
+      "creative_id": "creative-a",
+      "role": "lead proof-led route",
+      "next_test": "Hold the proof point constant and test CTA specificity."
+    },
+    {
+      "creative_id": "creative-b",
+      "role": "motivation challenger",
+      "next_test": "Add one substantiated mechanism beside the time framing."
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Real-World Outcome Data Prep"
+  short_description: "Prepare uploaded ad results for validation"
+  default_prompt: "Use $real-world-outcome-data-prep to prepare this ad study or import its aggregate platform results."

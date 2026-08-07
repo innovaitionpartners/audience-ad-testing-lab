@@ -1,0 +1,206 @@
+{
+  "schema_version": "audience-source-registry-v2",
+  "updated_at": "2026-07-24",
+  "sources": [
+    {
+      "adapter_id": "bls-oews-may-2025",
+      "programs": [
+        "Occupational Employment and Wage Statistics"
+      ],
+      "units": [
+        "persons"
+      ],
+      "dimensions": [
+        "geography",
+        "industry",
+        "occupation"
+      ],
+      "joints": [
+        [
+          "geography",
+          "occupation"
+        ],
+        [
+          "industry",
+          "occupation"
+        ]
+      ],
+      "geographies": [
+        "US"
+      ],
+      "access": {
+        "access_type": "public",
+        "evidence_basis": "public",
+        "required_capability": "public-adapter"
+      },
+      "authentication": {
+        "mode": "none",
+        "required": false
+      },
+      "freshness": {
+        "edition": "May 2025",
+        "vintage": "2025-05-01",
+        "published_at": "2026-05-15"
+      },
+      "implementation": "audience_panel_builder.population.adapters.bls_oews:BlsOewsAdapter"
+    },
+    {
+      "adapter_id": "census-susb-2022",
+      "programs": [
+        "Statistics of U.S. Businesses"
+      ],
+      "units": [
+        "firms"
+      ],
+      "dimensions": [
+        "enterprise-size",
+        "geography",
+        "industry"
+      ],
+      "joints": [
+        [
+          "enterprise-size",
+          "industry"
+        ],
+        [
+          "geography",
+          "industry"
+        ]
+      ],
+      "geographies": [
+        "US"
+      ],
+      "access": {
+        "access_type": "public",
+        "evidence_basis": "public",
+        "required_capability": "public-adapter"
+      },
+      "authentication": {
+        "mode": "none",
+        "required": false
+      },
+      "freshness": {
+        "edition": "2022",
+        "vintage": "2022-12-31",
+        "published_at": "2025-04-10"
+      },
+      "implementation": "audience_panel_builder.population.adapters.census_susb:CensusSusbAdapter"
+    },
+    {
+      "adapter_id": "census-cbp-2023",
+      "programs": [
+        "County Business Patterns"
+      ],
+      "units": [
+        "establishments"
+      ],
+      "dimensions": [
+        "establishment-size",
+        "geography",
+        "industry"
+      ],
+      "joints": [
+        [
+          "establishment-size",
+          "industry"
+        ],
+        [
+          "geography",
+          "industry"
+        ]
+      ],
+      "geographies": [
+        "US"
+      ],
+      "access": {
+        "access_type": "public",
+        "evidence_basis": "public",
+        "required_capability": "public-adapter"
+      },
+      "authentication": {
+        "mode": "none",
+        "required": false
+      },
+      "freshness": {
+        "edition": "2023",
+        "vintage": "2023-12-31",
+        "published_at": "2025-06-26"
+      },
+      "implementation": "audience_panel_builder.population.adapters.census_cbp:CensusCbpAdapter"
+    },
+    {
+      "adapter_id": "authorized-audience-data-lab-handoff",
+      "programs": [
+        "authorized-audience-handoff-v1"
+      ],
+      "units": [
+        "eligible-cohort-member"
+      ],
+      "dimensions": [
+        "company-size",
+        "role"
+      ],
+      "joints": [
+        [
+          "company-size",
+          "role"
+        ]
+      ],
+      "geographies": [
+        "US"
+      ],
+      "access": {
+        "access_type": "authorized",
+        "evidence_basis": "first_party_aggregate",
+        "required_capability": "authorized-handoff"
+      },
+      "authentication": {
+        "mode": "audience-data-lab-handoff",
+        "required": true
+      },
+      "freshness": {
+        "edition": "v1",
+        "vintage": "2026-07-24",
+        "published_at": "2026-07-24"
+      },
+      "implementation": "audience_panel_builder.population.adapters.authorized_handoff:AuthorizedHandoffAdapter"
+    },
+    {
+      "adapter_id": "approved-aggregate-evidence-handoff",
+      "programs": [
+        "audience-first-party-evidence-v1"
+      ],
+      "units": [
+        "eligible-cohort-member"
+      ],
+      "dimensions": [
+        "company-size",
+        "role"
+      ],
+      "joints": [
+        [
+          "company-size",
+          "role"
+        ]
+      ],
+      "geographies": [
+        "US"
+      ],
+      "access": {
+        "access_type": "authorized",
+        "evidence_basis": "first_party_aggregate",
+        "required_capability": "approved-aggregate-handoff"
+      },
+      "authentication": {
+        "mode": "approved-handoff",
+        "required": true
+      },
+      "freshness": {
+        "edition": "v1",
+        "vintage": "2026-07-24",
+        "published_at": "2026-07-24"
+      },
+      "implementation": "audience_panel_builder.population.adapters.aggregate_evidence:AggregateEvidenceAdapter"
+    }
+  ]
+}

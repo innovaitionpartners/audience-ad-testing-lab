@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ad Testing Lab"
+  short_description: "Screen ads with evidence-grounded synthetic profiles"
+  default_prompt: "Use $audience-ad-testing-lab to screen these ad variants and create a marketer-ready dashboard."

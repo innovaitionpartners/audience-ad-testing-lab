@@ -1,0 +1,31 @@
+{
+  "study_id": "dashboard-acme-001",
+  "status": "invalid",
+  "status_reasons": ["screening_result_not_valid"],
+  "boundary_candidate_ids": [],
+  "frozen_clear_finalist_ids": [],
+  "frozen_clear_non_finalist_ids": [],
+  "selected_boundary_ids": [],
+  "proposed_finalist_ids": [],
+  "utilities": {},
+  "conditional_inclusion_frequencies": {},
+  "classifications": {
+    "creative-b": "unresolved",
+    "creative-c": "unresolved"
+  },
+  "decision_audit": {
+    "policy_version": "connected-davidson-boundary-v1",
+    "model_scope": "frozen_boundary_candidates_only",
+    "maxdiff_utilities_pooled": false,
+    "clear_groups_frozen": true,
+    "stopping_decision": {
+      "reason": "invalid_screening_prerequisite",
+      "wave": null,
+      "resolved": false
+    },
+    "reserve": {
+      "boundary_jobs_consumed": 0,
+      "finalist_reserve_consumed": 0
+    }
+  }
+}

@@ -1,0 +1,362 @@
+{
+  "approval": {
+    "approval_note": "Approved for the exact authorized aggregate cohort only.",
+    "approved_at": "2026-07-02T12:00:00Z",
+    "approved_by": "panel-owner",
+    "approved_for_panel_creation": true
+  },
+  "authorized_audience_import": {
+    "cohort_id": "fictional-marketplace-cohort",
+    "coverage_statement": "Every retained observation remains inside its own explicit unit and denominator partition.",
+    "exact_cohort_denominator": "all-respondents",
+    "handoff_schema_version": "authorized-audience-handoff-v1",
+    "handoff_sha256": "sha256:0351f2e144782b7accc5f101c480ebf3f84a93620edb60efa9f740e07c3028cf",
+    "max_calibration_factor": 3.0,
+    "selection_statement": "Selected 1 canonical observation batch(es) by exact request, unit, denominator, geography, vintage, and permission bindings.",
+    "status": "complete"
+  },
+  "brief_id": "fictional-marketplace-seller-brief",
+  "claim_boundary": "Authorized cohort composition only; it does not represent people outside the exact permissioned cohort.",
+  "coverage": {
+    "buying_triggers": "thin",
+    "decision_criteria": "strong",
+    "fears_objections": "strong",
+    "media_behaviors": "thin",
+    "motivations_goals": "strong",
+    "pain_points_challenges": "strong",
+    "proof_needs": "strong"
+  },
+  "created_at": "2026-07-01T12:00:00Z",
+  "dimensional_validity": [
+    {
+      "dimension": "cohort",
+      "limitations": [
+        "The structure applies only to the exact authorized cohort denominator."
+      ],
+      "status": "supported"
+    }
+  ],
+  "evidence_basis": "first_party_aggregate",
+  "evidence_gaps": [
+    {
+      "gap": "Topic summaries do not estimate psychographic prevalence.",
+      "impact_on_panel": "Overlay allocations remain planning allocations.",
+      "mitigation": "Keep structural cohort weights separate from overlay evidence."
+    }
+  ],
+  "evidence_sources": [
+    {
+      "collection_method": "first_party_summary",
+      "confidence": "high",
+      "date": "2026-07-24",
+      "evidence_id": "evidence-cohort-structure",
+      "limits": "Structural counts are exact only for the authorized cohort.",
+      "permitted_uses": [
+        "audience modeling",
+        "ad testing"
+      ],
+      "source_label": "Authorized aggregate cohort structure",
+      "source_url": "https://example.test/research/cohort-structure",
+      "type": "crm_aggregate",
+      "usable_for": [
+        "cohort structure"
+      ]
+    },
+    {
+      "collection_method": "first_party_summary",
+      "confidence": "medium",
+      "date": "2026-07-24",
+      "evidence_id": "evidence-operations",
+      "limits": "Qualitative overlay only; not prevalence.",
+      "permitted_uses": [
+        "audience modeling",
+        "ad testing"
+      ],
+      "source_label": "Aggregate operations summary",
+      "source_url": "https://example.test/research/operations",
+      "type": "crm_aggregate",
+      "usable_for": [
+        "operations themes"
+      ]
+    },
+    {
+      "collection_method": "first_party_summary",
+      "confidence": "medium",
+      "date": "2026-07-24",
+      "evidence_id": "evidence-pricing",
+      "limits": "Qualitative overlay only; not prevalence.",
+      "permitted_uses": [
+        "audience modeling",
+        "ad testing"
+      ],
+      "source_label": "Aggregate pricing summary",
+      "source_url": "https://example.test/research/pricing",
+      "type": "crm_aggregate",
+      "usable_for": [
+        "pricing themes"
+      ]
+    },
+    {
+      "collection_method": "first_party_summary",
+      "confidence": "medium",
+      "date": "2026-07-24",
+      "evidence_id": "evidence-returns",
+      "limits": "Qualitative overlay only; not prevalence.",
+      "permitted_uses": [
+        "audience modeling",
+        "ad testing"
+      ],
+      "source_label": "Aggregate returns summary",
+      "source_url": "https://example.test/research/returns",
+      "type": "crm_aggregate",
+      "usable_for": [
+        "returns themes"
+      ]
+    },
+    {
+      "collection_method": "first_party_summary",
+      "confidence": "medium",
+      "date": "2026-07-24",
+      "evidence_id": "evidence-customer-service",
+      "limits": "Qualitative overlay only; not prevalence.",
+      "permitted_uses": [
+        "audience modeling",
+        "ad testing"
+      ],
+      "source_label": "Aggregate customer-service summary",
+      "source_url": "https://example.test/research/customer-service",
+      "type": "crm_aggregate",
+      "usable_for": [
+        "customer-service themes"
+      ]
+    },
+    {
+      "collection_method": "first_party_summary",
+      "confidence": "medium",
+      "date": "2026-07-24",
+      "evidence_id": "social-evidence-operations",
+      "limits": "Topic-bound aggregate observation; not prevalence.",
+      "permitted_uses": [
+        "audience modeling",
+        "ad testing"
+      ],
+      "source_label": "Authorized aggregate operations social observation",
+      "source_url": "https://example.test/research/operations",
+      "type": "crm_aggregate",
+      "usable_for": [
+        "operations themes"
+      ]
+    },
+    {
+      "collection_method": "first_party_summary",
+      "confidence": "medium",
+      "date": "2026-07-24",
+      "evidence_id": "social-evidence-pricing",
+      "limits": "Topic-bound aggregate observation; not prevalence.",
+      "permitted_uses": [
+        "audience modeling",
+        "ad testing"
+      ],
+      "source_label": "Authorized aggregate pricing social observation",
+      "source_url": "https://example.test/research/pricing",
+      "type": "crm_aggregate",
+      "usable_for": [
+        "pricing themes"
+      ]
+    },
+    {
+      "collection_method": "first_party_summary",
+      "confidence": "medium",
+      "date": "2026-07-24",
+      "evidence_id": "social-evidence-returns",
+      "limits": "Topic-bound aggregate observation; not prevalence.",
+      "permitted_uses": [
+        "audience modeling",
+        "ad testing"
+      ],
+      "source_label": "Authorized aggregate returns social observation",
+      "source_url": "https://example.test/research/returns",
+      "type": "crm_aggregate",
+      "usable_for": [
+        "returns themes"
+      ]
+    },
+    {
+      "collection_method": "first_party_summary",
+      "confidence": "medium",
+      "date": "2026-07-24",
+      "evidence_id": "social-evidence-customer-service",
+      "limits": "Topic-bound aggregate observation; not prevalence.",
+      "permitted_uses": [
+        "audience modeling",
+        "ad testing"
+      ],
+      "source_label": "Authorized aggregate customer-service social observation",
+      "source_url": "https://example.test/research/customer-service",
+      "type": "crm_aggregate",
+      "usable_for": [
+        "customer-service themes"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "category": "decision_criteria",
+      "confidence": "high",
+      "creative_implications": [
+        "Preserve both structural groups."
+      ],
+      "evidence_ids": [
+        "evidence-cohort-structure"
+      ],
+      "finding_id": "finding-cohort-structure",
+      "inference_boundary": "Exact only for the fixed authorized cohort denominator.",
+      "statement": "The authorized cohort contains distinct operations and finance structural groups."
+    },
+    {
+      "category": "pain_points_challenges",
+      "confidence": "medium",
+      "creative_implications": [
+        "Show reliable operational handoffs."
+      ],
+      "evidence_ids": [
+        "evidence-operations",
+        "social-evidence-operations"
+      ],
+      "finding_id": "finding-operations",
+      "inference_boundary": "Qualitative aggregate theme, not prevalence.",
+      "statement": "Operational reliability is a topic-bound concern."
+    },
+    {
+      "category": "decision_criteria",
+      "confidence": "medium",
+      "creative_implications": [
+        "Make pricing logic clear."
+      ],
+      "evidence_ids": [
+        "evidence-pricing",
+        "social-evidence-pricing"
+      ],
+      "finding_id": "finding-pricing",
+      "inference_boundary": "Qualitative aggregate theme, not prevalence.",
+      "statement": "Pricing clarity is a topic-bound concern."
+    },
+    {
+      "category": "fears_objections",
+      "confidence": "medium",
+      "creative_implications": [
+        "Explain returns handling."
+      ],
+      "evidence_ids": [
+        "evidence-returns",
+        "social-evidence-returns"
+      ],
+      "finding_id": "finding-returns",
+      "inference_boundary": "Qualitative aggregate theme, not prevalence.",
+      "statement": "Returns handling is a topic-bound concern."
+    },
+    {
+      "category": "proof_needs",
+      "confidence": "medium",
+      "creative_implications": [
+        "Show the service-resolution mechanism."
+      ],
+      "evidence_ids": [
+        "evidence-customer-service",
+        "social-evidence-customer-service"
+      ],
+      "finding_id": "finding-customer-service",
+      "inference_boundary": "Qualitative aggregate theme, not prevalence.",
+      "statement": "Customer-service responsiveness is a topic-bound concern."
+    }
+  ],
+  "overlay_findings": [
+    "finding-operations",
+    "finding-pricing",
+    "finding-returns",
+    "finding-customer-service"
+  ],
+  "panel_tier": "tier_3",
+  "population_frame_result_sha256": "sha256:132bd04ae85ca30105e0f37236e607610a6ab235c3916844ab93d73bbbf59ddc",
+  "population_frame_sha256": "sha256:132bd04ae85ca30105e0f37236e607610a6ab235c3916844ab93d73bbbf59ddc",
+  "privacy_confirmation": {
+    "confirmed": true,
+    "confirmed_at": "2026-07-02T12:00:00Z",
+    "confirmed_by": "research-approver",
+    "note": "Only authorized, aggregate, non-identifying evidence is included."
+  },
+  "research_depth": "standard",
+  "research_mode": "crm_first_party",
+  "research_questions": [
+    "Which topic-bound decision postures are supported for the exact authorized cohort?"
+  ],
+  "schema_version": "audience-research-brief-v3",
+  "scoped_approvals": [
+    {
+      "scope": "evidence-synthesis",
+      "status": "approved",
+      "target_sha256": "sha256:88b653e24d70e5dbf465cb46a6fe961f3812cc0097efe369ba8dd85aa4e861d8"
+    },
+    {
+      "scope": "panel-construction",
+      "status": "approved",
+      "target_sha256": "sha256:dad8fa1176b82780ff9876f803f0ebfbb449a5f42849045e65c9aed8f6cce4ca"
+    }
+  ],
+  "segment_hypotheses": [
+    {
+      "confidence": "high",
+      "evidence_ids": [
+        "evidence-cohort-structure",
+        "evidence-operations",
+        "evidence-customer-service",
+        "social-evidence-operations",
+        "social-evidence-customer-service"
+      ],
+      "finding_ids": [
+        "finding-cohort-structure",
+        "finding-operations",
+        "finding-customer-service"
+      ],
+      "name": "Operations-focused sellers",
+      "origin": "research_derived",
+      "segment_id": "operations-sellers",
+      "why_it_matters_for_ad_testing": "They evaluate operational reliability and service resolution."
+    },
+    {
+      "confidence": "high",
+      "evidence_ids": [
+        "evidence-cohort-structure",
+        "evidence-pricing",
+        "evidence-returns",
+        "social-evidence-pricing",
+        "social-evidence-returns"
+      ],
+      "finding_ids": [
+        "finding-cohort-structure",
+        "finding-pricing",
+        "finding-returns"
+      ],
+      "name": "Finance-focused sellers",
+      "origin": "research_derived",
+      "segment_id": "finance-sellers",
+      "why_it_matters_for_ad_testing": "They evaluate pricing clarity and returns friction."
+    }
+  ],
+  "status": "approved",
+  "structural_findings": [
+    "finding-cohort-structure"
+  ],
+  "target_audience": {
+    "audience": "Authorized aggregate marketplace-seller cohort",
+    "buying_context": "Evaluating operations, pricing, returns, and customer-service messaging",
+    "category": "Marketplace operations",
+    "exclusions": [
+      "People outside the exact authorized aggregate cohort"
+    ],
+    "geography": "United States",
+    "market": "United States marketplace sellers"
+  },
+  "updated_at": "2026-07-02T12:00:00Z",
+  "workflow_state_binding": "fictional-marketplace-panel-build"
+}

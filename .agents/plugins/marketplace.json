@@ -1,0 +1,20 @@
+{
+  "name": "innovaition-ad-testing",
+  "interface": {
+    "displayName": "InnovAItion Ad Testing"
+  },
+  "plugins": [
+    {
+      "name": "audience-ad-testing-lab",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Marketing"
+    }
+  ]
+}

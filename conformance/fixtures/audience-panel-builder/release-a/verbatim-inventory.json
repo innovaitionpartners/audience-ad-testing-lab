@@ -1,0 +1,13 @@
+{
+  "schema_version": "audience-verbatim-inventory-v1",
+  "excerpts": [
+    {
+      "evidence_item_id": "evidence-item-1",
+      "source_id": "research-import",
+      "source_url": "https://example.test/research",
+      "finding_ids": ["finding-implementation-proof"],
+      "text_fidelity": "analyst_summary",
+      "excerpt": "Leaders seek implementation proof before changing core workflows."
+    }
+  ]
+}

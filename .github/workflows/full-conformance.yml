@@ -1,0 +1,247 @@
+name: Full conformance and reusable-panel E2E
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_maximum_benchmark:
+        description: Run the maximum-size allocation benchmark.
+        required: false
+        type: boolean
+        default: false
+  schedule:
+    - cron: "0 6 * * 1-6"
+    - cron: "0 6 * * 0"
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install and require the exact Linux sandbox provider
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes bubblewrap
+          sudo sysctl --write kernel.apparmor_restrict_unprivileged_userns=0
+          test -x /usr/bin/bwrap
+          test "$(stat -c '%u' /usr/bin/bwrap)" = "0"
+
+      - name: Install screening dependencies
+        run: python3 -m pip install -r skills/audience-ad-testing-lab/requirements-screening.txt
+
+      - name: Install private-data dependencies
+        run: python3 -m pip install -r skills/audience-data-lab/requirements-private-data.txt
+
+      - name: Install outcome data prep dependencies
+        run: python3 -m pip install -r skills/real-world-outcome-data-prep/requirements-outcome-data-prep.txt
+
+      - name: Pin the dependency-complete conformance environment
+        run: python3 -m pip install numpy==2.4.2 scipy==1.17.0 openpyxl==3.1.5
+
+      - name: Seal the private-stage Python runtime
+        run: |
+          python3 - <<'PY'
+          import stat
+          import sys
+          import sysconfig
+          from pathlib import Path
+
+          paths = {
+              Path(sys.executable).resolve(strict=True),
+              Path(sys.base_prefix).resolve(strict=True),
+              Path(sysconfig.get_path("stdlib")).resolve(strict=True),
+              Path(sysconfig.get_path("platstdlib")).resolve(strict=True),
+          }
+          for path in paths:
+              path.chmod(stat.S_IMODE(path.stat().st_mode) & ~0o022)
+          PY
+
+      - name: Run full conformance suite
+        run: python3 -m unittest discover -s conformance -p 'test_*.py' -v
+
+      - name: Run two-study reusable-panel E2E without caller import paths
+        run: env -u PYTHONPATH python3 conformance/run_large_library_e2e.py --output-report "$RUNNER_TEMP/clean-e2e-report.json"
+
+      - name: Verify two-study reuse proof
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          report = json.loads(
+              (Path(os.environ["RUNNER_TEMP"]) / "clean-e2e-report.json").read_text(
+                  encoding="utf-8"
+              )
+          )
+          if len(report.get("studies", [])) != 2:
+              raise SystemExit("e2e report must contain exactly two studies")
+          required_true = (
+              "audience_research_built_once",
+              "panel_registered_in_temporary_library",
+              "second_study_resolved_from_library",
+              "exact_package_bytes_reused",
+              "exact_package_hashes_reused",
+              "v3_panel_registered_in_temporary_library",
+              "v3_second_study_resolved_from_library",
+              "v3_exact_package_bytes_reused",
+              "v3_exact_package_hash_reused",
+              "v3_run_specific_immutable_allocations",
+              "real_user_library_untouched",
+          )
+          missing = [key for key in required_true if report.get(key) is not True]
+          if missing or report.get("second_study_rebuilt_research") is not False:
+              raise SystemExit(f"two-study reuse proof failed: {missing}")
+          PY
+
+      - name: Run opt-in maximum-size v3 allocation benchmark
+        if: >-
+          github.event_name == 'push' ||
+          github.event.schedule == '0 6 * * 0' ||
+          inputs.run_maximum_benchmark
+        run: |
+          AUDIENCE_LAB_RUN_MAX_DESIGN_BENCHMARK=1 \
+            python3 -m unittest \
+              conformance.test_maxdiff.MaxDiffMaximumDesignBenchmark -v
+
+  producer-replay-macos:
+    runs-on: macos-14
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Require the exact macOS sandbox provider
+        run: |
+          test -x /usr/bin/sandbox-exec
+          test "$(stat -f '%u' /usr/bin/sandbox-exec)" = "0"
+
+      - name: Install unchanged producer dependencies
+        run: python3 -m pip install -r skills/audience-ad-testing-lab/requirements-screening.txt
+
+      - name: Install outcome data prep dependencies
+        run: python3 -m pip install -r skills/real-world-outcome-data-prep/requirements-outcome-data-prep.txt
+
+      - name: Seal the private-stage Python runtime
+        run: |
+          python3 - <<'PY'
+          import stat
+          import sys
+          import sysconfig
+          from pathlib import Path
+
+          paths = {
+              Path(sys.executable).resolve(strict=True),
+              Path(sys.base_prefix).resolve(strict=True),
+              Path(sysconfig.get_path("stdlib")).resolve(strict=True),
+              Path(sysconfig.get_path("platstdlib")).resolve(strict=True),
+          }
+          for path in paths:
+              path.chmod(stat.S_IMODE(path.stat().st_mode) & ~0o022)
+          PY
+
+      - name: Run real producer replay and denied-second-write gates
+        run: |
+          AUDIENCE_TIER4_REAL_PROVIDER=1 \
+            python3 -m unittest \
+              conformance.test_tier4_producer_replay.Tier4RealProviderTests -v
+
+      - name: Prove experimental engine cannot read oracle code or truth
+        run: |
+          RUN_EXPERIMENTAL_CALIBRATION_PROVIDER_TESTS=1 \
+            python3 -m unittest \
+              conformance.test_experimental_calibration_simulation.ExperimentalCalibrationSimulationTests.test_real_provider_allows_public_read_and_denies_oracle_escape \
+              conformance.test_experimental_calibration_golden_paths.ExperimentalCalibrationGoldenPathTests.test_real_provider_runs_completed_entrypoints_without_oracle_authority \
+              -v
+
+      - name: Run real outcome prep runtime and source-stability checks
+        run: |
+          RUN_REAL_WORLD_OUTCOME_PREP_PROVIDER_TESTS=1 \
+            python3 -m unittest \
+              conformance.test_real_world_outcome_data_prep_runtime_guard \
+              conformance.test_real_world_outcome_data_prep_source_safety -v
+
+  producer-replay-linux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install and require the exact Linux sandbox provider
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes bubblewrap
+          sudo sysctl --write kernel.apparmor_restrict_unprivileged_userns=0
+          test -x /usr/bin/bwrap
+          test "$(stat -c '%u' /usr/bin/bwrap)" = "0"
+
+      - name: Install unchanged producer dependencies
+        run: python3 -m pip install -r skills/audience-ad-testing-lab/requirements-screening.txt
+
+      - name: Install pinned private-data dependencies
+        run: |
+          python3 -m pip install -r skills/audience-data-lab/requirements-private-data.txt
+          python3 -m pip install openpyxl==3.1.5
+
+      - name: Install outcome data prep dependencies
+        run: python3 -m pip install -r skills/real-world-outcome-data-prep/requirements-outcome-data-prep.txt
+
+      - name: Seal the private-stage Python runtime
+        run: |
+          python3 - <<'PY'
+          import stat
+          import sys
+          import sysconfig
+          from pathlib import Path
+
+          paths = {
+              Path(sys.executable).resolve(strict=True),
+              Path(sys.base_prefix).resolve(strict=True),
+              Path(sysconfig.get_path("stdlib")).resolve(strict=True),
+              Path(sysconfig.get_path("platstdlib")).resolve(strict=True),
+          }
+          for path in paths:
+              path.chmod(stat.S_IMODE(path.stat().st_mode) & ~0o022)
+          PY
+
+      - name: Run real producer replay and denied-second-write gates
+        run: |
+          AUDIENCE_TIER4_REAL_PROVIDER=1 \
+            python3 -m unittest \
+              conformance.test_tier4_producer_replay.Tier4RealProviderTests -v
+
+      - name: Prove experimental engine cannot read oracle code or truth
+        run: |
+          RUN_EXPERIMENTAL_CALIBRATION_PROVIDER_TESTS=1 \
+            python3 -m unittest \
+              conformance.test_experimental_calibration_simulation.ExperimentalCalibrationSimulationTests.test_real_provider_allows_public_read_and_denies_oracle_escape \
+              conformance.test_experimental_calibration_golden_paths.ExperimentalCalibrationGoldenPathTests.test_real_provider_runs_completed_entrypoints_without_oracle_authority \
+              -v
+
+      - name: Run real outcome prep runtime and source-stability checks
+        run: |
+          RUN_REAL_WORLD_OUTCOME_PREP_PROVIDER_TESTS=1 \
+            python3 -m unittest \
+              conformance.test_real_world_outcome_data_prep_runtime_guard \
+              conformance.test_real_world_outcome_data_prep_source_safety -v

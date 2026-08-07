@@ -1,0 +1,39 @@
+{
+  "snapshot_version": "population-public-proxy-snapshot-v1",
+  "source": {
+    "publisher": "U.S. Census Bureau",
+    "program": "Statistics of U.S. Businesses",
+    "edition": "2022",
+    "vintage": "2022-12-31",
+    "retrieved_at": "2025-04-10T12:00:00Z",
+    "source_url": "https://www2.census.gov/programs-surveys/susb/tables/2022/us_naicssector_large_emplsize_2022.xlsx"
+  },
+  "geography": [
+    "US"
+  ],
+  "unit": "firms",
+  "denominator": "employer-firms",
+  "rows": [
+    {
+      "naics": "54",
+      "industry": "Professional, Scientific, and Technical Services",
+      "enterprise_size_code": "01",
+      "enterprise_size": "Total",
+      "firms": 872305
+    },
+    {
+      "naics": "54",
+      "industry": "Professional, Scientific, and Technical Services",
+      "enterprise_size_code": "02",
+      "enterprise_size": "<500 employees",
+      "firms": 868529
+    },
+    {
+      "naics": "54",
+      "industry": "Professional, Scientific, and Technical Services",
+      "enterprise_size_code": "05",
+      "enterprise_size": "1,000-1,499 employees",
+      "firms": 547
+    }
+  ]
+}

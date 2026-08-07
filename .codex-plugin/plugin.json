@@ -1,0 +1,47 @@
+{
+  "name": "audience-ad-testing-lab",
+  "version": "1.0.0",
+  "description": "Privacy-reviewed audience data, evidence-grounded panel construction, model-conditional ad screening, real-world study preparation, and uploaded aggregate result import with deterministic scoring, calibration, and marketer-ready dashboards.",
+  "author": {
+    "name": "InnovAItion Partners",
+    "url": "https://github.com/innovaitionpartners"
+  },
+  "homepage": "https://github.com/innovaitionpartners/audience-ad-testing-lab",
+  "repository": "https://github.com/innovaitionpartners/audience-ad-testing-lab",
+  "license": "Apache-2.0",
+  "keywords": [
+    "advertising",
+    "audience-research",
+    "audience-panels",
+    "first-party-data",
+    "creative-testing",
+    "outcome-data-preparation",
+    "synthetic-evaluation",
+    "ad-screening"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Ad Testing Lab",
+    "shortDescription": "Prepare data and studies, build panels, and screen ads.",
+    "longDescription": "Prepare privacy-reviewed first-party evidence, research and build reusable evidence-grounded audience panels, evaluate ads with model-conditional synthetic screening, prepare a real-world outcome study, and import uploaded aggregate platform results for an explicit validation handoff.",
+    "developerName": "InnovAItion Partners",
+    "category": "Marketing",
+    "capabilities": [
+      "Research",
+      "Analysis",
+      "Interactive",
+      "Write"
+    ],
+    "brandColor": "#176B5B",
+    "screenshots": [
+      "./docs/screenshots/dashboard-summary.png",
+      "./docs/screenshots/dashboard-panelists.png",
+      "./docs/screenshots/dashboard-visual-evidence.png"
+    ],
+    "defaultPrompt": [
+      "Research and build a reusable audience panel.",
+      "Prepare approved audience or ad-platform data for testing.",
+      "Screen these ads and prepare the real-world validation handoff."
+    ]
+  }
+}

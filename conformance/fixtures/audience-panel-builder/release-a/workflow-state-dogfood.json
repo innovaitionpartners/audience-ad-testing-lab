@@ -1,0 +1,16 @@
+{
+  "schema_version": "panel-workflow-state-v1",
+  "workflow_id": "operations-leaders-build",
+  "panel_id": "operations-leaders",
+  "panel_version": "1.0.0",
+  "state": "dogfood",
+  "updated_at": "2026-07-24T12:15:00Z",
+  "approvals": [],
+  "bindings": {
+    "brief_sha256": "d4bbeb00ccd8ec0c4cf63b5b706f77532c00fc362d33b10794d1ba0113c5ee27",
+    "panel_sha256": "24993586b2b1d27a17ae1a8584111c32d066def9afae21b75918914bb56bdb7d",
+    "report_inputs_sha256": null,
+    "audit_sha256": null,
+    "package_sha256": null
+  }
+}

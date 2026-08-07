@@ -1,0 +1,19 @@
+{
+  "study_id": "e2e-large-acme-001",
+  "record_type": "screening_response",
+  "reaction_protocol": "progressive_reveal",
+  "worker_context_isolation": "isolated",
+  "creative_prompts": {
+    "V1": "Review the supplied proof-led workflow ad exactly as provided.",
+    "V2": "Review the supplied capacity-recovery ad exactly as provided.",
+    "V3": "Review the supplied operating-visibility ad exactly as provided.",
+    "V4": "Review the supplied ownership-clarity ad exactly as provided.",
+    "V5": "Review the supplied speed-led ad exactly as provided.",
+    "V6": "Review the supplied broad-automation ad exactly as provided.",
+    "V7": "Review the supplied generic-transformation ad exactly as provided."
+  },
+  "comparison_prompts": {
+    "partial_exposure_maxdiff": "Compare only the four frozen reactions and return one best-and-weakest judgment.",
+    "complete_exposure": "Rank only the complete frozen creative set after every reaction is accepted."
+  }
+}

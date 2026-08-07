@@ -1,0 +1,26 @@
+{
+  "study_id": "dashboard-copy-001",
+  "approved_finalist_ids": ["copy-a", "copy-b"],
+  "roster_decision": {
+    "status": "approved_with_override",
+    "approved_at": "2026-07-21T16:00:00Z",
+    "approved_by": "study owner",
+    "override": true,
+    "override_reason": "A person kept both message routes for the next test.",
+    "changed_after_saliency_reveal": false
+  },
+  "accepted_response_records": 1,
+  "accepted_unique_replicates": 1,
+  "unique_job_slots_consumed": 1,
+  "total_model_calls": 1,
+  "first_choice_counts": {"copy-a": 1, "copy-b": 0},
+  "conditional_first_choice_share": {"copy-a": 1.0, "copy-b": 0.0},
+  "rubric_summary": {
+    "copy-a": {"comprehension": {"mean": 5.0, "distribution": {"5": 1}}},
+    "copy-b": {"comprehension": {"mean": 5.0, "distribution": {"5": 1}}}
+  },
+  "testing_map": [
+    {"creative_id": "copy-a", "role": "problem route", "next_test": "Test a more specific CTA."},
+    {"creative_id": "copy-b", "role": "benefit route", "next_test": "Add one credible proof point."}
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "panel-construction-audit-v1",
+  "panel_id": "operations-leaders",
+  "panel_version": "1.0.0",
+  "auditor_run_id": "construction-audit-fixture-1",
+  "audited_at": "2026-07-23T12:30:00Z",
+  "input_bindings": {
+    "brief_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "panel_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+    "evidence_ledger_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+    "finding_support_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+    "synthesis_matrix_sha256": "5555555555555555555555555555555555555555555555555555555555555555",
+    "report_manifest_sha256": "6666666666666666666666666666666666666666666666666666666666666666",
+    "population_frame_sha256": null,
+    "composition_plan_sha256": null,
+    "validity_profile_sha256": null,
+    "authorized_handoff_sha256": null
+  },
+  "checks": [
+    {"check_id":"approved_evidence_only","status":"pass","evidence_paths":["ledger.evidence_items[evidence-item-1]"],"finding_ids":["finding-1"],"profile_ids":["operations-director-evaluating-v1"],"message":"Approved evidence only."},
+    {"check_id":"finding_support_complete","status":"pass","evidence_paths":["finding_support.findings[finding-1]"],"finding_ids":["finding-1"],"profile_ids":["operations-director-evaluating-v1"],"message":"Finding support is complete."},
+    {"check_id":"contradictions_preserved","status":"pass","evidence_paths":["synthesis.questions[implementation-proof].findings[finding-1]"],"finding_ids":["finding-1"],"profile_ids":["operations-director-evaluating-v1"],"message":"Contradictions remain visible."},
+    {"check_id":"segment_sufficiency","status":"pass","evidence_paths":["brief.segment_hypotheses[operations-leaders]"],"finding_ids":["finding-1"],"profile_ids":["operations-director-evaluating-v1"],"message":"Segment evidence is sufficient."},
+    {"check_id":"profile_traceability","status":"pass","evidence_paths":["panel.grounded_context_profiles[operations-director-evaluating-v1]"],"finding_ids":["finding-1"],"profile_ids":["operations-director-evaluating-v1"],"message":"Profile traces to approved evidence."},
+    {"check_id":"inference_boundaries","status":"pass","evidence_paths":["brief.findings[finding-1]"],"finding_ids":["finding-1"],"profile_ids":["operations-director-evaluating-v1"],"message":"Inference boundaries are retained."},
+    {"check_id":"privacy_boundary","status":"pass","evidence_paths":["panel.grounded_context_profiles[operations-director-evaluating-v1]"],"finding_ids":["finding-1"],"profile_ids":["operations-director-evaluating-v1"],"message":"Privacy boundary is retained."},
+    {"check_id":"count_semantics","status":"pass","evidence_paths":["panel.segments[operations-leaders]"],"finding_ids":["finding-1"],"profile_ids":["operations-director-evaluating-v1"],"message":"Count semantics are clear."},
+    {"check_id":"claim_tier","status":"pass","evidence_paths":["report_manifest.inputs[report-inputs.json]"],"finding_ids":["finding-1"],"profile_ids":["operations-director-evaluating-v1"],"message":"Release A claims remain Tier 1."},
+    {"check_id":"population_frame_traceability","status":"not_applicable","evidence_paths":["report_manifest.inputs[report-inputs.json]"],"finding_ids":["finding-1"],"profile_ids":["operations-director-evaluating-v1"],"message":"No population frame in Release A."},
+    {"check_id":"weight_semantics","status":"pass","evidence_paths":["panel.context_strata[active-evaluation]"],"finding_ids":["finding-1"],"profile_ids":["operations-director-evaluating-v1"],"message":"Planning allocation is not prevalence."},
+    {"check_id":"authorized_handoff_traceability","status":"not_applicable","evidence_paths":["report_manifest.inputs[report-inputs.json]"],"finding_ids":["finding-1"],"profile_ids":["operations-director-evaluating-v1"],"message":"No authorized handoff in Release A."}
+  ],
+  "result": "pass",
+  "limitations": ["Release A has no population frame or authorized aggregate handoff."]
+}

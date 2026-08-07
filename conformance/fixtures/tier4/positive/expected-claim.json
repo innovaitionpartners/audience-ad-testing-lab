@@ -1,0 +1,14 @@
+{
+  "claim_id": "validation-q3-held-out-evaluation-claim",
+  "claim_sha256": "sha256:d302ef4bef16c4ba84fe35c66aefed1c32b5b06c11d2b213912c6e1fb300a43f",
+  "claim_text": "This held-out validation supports using the panel to prioritize creatives within the registered scope.",
+  "expires_at": "2027-03-01T00:00:00Z",
+  "refresh_triggers": [
+    "claim expiry",
+    "panel or frozen-ordering change",
+    "scope or metric change"
+  ],
+  "required_disclaimer": "Applies only to the registered panel, frozen ordering, metric, and held-out outcome scope.",
+  "schema_version": "panel-tier4-claim-v1",
+  "status": "active"
+}

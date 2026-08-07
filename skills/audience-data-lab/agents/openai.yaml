@@ -1,0 +1,4 @@
+interface:
+  display_name: "Audience Data Lab"
+  short_description: "Prepare private CRM and performance evidence"
+  default_prompt: "Use $audience-data-lab to prepare privacy-reviewed CRM and performance evidence for an audience panel."

@@ -1,0 +1,90 @@
+{
+  "cohort_identity": {
+    "cohort_id": "fictional-marketplace-cohort",
+    "source_bundle_sha256": "sha256:9458641b9ab0cb4450ca1544d6654e31267ddf04f472a2e5c4f2e7cc66439e96",
+    "source_profile_sha256": "sha256:f92d184b6734985063959bd38568980da35fea87d65928ba45d8ca91db16ca68",
+    "structural_outputs": [
+      {
+        "batch_id": "fictional-marketplace-frame-observations",
+        "denominator": "all-respondents",
+        "path": "frame-observations-0001.json",
+        "row_count": 2,
+        "schema_version": "audience-frame-observation-batch-v1",
+        "sha256": "sha256:0fb76ea1f273d7480f30940771d35c7b5f31c8a72718b9044cd9fb61ad63f114",
+        "unit": "eligible-cohort-member"
+      }
+    ]
+  },
+  "mapping": {
+    "path": "approved-mapping.json",
+    "sha256": "sha256:1734bace9bb3d928f2713373e8babfc91d4c653bc0da38180db846458fcc036a"
+  },
+  "outputs": [
+    {
+      "denominator": "all_respondents",
+      "field_count": 8,
+      "path": "frame-observations-0001.json",
+      "route": "structural_frame",
+      "row_count": 2,
+      "schema_version": "audience-frame-observation-batch-v1",
+      "sha256": "sha256:0fb76ea1f273d7480f30940771d35c7b5f31c8a72718b9044cd9fb61ad63f114",
+      "unit": "aggregate_cohort"
+    },
+    {
+      "denominator": "selected_evidence_items",
+      "field_count": 10,
+      "path": "structured-evidence-0001.json",
+      "route": "overlay_evidence",
+      "row_count": 4,
+      "schema_version": "audience-structured-evidence-batch-v1",
+      "sha256": "sha256:91844fe20fd9823c036e283b6ca00ddf928e97b41c53a62e58670560ac741788",
+      "unit": "aggregate_evidence_item"
+    },
+    {
+      "denominator": "selected_evidence_items",
+      "field_count": 20,
+      "path": "social-observations-0001.json",
+      "route": "overlay_evidence",
+      "row_count": 4,
+      "schema_version": "social-observation-batch-v1",
+      "sha256": "sha256:c9fb3993791322001fa8a3a1653820025c00291b3c570859a05fe9010d26b457",
+      "unit": "aggregate_evidence_item"
+    },
+    {
+      "denominator": "eligible_cohort_members",
+      "field_count": 17,
+      "path": "outcome-feedback-0001.json",
+      "route": "outcome_feedback",
+      "row_count": 1,
+      "schema_version": "panel-outcome-feedback-v1",
+      "sha256": "sha256:d1268f355bd04814f0c26dc9029d079c0d2b3886cdf7628a1b208d79e7d79fed",
+      "unit": "aggregate_cohort_outcome"
+    },
+    {
+      "denominator": "eligible_cohort_members",
+      "field_count": 17,
+      "path": "outcome-feedback-0002.json",
+      "route": "outcome_feedback",
+      "row_count": 1,
+      "schema_version": "panel-outcome-feedback-v1",
+      "sha256": "sha256:c2c99b8c8fe25a93bd25104d4e81a30a42bae5d34d02f5ae66a650d8a90995ac",
+      "unit": "aggregate_cohort_outcome"
+    }
+  ],
+  "privacy_permission": {
+    "aggregate_only": true,
+    "minimum_cell_size": 10,
+    "permission_confirmed": true
+  },
+  "profile_seeds": [],
+  "schema_version": "authorized-audience-handoff-v1",
+  "source_profile": {
+    "path": "approved-source-profile.json",
+    "sha256": "sha256:f92d184b6734985063959bd38568980da35fea87d65928ba45d8ca91db16ca68"
+  },
+  "status": "complete",
+  "transformation_report": {
+    "path": "transformation-report.json",
+    "sha256": "sha256:f2a57cbdf135f53e2ec4bb4518c498caa39b8d934fdd0a5f9a0ec73fc9c2cf6b"
+  }
+}

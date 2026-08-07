@@ -1,0 +1,11 @@
+{
+  "study_id": "e2e-large-acme-001",
+  "creative_ids": ["V1", "V2", "V3", "V4", "V5", "V6", "V7"],
+  "creative_format": "static_image",
+  "requested_shortlist_size": 3,
+  "maximum_synthetic_panelists": 40,
+  "audience_panel": {
+    "source": "file",
+    "package_path": "__RUN_LOCAL_AUDIENCE_PACKAGE__"
+  }
+}

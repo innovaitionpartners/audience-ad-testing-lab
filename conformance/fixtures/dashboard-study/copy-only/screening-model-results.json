@@ -1,0 +1,19 @@
+{
+  "study_id": "dashboard-copy-001",
+  "estimand": "centered_complete_exposure_utility",
+  "stability_diagnostic": "conditional_within_run_top_k_inclusion_frequency",
+  "utilities": {"copy-a": 0.55, "copy-b": -0.55},
+  "top_k_inclusion_frequencies": {"copy-a": 0.82, "copy-b": 0.18},
+  "classifications": {"copy-a": "clear_finalist", "copy-b": "clear_non_finalist"},
+  "ranked_ids": ["copy-a", "copy-b"],
+  "model_diagnostics": {
+    "usable_observation_count": 1,
+    "connected": true,
+    "overall_one_block_deletion_resilient": false,
+    "recovery_calibration_status": "exploratory_only"
+  },
+  "validity_status": "exploratory",
+  "validity_reasons": ["small_fixture_run"],
+  "interpretation_limits": ["This fixture is an early directional read."],
+  "recovery_config_version": "copy-fixture-v1"
+}

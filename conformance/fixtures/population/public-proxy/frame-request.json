@@ -1,0 +1,66 @@
+{
+  "authorized_evidence_bases": [
+    "public"
+  ],
+  "available_capabilities": [
+    "public-adapter"
+  ],
+  "calibration_rules": [],
+  "decision": "Construct a public-proxy structural frame.",
+  "desired_claim": "Represent only the named public proxy universes.",
+  "downgrade_policy": {
+    "allow_experimental": true,
+    "allow_tier_1": true,
+    "reason": "Downgrade rather than combine units or invent a missing joint."
+  },
+  "exclusions": [],
+  "geography": [
+    "US"
+  ],
+  "modeled_cell_rules": [],
+  "proxy_universes": [
+    {
+      "denominator": "employed-persons-excluding-self-employed",
+      "description": "Employer-reported employed persons, excluding self-employed people.",
+      "exact": false,
+      "unit": "persons",
+      "universe_id": "employed-person-proxy"
+    },
+    {
+      "denominator": "employer-firms",
+      "description": "Employer firms in published SUSB rows.",
+      "exact": false,
+      "unit": "firms",
+      "universe_id": "employer-firm-proxy"
+    },
+    {
+      "denominator": "employer-establishments",
+      "description": "Employer establishments in published CBP rows.",
+      "exact": false,
+      "unit": "establishments",
+      "universe_id": "employer-establishment-proxy"
+    }
+  ],
+  "request_id": "public-proxy-frame",
+  "required_dimensions": [
+    "employment-status",
+    "enterprise-size",
+    "establishment-size",
+    "geography",
+    "industry",
+    "occupation"
+  ],
+  "required_joints": [
+    [
+      "employment-status",
+      "geography"
+    ]
+  ],
+  "schema_version": "audience-frame-request-v1",
+  "target_audience": "U.S. marketing and advertising decision-makers",
+  "target_unit": "persons",
+  "time_basis": {
+    "as_of": "2026-07-24",
+    "lookback_days": 1500
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "study_id": "dashboard-copy-001",
+  "study_version": "1.0",
+  "study_objective": "Compare two message routes before writing the next campaign brief.",
+  "creative_format": "copy_only",
+  "method": "complete_exposure",
+  "requested_shortlist_size": 2,
+  "audience_lock": {
+    "persona_research_brief_id": "brief-copy-001",
+    "segment_names": {"marketing-leader": "Marketing leaders"},
+    "archetype_names": {"arch-pragmatist": "Evidence-first pragmatist"},
+    "unique_archetypes": 1,
+    "unique_grounded_context_profiles": 2
+  },
+  "runtime": {"worker_context_isolation": "isolated", "retry_limit_per_return": 1},
+  "usage": {"total_model_calls": 2},
+  "external_validity": {
+    "human_alignment_validation": "not_evaluated",
+    "field_performance_calibration": "none"
+  },
+  "validity_status": "exploratory"
+}

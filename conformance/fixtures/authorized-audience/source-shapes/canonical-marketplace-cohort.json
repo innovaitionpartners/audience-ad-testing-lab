@@ -1,0 +1,8 @@
+{
+  "cohort_id": "marketplace-operators",
+  "description": "Aggregated marketplace operations cohort",
+  "metrics": {
+    "sample_size": 420,
+    "share": 0.38
+  }
+}

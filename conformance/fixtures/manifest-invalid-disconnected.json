@@ -1,0 +1,84 @@
+{
+  "study_id": "screening-acme-q3-002",
+  "study_version": "1.0",
+  "creative_format": "static_image",
+  "method": "partial_exposure_maxdiff",
+  "requested_shortlist_size": 5,
+  "maximum_synthetic_panelists": 100,
+  "synthetic_replicate_capacity": {
+    "screening_planned": 56,
+    "boundary_reserved": 16,
+    "boundary_jobs_per_wave": 4,
+    "boundary_waves_max": 4,
+    "finalist_reserved": 28,
+    "ceiling_satisfied": true
+  },
+  "audience_lock": {
+    "persona_research_brief_id": "brief-acme-q3-001",
+    "panel_id": "panel-acme-b2b-001",
+    "panel_version": "2026-07-21",
+    "segment_weights": {"growth_leader": 0.6, "operations_leader": 0.4},
+    "segment_weight_provenance": [
+      {"segment_id": "growth_leader", "source": "approved_research_brief", "weighting_rule": "target_mix"},
+      {"segment_id": "operations_leader", "source": "approved_research_brief", "weighting_rule": "target_mix"}
+    ],
+    "first_party_data_notes_id_or_hash": "sha256:8a1c7e73b15ce647",
+    "unique_archetypes": 4,
+    "unique_grounded_context_profiles": 12,
+    "attribute_provenance": [
+      {"attribute": "buying_stage", "status": "observed", "source_evidence": "approved_research_brief", "weighting_rule": "target_mix"}
+    ]
+  },
+  "assignment": {
+    "block_size": 4,
+    "randomization_seed": "assignment-20260721-002",
+    "instantiation_seed": "replicate-20260721-002",
+    "assignment_version": "near-balanced-v1",
+    "planned_participations_per_creative": 9,
+    "usable_participations_per_creative": {"creative-a": 9, "creative-b": 9, "creative-c": 9, "creative-d": 9}
+  },
+  "model": {
+    "maxdiff_version": "joint-maxdiff-v1",
+    "penalty_type": "l2",
+    "penalty_lambda": 0.1,
+    "optimizer_tolerance": 0.000001,
+    "bootstrap_count": 2000,
+    "successful_bootstrap_rate": 0.0,
+    "clear_finalist_threshold": 0.9,
+    "clear_non_finalist_threshold": 0.1,
+    "pairwise_model": "davidson",
+    "pairwise_tie_parameter": 0.2,
+    "pairwise_penalty_lambda": 0.1,
+    "pairwise_optimizer_tolerance": 0.000001
+  },
+  "runtime": {
+    "orchestration_mode": "context_isolated_workers",
+    "provider": "synthetic-provider",
+    "model_revision": "model-2026-07-21",
+    "decoding_parameters": {"temperature": 0.2, "top_p": 1.0},
+    "prompt_contract_version": "screening-response-v1",
+    "rendered_prompt_hashes": ["sha256:4e4bf7bc7e43e06d"],
+    "code_commit": "3dbab16",
+    "worker_context_isolation": "isolated",
+    "retry_limit_per_return": 1
+  },
+  "outputs": {
+    "creative_asset_hashes": {"creative-a": "sha256:98f8e17d6b8de20b"},
+    "raw_provider_returns": {
+      "path": "raw-provider-returns.jsonl",
+      "content_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "record_count": 0
+    },
+    "rejected_attempts": {
+      "path": "rejected-attempts.jsonl",
+      "content_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "record_count": 0
+    }
+  },
+  "external_validity": {
+    "human_alignment_validation": "not_evaluated",
+    "field_performance_calibration": "none"
+  },
+  "validity_status": "invalid",
+  "validity_reasons": ["comparison_graph_disconnected"]
+}

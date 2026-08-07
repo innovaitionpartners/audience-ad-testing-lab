@@ -1,0 +1,373 @@
+{
+  "audience_scope": {
+    "audience": "Authorized aggregate marketplace-seller cohort",
+    "buying_context": "Evaluating operations, pricing, returns, and customer-service messaging",
+    "category": "Marketplace operations",
+    "exclusions": [
+      "People outside the exact authorized aggregate cohort"
+    ],
+    "geography": "United States",
+    "market": "United States marketplace sellers",
+    "scope_fingerprint": "sha256:ab9fe12588d37648c06bb272ddf053d00d1bf31ab30e07d49f4472f4cb7a5ec1"
+  },
+  "audit_binding": {
+    "applicability": "release_b1",
+    "audit_sha256": "656f1dd13fc79a592142fc38652e37f45a794e02141ba829a592e846c89c9dc3",
+    "auditor_run_id": "fictional-marketplace-construction-audit",
+    "evidence_ledger_sha256": "c9d2c4dfb433569a9b8a93336fefcd410a43ba6c9ffa730f2fec61ce069a875c",
+    "finding_support_sha256": "7d643d447b7d71b79b29606072de48ca9ec144d0371545d2f1ea8bd2abd17c8d",
+    "report_inputs_sha256": "28e0b51a6641d07d835a6de78a0c87fdd609d350aa7f0b70f7e3d8c487e26c9c",
+    "report_manifest_sha256": "6e4a8a20352da37090655df49aaf295df240fa7610e2a78b43e83e92c276cc1e",
+    "synthesis_matrix_sha256": "48b78564d9db3fdc0e99e1618bff4b5a470c1d6217ef58cbbdc839bd9bdd60a5"
+  },
+  "authorized_handoff_sha256": "sha256:0351f2e144782b7accc5f101c480ebf3f84a93620edb60efa9f740e07c3028cf",
+  "brief_id": "fictional-marketplace-seller-brief",
+  "calibration_history": [],
+  "claim_boundary": "Authorized cohort composition only; it does not represent people outside the exact permissioned cohort.",
+  "composition_plan_sha256": "sha256:3eacc026347364e07cfd5b7a77591c68eb6f646e8e535580d5dd6aa56a1c4c02",
+  "context_strata": [
+    {
+      "context_stratum_id": "operations-evaluation",
+      "dimensions": [
+        {
+          "finding_ids": [
+            "finding-operations",
+            "finding-customer-service"
+          ],
+          "name": "decision_posture",
+          "source_evidence": [
+            "evidence-operations",
+            "evidence-customer-service",
+            "social-evidence-operations",
+            "social-evidence-customer-service"
+          ],
+          "status": "observed",
+          "value": "operations_reliability"
+        }
+      ],
+      "planned_weight": 1.0,
+      "segment_id": "operations-sellers",
+      "weighting_rule": "planning_allocation"
+    },
+    {
+      "context_stratum_id": "finance-evaluation",
+      "dimensions": [
+        {
+          "finding_ids": [
+            "finding-pricing",
+            "finding-returns"
+          ],
+          "name": "decision_posture",
+          "source_evidence": [
+            "evidence-pricing",
+            "evidence-returns",
+            "social-evidence-pricing",
+            "social-evidence-returns"
+          ],
+          "status": "observed",
+          "value": "pricing_returns"
+        }
+      ],
+      "planned_weight": 1.0,
+      "segment_id": "finance-sellers",
+      "weighting_rule": "planning_allocation"
+    }
+  ],
+  "created_at": "2026-07-02T12:00:00Z",
+  "evidence_basis": "first_party_aggregate",
+  "governance": {
+    "allowed_uses": [
+      "Synthetic ad testing for the exact authorized aggregate cohort"
+    ],
+    "excluded_uses": [
+      "Individual targeting",
+      "Population inference outside the authorized cohort"
+    ],
+    "pii_policy": "Aggregated non-personal evidence only",
+    "privacy_confirmation": {
+      "confirmed": true,
+      "confirmed_at": "2026-07-02T12:00:00Z",
+      "confirmed_by": "panel-owner",
+      "note": "No direct identifiers or person-level records are included."
+    }
+  },
+  "grounded_context_profiles": [
+    {
+      "context_attribute_provenance": [
+        {
+          "attribute": "decision_posture",
+          "finding_ids": [
+            "finding-operations",
+            "finding-customer-service"
+          ],
+          "source_evidence": [
+            "evidence-operations",
+            "evidence-customer-service",
+            "social-evidence-operations",
+            "social-evidence-customer-service"
+          ],
+          "status": "observed",
+          "value": "operations_reliability"
+        }
+      ],
+      "context_stratum_id": "operations-evaluation",
+      "grounded_profile_id": "operations-reliability-service",
+      "persona_archetype_id": "operations-reliability-archetype",
+      "profile_snapshot": {
+        "anxieties": [
+          "Customer-service failures"
+        ],
+        "decision_context": "Evaluating operating and service claims",
+        "motivations": [
+          "Reliable operational handoffs"
+        ],
+        "proof_needs": [
+          "Operational and customer-service mechanism"
+        ],
+        "role_context": "Marketplace seller with operations responsibility"
+      },
+      "segment_id": "operations-sellers"
+    },
+    {
+      "context_attribute_provenance": [
+        {
+          "attribute": "decision_posture",
+          "finding_ids": [
+            "finding-pricing",
+            "finding-returns"
+          ],
+          "source_evidence": [
+            "evidence-pricing",
+            "evidence-returns",
+            "social-evidence-pricing",
+            "social-evidence-returns"
+          ],
+          "status": "observed",
+          "value": "pricing_returns"
+        }
+      ],
+      "context_stratum_id": "finance-evaluation",
+      "grounded_profile_id": "finance-pricing-returns",
+      "persona_archetype_id": "finance-pricing-archetype",
+      "profile_snapshot": {
+        "anxieties": [
+          "Returns erode margin"
+        ],
+        "decision_context": "Evaluating pricing and returns claims",
+        "motivations": [
+          "Predictable costs"
+        ],
+        "proof_needs": [
+          "Pricing and returns mechanism"
+        ],
+        "role_context": "Marketplace seller with finance responsibility"
+      },
+      "segment_id": "finance-sellers"
+    }
+  ],
+  "package_status": "unpackaged",
+  "panel_id": "fictional-marketplace-panel",
+  "panel_name": "Marketplace Seller Cohort",
+  "panel_tier": "tier_3",
+  "persona_archetypes": [
+    {
+      "anxieties": [
+        "Customer-service failures"
+      ],
+      "decision_context": "Evaluating operating and service claims",
+      "display_name": "Operations reliability evaluator",
+      "evidence_ids": [
+        "evidence-operations",
+        "evidence-customer-service",
+        "social-evidence-operations",
+        "social-evidence-customer-service"
+      ],
+      "evidence_strength": "medium",
+      "finding_ids": [
+        "finding-operations",
+        "finding-customer-service"
+      ],
+      "inference_boundary": "Topic-bound aggregate evidence, not prevalence.",
+      "motivations": [
+        "Reliable operational handoffs"
+      ],
+      "objections": [
+        "Service resolution is unclear"
+      ],
+      "persona_archetype_id": "operations-reliability-archetype",
+      "proof_needs": [
+        "Operational and customer-service mechanism"
+      ],
+      "role_context": "Marketplace seller with operations responsibility",
+      "segment_id": "operations-sellers",
+      "triggers": [
+        "An operating process needs improvement"
+      ]
+    },
+    {
+      "anxieties": [
+        "Returns erode margin"
+      ],
+      "decision_context": "Evaluating pricing and returns claims",
+      "display_name": "Pricing and returns evaluator",
+      "evidence_ids": [
+        "evidence-pricing",
+        "evidence-returns",
+        "social-evidence-pricing",
+        "social-evidence-returns"
+      ],
+      "evidence_strength": "medium",
+      "finding_ids": [
+        "finding-pricing",
+        "finding-returns"
+      ],
+      "inference_boundary": "Topic-bound aggregate evidence, not prevalence.",
+      "motivations": [
+        "Predictable costs"
+      ],
+      "objections": [
+        "Cost and returns handling are unclear"
+      ],
+      "persona_archetype_id": "finance-pricing-archetype",
+      "proof_needs": [
+        "Pricing and returns mechanism"
+      ],
+      "role_context": "Marketplace seller with finance responsibility",
+      "segment_id": "finance-sellers",
+      "triggers": [
+        "Pricing or returns policy changes"
+      ]
+    }
+  ],
+  "persona_research": {
+    "approved_at": "2026-07-02T12:00:00Z",
+    "brief_id": "fictional-marketplace-seller-brief",
+    "coverage": {
+      "buying_triggers": "thin",
+      "decision_criteria": "strong",
+      "fears_objections": "strong",
+      "media_behaviors": "thin",
+      "motivations_goals": "strong",
+      "pain_points_challenges": "strong",
+      "proof_needs": "strong"
+    },
+    "evidence_gaps": [
+      {
+        "gap": "Topic summaries do not estimate psychographic prevalence.",
+        "impact_on_panel": "Overlay allocations remain planning allocations.",
+        "mitigation": "Keep structural cohort weights separate from overlay evidence."
+      }
+    ],
+    "evidence_ids": [
+      "evidence-cohort-structure",
+      "evidence-operations",
+      "evidence-pricing",
+      "evidence-returns",
+      "evidence-customer-service",
+      "social-evidence-operations",
+      "social-evidence-pricing",
+      "social-evidence-returns",
+      "social-evidence-customer-service"
+    ],
+    "expires_at": null,
+    "mode": "crm_first_party",
+    "source_state": "documented_sources",
+    "source_types": [
+      "crm_aggregate"
+    ],
+    "status": "approved"
+  },
+  "population_frame_result_sha256": "sha256:132bd04ae85ca30105e0f37236e607610a6ab235c3916844ab93d73bbbf59ddc",
+  "population_frame_sha256": "sha256:132bd04ae85ca30105e0f37236e607610a6ab235c3916844ab93d73bbbf59ddc",
+  "refresh_conditions": {
+    "max_age_days": 184,
+    "review_after": "2027-01-24T12:00:00Z",
+    "triggers": [
+      "The authorized cohort definition changes",
+      "A newer aggregate export is approved"
+    ]
+  },
+  "replicate_strategy": {
+    "fields_allowed_to_vary": [
+      "language emphasis"
+    ],
+    "fields_never_to_invent": [
+      "segment",
+      "archetype",
+      "context stratum",
+      "evidence"
+    ],
+    "shared_context_fallback_allowed": false,
+    "worker_unit": "one_context_isolated_replicate_per_job"
+  },
+  "schema_version": "saved-audience-panel-v3",
+  "segments": [
+    {
+      "creative_implications": [
+        "Show operational reliability and service resolution."
+      ],
+      "description": "Eligible cohort members with operations responsibilities.",
+      "evidence_ids": [
+        "evidence-cohort-structure",
+        "evidence-operations",
+        "evidence-customer-service",
+        "social-evidence-operations",
+        "social-evidence-customer-service"
+      ],
+      "finding_ids": [
+        "finding-cohort-structure",
+        "finding-operations",
+        "finding-customer-service"
+      ],
+      "name": "Operations-focused sellers",
+      "origin": "research_derived",
+      "primary_needs": [
+        "Reliable operational handoffs"
+      ],
+      "primary_objections": [
+        "Service failures create operational risk"
+      ],
+      "segment_id": "operations-sellers",
+      "study_weight": 0.38,
+      "weight_source_evidence": [
+        "evidence-cohort-structure"
+      ],
+      "weighting_rule": "authorized_cohort_weight"
+    },
+    {
+      "creative_implications": [
+        "Show pricing clarity and returns handling."
+      ],
+      "description": "Eligible cohort members with finance responsibilities.",
+      "evidence_ids": [
+        "evidence-cohort-structure",
+        "evidence-pricing",
+        "evidence-returns",
+        "social-evidence-pricing",
+        "social-evidence-returns"
+      ],
+      "finding_ids": [
+        "finding-cohort-structure",
+        "finding-pricing",
+        "finding-returns"
+      ],
+      "name": "Finance-focused sellers",
+      "origin": "research_derived",
+      "primary_needs": [
+        "Predictable costs"
+      ],
+      "primary_objections": [
+        "Pricing and returns policies may create risk"
+      ],
+      "segment_id": "finance-sellers",
+      "study_weight": 0.62,
+      "weight_source_evidence": [
+        "evidence-cohort-structure"
+      ],
+      "weighting_rule": "authorized_cohort_weight"
+    }
+  ],
+  "updated_at": "2026-07-02T12:00:00Z",
+  "validity_profile_sha256": "sha256:4572cdbd5f7a1e134fc53454a9610dde0c0bea0c70412b16c39b1a2fc4395782",
+  "version": "1.0.0"
+}

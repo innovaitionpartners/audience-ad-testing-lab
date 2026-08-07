@@ -1,0 +1,115 @@
+{
+  "schema_version": "audience-research-brief-v2",
+  "brief_id": "acme-operations-transformation-brief",
+  "created_at": "2026-07-21T12:00:00Z",
+  "updated_at": "2026-07-22T12:00:00Z",
+  "status": "approved",
+  "target_audience": {
+    "audience": "Operations and transformation leaders at mid-market software companies",
+    "category": "Workflow software",
+    "market": "B2B software",
+    "geography": "United States",
+    "buying_context": "Evaluating a replacement platform",
+    "exclusions": ["Individual contributors without purchase influence"]
+  },
+  "research_mode": "user_provided_research",
+  "research_depth": "standard",
+  "research_questions": [
+    "What proof reduces perceived implementation risk?",
+    "What makes a workflow replacement feel relevant across teams?"
+  ],
+  "evidence_sources": [
+    {
+      "evidence_id": "evidence-operations",
+      "type": "user_context",
+      "source_label": "Bundled fictional operations interview synthesis",
+      "source_url": null,
+      "collection_method": "supplied_by_user",
+      "date": "2026-07-21",
+      "confidence": "medium",
+      "usable_for": ["implementation objections", "proof needs"],
+      "permitted_uses": ["audience modeling", "synthetic ad testing"],
+      "limits": "Fictional, aggregate conformance evidence; not population prevalence."
+    },
+    {
+      "evidence_id": "evidence-transformation",
+      "type": "user_context",
+      "source_label": "Bundled fictional transformation workshop synthesis",
+      "source_url": null,
+      "collection_method": "supplied_by_user",
+      "date": "2026-07-21",
+      "confidence": "medium",
+      "usable_for": ["decision criteria", "cross-team motivations"],
+      "permitted_uses": ["audience modeling", "synthetic ad testing"],
+      "limits": "Fictional, aggregate conformance evidence; not population prevalence."
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "finding-operations-proof",
+      "evidence_ids": ["evidence-operations"],
+      "statement": "Operations leaders seek an implementation mechanism and adoption proof before replacing core workflows.",
+      "category": "proof_needs",
+      "confidence": "medium",
+      "inference_boundary": "Applies only to the bundled fictional buying context.",
+      "creative_implications": ["Show how the change works and what supports adoption."]
+    },
+    {
+      "finding_id": "finding-transformation-alignment",
+      "evidence_ids": ["evidence-transformation"],
+      "statement": "Transformation leaders look for cross-team visibility and executive alignment without another disconnected layer.",
+      "category": "decision_criteria",
+      "confidence": "medium",
+      "inference_boundary": "Applies only to the bundled fictional buying context.",
+      "creative_implications": ["Connect the promise to shared visibility and coordinated action."]
+    }
+  ],
+  "coverage": {
+    "pain_points_challenges": "strong",
+    "motivations_goals": "strong",
+    "decision_criteria": "strong",
+    "buying_triggers": "thin",
+    "fears_objections": "strong",
+    "proof_needs": "strong",
+    "media_behaviors": "empty"
+  },
+  "segment_hypotheses": [
+    {
+      "segment_id": "operations-leaders",
+      "name": "Evidence-led operations leaders",
+      "origin": "research_derived",
+      "finding_ids": ["finding-operations-proof"],
+      "evidence_ids": ["evidence-operations"],
+      "confidence": "medium",
+      "why_it_matters_for_ad_testing": "They scrutinize implementation and adoption claims."
+    },
+    {
+      "segment_id": "transformation-leaders",
+      "name": "Alignment-focused transformation leaders",
+      "origin": "research_derived",
+      "finding_ids": ["finding-transformation-alignment"],
+      "evidence_ids": ["evidence-transformation"],
+      "confidence": "medium",
+      "why_it_matters_for_ad_testing": "They evaluate whether the promise connects teams and executive priorities."
+    }
+  ],
+  "evidence_gaps": [
+    {
+      "gap": "Media behavior evidence is unavailable.",
+      "impact_on_panel": "No channel-use assumptions are modeled.",
+      "mitigation": "Keep evaluation channel-neutral."
+    }
+  ],
+  "privacy_confirmation": {
+    "confirmed": true,
+    "confirmed_by": "conformance-research-owner",
+    "confirmed_at": "2026-07-22T12:00:00Z",
+    "note": "Only bundled fictional aggregate evidence is included."
+  },
+  "approval": {
+    "approved_for_panel_creation": true,
+    "approved_by": "conformance-panel-owner",
+    "approved_at": "2026-07-22T12:00:00Z",
+    "approval_note": "Approved for the two-run synthetic conformance demonstration."
+  }
+}

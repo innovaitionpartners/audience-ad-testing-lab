@@ -1,0 +1,16 @@
+{
+  "records": [
+    {
+      "cohort_id": "operations_leaders",
+      "evidence_id": "evidence-operations",
+      "topic": "workflow_reliability",
+      "summary": "Operational leaders emphasize reliable handoffs."
+    },
+    {
+      "cohort_id": "finance_leaders",
+      "evidence_id": "evidence-finance",
+      "topic": "cost_visibility",
+      "summary": "Finance leaders emphasize cost visibility."
+    }
+  ]
+}

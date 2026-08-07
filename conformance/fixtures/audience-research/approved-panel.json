@@ -1,0 +1,127 @@
+{
+  "schema_version": "saved-audience-panel-v2",
+  "panel_id": "operations-leaders",
+  "panel_name": "Operations Leaders",
+  "version": "1.0.0",
+  "created_at": "2026-07-02T12:00:00Z",
+  "updated_at": "2026-07-02T12:00:00Z",
+  "audience_scope": {
+    "audience": "Operations leaders at mid-market software companies",
+    "market": "B2B software",
+    "geography": "United States",
+    "category": "Workflow software",
+    "buying_context": "Evaluating a replacement platform",
+    "exclusions": ["Individual contributors without purchase influence"],
+    "scope_fingerprint": "sha256:8db99aaae36eae13e1633bdcb4d9d1243ee1c003dedd96456b1a52f1a59b64f2"
+  },
+  "persona_research": {
+    "brief_id": "operations-leaders-brief",
+    "mode": "public_research",
+    "status": "approved",
+    "approved_at": "2026-07-02T12:00:00Z",
+    "expires_at": null,
+    "source_types": ["industry_report"],
+    "evidence_ids": ["evidence-1"],
+    "coverage": {
+      "pain_points_challenges": "thin",
+      "motivations_goals": "strong",
+      "decision_criteria": "strong",
+      "buying_triggers": "thin",
+      "fears_objections": "strong",
+      "proof_needs": "strong",
+      "media_behaviors": "empty"
+    },
+    "evidence_gaps": [{
+      "gap": "Media behavior evidence is unavailable.",
+      "impact_on_panel": "No channel-use assumptions are modeled.",
+      "mitigation": "Keep evaluation channel-neutral."
+    }],
+    "source_state": "documented_sources"
+  },
+  "segments": [{
+    "segment_id": "operations-leaders",
+    "name": "Evidence-led operations leaders",
+    "origin": "research_derived",
+    "study_weight": 1.0,
+    "weighting_rule": "research_supported_planning_weight",
+    "weight_source_evidence": ["evidence-1"],
+    "finding_ids": ["finding-1"],
+    "evidence_ids": ["evidence-1"],
+    "description": "Operations leaders assessing workflow replacement risk.",
+    "primary_needs": ["Reduce coordination load"],
+    "primary_objections": ["Implementation disruption"],
+    "creative_implications": ["Show the implementation mechanism and adoption evidence."]
+  }],
+  "persona_archetypes": [{
+    "persona_archetype_id": "evidence-led-operator",
+    "segment_id": "operations-leaders",
+    "display_name": "Evidence-led operator",
+    "role_context": "Director or VP responsible for operating efficiency",
+    "decision_context": "Comparing workflow and operations software",
+    "motivations": ["Reduce coordination load"],
+    "anxieties": ["Implementation disruption"],
+    "triggers": ["A replacement initiative is funded"],
+    "objections": ["Adoption claims lack evidence"],
+    "proof_needs": ["Credible mechanism and adoption evidence"],
+    "finding_ids": ["finding-1"],
+    "evidence_ids": ["evidence-1"],
+    "evidence_strength": "medium",
+    "inference_boundary": "A modeled mindset, not population prevalence."
+  }],
+  "context_strata": [{
+    "context_stratum_id": "active-evaluation",
+    "segment_id": "operations-leaders",
+    "planned_weight": 1.0,
+    "weighting_rule": "planning_allocation",
+    "dimensions": [{
+      "name": "buying_stage",
+      "value": "active_evaluation",
+      "status": "observed",
+      "source_evidence": ["evidence-1"],
+      "finding_ids": ["finding-1"]
+    }]
+  }],
+  "grounded_context_profiles": [{
+    "grounded_profile_id": "operations-director-evaluating-v1",
+    "segment_id": "operations-leaders",
+    "persona_archetype_id": "evidence-led-operator",
+    "context_stratum_id": "active-evaluation",
+    "profile_snapshot": {
+      "role_context": "Director or VP responsible for operating efficiency",
+      "decision_context": "Comparing workflow and operations software",
+      "motivations": ["Reduce coordination load"],
+      "anxieties": ["Implementation disruption"],
+      "proof_needs": ["Credible mechanism and adoption evidence"]
+    },
+    "context_attribute_provenance": [{
+      "attribute": "buying_stage",
+      "value": "active_evaluation",
+      "status": "observed",
+      "source_evidence": ["evidence-1"],
+      "finding_ids": ["finding-1"]
+    }]
+  }],
+  "replicate_strategy": {
+    "worker_unit": "one_context_isolated_replicate_per_job",
+    "shared_context_fallback_allowed": false,
+    "fields_allowed_to_vary": ["language emphasis"],
+    "fields_never_to_invent": ["segment", "archetype", "context stratum", "evidence"]
+  },
+  "calibration_history": [],
+  "refresh_conditions": {
+    "review_after": "2027-01-02T12:00:00Z",
+    "max_age_days": 184,
+    "triggers": ["Material audience scope change", "New first-party evidence"]
+  },
+  "governance": {
+    "pii_policy": "Aggregated non-personal evidence only",
+    "allowed_uses": ["Synthetic ad testing"],
+    "excluded_uses": ["Population inference", "Individual targeting"],
+    "privacy_confirmation": {
+      "confirmed": true,
+      "confirmed_by": "panel-owner",
+      "confirmed_at": "2026-07-02T12:00:00Z",
+      "note": "No person-level records are included."
+    }
+  }
+}

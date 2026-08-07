@@ -1,0 +1,59 @@
+name: Set up sealed private-stage runtime
+description: Install the exact dependencies and fail-closed Linux sandbox prerequisites.
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v6
+      with:
+        python-version: "3.13"
+        cache: pip
+        cache-dependency-path: |
+          skills/audience-ad-testing-lab/requirements-screening.txt
+          skills/audience-data-lab/requirements-private-data.txt
+          skills/real-world-outcome-data-prep/requirements-outcome-data-prep.txt
+
+    - name: Install and require the exact Linux sandbox provider
+      shell: bash
+      run: |
+        sudo apt-get update
+        sudo apt-get install --yes bubblewrap
+        sudo sysctl --write kernel.apparmor_restrict_unprivileged_userns=0
+        test -x /usr/bin/bwrap
+        test "$(stat -c '%u' /usr/bin/bwrap)" = "0"
+
+    - name: Install screening dependencies
+      shell: bash
+      run: python3 -m pip install -r skills/audience-ad-testing-lab/requirements-screening.txt
+
+    - name: Install private-data dependencies
+      shell: bash
+      run: python3 -m pip install -r skills/audience-data-lab/requirements-private-data.txt
+
+    - name: Install outcome data prep dependencies
+      shell: bash
+      run: python3 -m pip install -r skills/real-world-outcome-data-prep/requirements-outcome-data-prep.txt
+
+    - name: Pin the dependency-complete conformance environment
+      shell: bash
+      run: python3 -m pip install numpy==2.4.2 scipy==1.17.0 openpyxl==3.1.5
+
+    - name: Seal the private-stage Python runtime
+      shell: bash
+      run: |
+        python3 - <<'PY'
+        import stat
+        import sys
+        import sysconfig
+        from pathlib import Path
+
+        paths = {
+            Path(sys.executable).resolve(strict=True),
+            Path(sys.base_prefix).resolve(strict=True),
+            Path(sysconfig.get_path("stdlib")).resolve(strict=True),
+            Path(sysconfig.get_path("platstdlib")).resolve(strict=True),
+        }
+        for path in paths:
+            path.chmod(stat.S_IMODE(path.stat().st_mode) & ~0o022)
+        PY

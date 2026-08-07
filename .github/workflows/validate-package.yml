@@ -1,0 +1,261 @@
+name: Fast private-stage validation
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - ready_for_review
+      - synchronize
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: fast-private-stage-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  contract-and-package:
+    name: Contract and package
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: |
+            skills/audience-ad-testing-lab/requirements-screening.txt
+            skills/audience-data-lab/requirements-private-data.txt
+            skills/real-world-outcome-data-prep/requirements-outcome-data-prep.txt
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+
+      - name: Install pinned plugin clients
+        run: |
+          npm install --global \
+            @anthropic-ai/claude-code@2.1.220 \
+            @openai/codex@0.146.0
+          claude --version
+          codex --version
+
+      - name: Install smoke-suite dependencies
+        run: |
+          python3 -m pip install -r skills/audience-ad-testing-lab/requirements-screening.txt
+          python3 -m pip install -r skills/audience-data-lab/requirements-private-data.txt
+          python3 -m pip install -r skills/real-world-outcome-data-prep/requirements-outcome-data-prep.txt
+          python3 -m pip install numpy==2.4.2 scipy==1.17.0 openpyxl==3.1.5
+
+      - name: Verify closed CI partition inventory
+        run: python3 conformance/ci_fast_validation.py verify-inventory
+
+      - name: Verify current-tree release identity
+        run: python3 conformance/ci_fast_validation.py verify-release-identity
+
+      - name: Run workflow contract guards
+        run: python3 conformance/ci_fast_validation.py run workflow-contracts
+
+      - name: Run private-stage smoke suite
+        run: python3 conformance/ci_fast_validation.py run smoke
+
+      - name: Validate dashboard template contract
+        run: python3 skills/audience-ad-testing-lab/scripts/validate-dashboard.py skills/audience-ad-testing-lab/assets/dashboard-template.html --allow-placeholders
+
+      - name: Check canonical skill layout
+        run: |
+          test -f skills/audience-data-lab/SKILL.md
+          test -f skills/audience-ad-testing-lab/SKILL.md
+          test -f skills/audience-panel-builder/SKILL.md
+          test -f skills/real-world-outcome-data-prep/SKILL.md
+          test ! -e SKILL.md
+          test ! -e agents
+          test ! -e assets
+          test ! -e references
+          test ! -e requirements-screening.txt
+          test ! -e scripts
+
+      - name: Compile Python runtime surfaces
+        run: |
+          python3 -m py_compile skills/audience-ad-testing-lab/scripts/*.py skills/audience-ad-testing-lab/scripts/audience_lab/*.py
+          python3 -m py_compile skills/audience-data-lab/scripts/*.py skills/audience-data-lab/scripts/audience_data_lab/*.py
+          python3 -m py_compile skills/audience-panel-builder/scripts/*.py skills/audience-panel-builder/scripts/audience_panel_builder/*.py
+          python3 -m compileall -q skills/audience-panel-builder/scripts/audience_panel_builder/population/experimental_calibration
+          python3 -m compileall -q skills/audience-panel-builder/scripts/experimental_persona_calibration_oracle
+          python3 -m compileall -q skills/real-world-outcome-data-prep/scripts
+          python3 -m py_compile conformance/ci_fast_validation.py
+
+      - name: Validate JSON manifests
+        run: |
+          python3 -m json.tool .agents/plugins/marketplace.json >/dev/null
+          python3 -m json.tool .codex-plugin/plugin.json >/dev/null
+          python3 -m json.tool .claude-plugin/plugin.json >/dev/null
+          python3 -m json.tool .claude-plugin/marketplace.json >/dev/null
+          python3 -m json.tool gemini-extension.json >/dev/null
+          python3 -m json.tool skills/real-world-outcome-data-prep/references/platform-capabilities.json >/dev/null
+          python3 -m json.tool skills/real-world-outcome-data-prep/references/runtime-release-manifest.json >/dev/null
+
+      - name: Install through Claude and Codex marketplaces
+        run: |
+          python3 conformance/run_plugin_install_smoke.py \
+            --plugin-root . \
+            --clients claude codex
+
+      - name: Audit public package boundary and reserved terminology
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          roots = [
+              Path("README.md"),
+              Path("skills/audience-data-lab"),
+              Path("skills/audience-ad-testing-lab"),
+              Path("skills/audience-panel-builder"),
+              Path("skills/real-world-outcome-data-prep"),
+          ]
+          reserved = "arti" + "fact"
+          private_phrases = (
+              "abla" + "tion",
+              "optimizer " + "report",
+              "human-vs-" + "synthetic dataset",
+              "private " + "eval",
+          )
+          findings = []
+          for root in roots:
+              paths = [root] if root.is_file() else root.rglob("*")
+              for path in paths:
+                  if not path.is_file() or "__pycache__" in path.parts:
+                      continue
+                  try:
+                      text = path.read_text(encoding="utf-8").lower()
+                  except UnicodeDecodeError:
+                      continue
+                  if reserved in text:
+                      findings.append(f"reserved term in {path}")
+                  for phrase in private_phrases:
+                      if phrase in text:
+                          findings.append(f"private phrase in {path}: {phrase}")
+          if findings:
+              raise SystemExit("\n".join(findings))
+          PY
+
+      - name: Reject maintainer-specific absolute paths
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          findings = []
+          macos_home = "/" + "Users" + "/"
+          windows_home = "\\" + "Users" + "\\"
+          for path in Path(".").rglob("*"):
+              if not path.is_file() or ".git" in path.parts or "__pycache__" in path.parts:
+                  continue
+              try:
+                  text = path.read_text(encoding="utf-8")
+              except UnicodeDecodeError:
+                  continue
+              if macos_home in text or windows_home in text:
+                  findings.append(str(path))
+          if findings:
+              raise SystemExit(
+                  "maintainer-specific absolute path found in:\n"
+                  + "\n".join(sorted(findings))
+              )
+          PY
+
+      - name: Check skill frontmatter
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          for path in (
+              Path("skills/audience-data-lab/SKILL.md"),
+              Path("skills/audience-ad-testing-lab/SKILL.md"),
+              Path("skills/audience-panel-builder/SKILL.md"),
+              Path("skills/real-world-outcome-data-prep/SKILL.md"),
+          ):
+              text = path.read_text(encoding="utf-8")
+              if not text.startswith("---\n"):
+                  raise SystemExit(f"{path} does not start with YAML frontmatter")
+              frontmatter_end = text.find("\n---", 4)
+              if frontmatter_end == -1:
+                  raise SystemExit(f"{path} has unclosed YAML frontmatter")
+              frontmatter = text[4:frontmatter_end]
+              for required in ("name:", "description:"):
+                  if required not in frontmatter:
+                      raise SystemExit(f"{path} is missing {required}")
+          PY
+
+  outcome-release:
+    name: Outcome data release gate
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up sealed private-stage runtime
+        uses: ./.github/actions/setup-private-stage
+
+      - name: Verify current-tree release identity
+        run: python3 conformance/ci_fast_validation.py verify-release-identity
+
+      - name: Run outcome data prep release gate
+        run: python3 conformance/ci_fast_validation.py run outcome-release
+
+  calibration:
+    name: Calibration / ${{ matrix.label }}
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - label: engine and evaluation
+            partition: calibration-engine-and-evaluation
+          - label: contracts and lifecycle
+            partition: calibration-contracts-and-lifecycle
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up sealed private-stage runtime
+        uses: ./.github/actions/setup-private-stage
+
+      - name: Verify current-tree release identity
+        run: python3 conformance/ci_fast_validation.py verify-release-identity
+
+      - name: Run calibration partition
+        run: python3 conformance/ci_fast_validation.py run "${{ matrix.partition }}"
+
+  private-stage-release-gate:
+    name: Private-stage release gate
+    if: >-
+      always() &&
+      (github.event_name != 'pull_request' || github.event.pull_request.draft == false)
+    needs:
+      - contract-and-package
+      - outcome-release
+      - calibration
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require every split validation workstream
+        env:
+          CONTRACT_AND_PACKAGE: ${{ needs.contract-and-package.result }}
+          OUTCOME_RELEASE: ${{ needs.outcome-release.result }}
+          CALIBRATION: ${{ needs.calibration.result }}
+        run: |
+          test "$CONTRACT_AND_PACKAGE" = "success"
+          test "$OUTCOME_RELEASE" = "success"
+          test "$CALIBRATION" = "success"

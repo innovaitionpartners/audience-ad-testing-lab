@@ -1,0 +1,15 @@
+{
+  "archetype_sensitivity": "leave_one_persona_archetype_out_top_k_consistent",
+  "bootstrap_resamples": 2000,
+  "calibration_basis": "deterministic_task9_adversarial_recovery_fixtures",
+  "cutoff_tie_policy": "no_point_estimate_only_decision",
+  "finalist_inclusion_threshold": 0.9,
+  "human_market_calibration": false,
+  "minimum_archetype_diversity": 2,
+  "minimum_evaluable_archetype_exclusions": 2,
+  "minimum_usable_records_per_segment": 8,
+  "nonfinalist_inclusion_threshold": 0.1,
+  "planned_jobs_per_segment": 9,
+  "scope": "conditional_synthetic_run_only",
+  "version": "complete-exposure-calibration-v2"
+}

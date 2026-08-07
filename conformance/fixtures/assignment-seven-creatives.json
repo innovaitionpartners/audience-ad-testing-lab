@@ -1,0 +1,298 @@
+{
+  "creative_ids": [
+    "V1",
+    "V2",
+    "V3",
+    "V4",
+    "V5",
+    "V6",
+    "V7"
+  ],
+  "segment_allocations": {
+    "S1": 16
+  },
+  "seed": 17,
+  "synthetic_replicate_jobs": [
+    {
+      "synthetic_replicate_id": "S1-replicate-0001",
+      "segment_id": "S1",
+      "variation_ids": [
+        "V1",
+        "V3",
+        "V6",
+        "V7"
+      ],
+      "shown_order": [
+        "V7",
+        "V3",
+        "V6",
+        "V1"
+      ],
+      "inclusion_probability": 0.5714285714285714
+    },
+    {
+      "synthetic_replicate_id": "S1-replicate-0002",
+      "segment_id": "S1",
+      "variation_ids": [
+        "V2",
+        "V4",
+        "V5",
+        "V7"
+      ],
+      "shown_order": [
+        "V2",
+        "V4",
+        "V5",
+        "V7"
+      ],
+      "inclusion_probability": 0.5714285714285714
+    },
+    {
+      "synthetic_replicate_id": "S1-replicate-0003",
+      "segment_id": "S1",
+      "variation_ids": [
+        "V2",
+        "V3",
+        "V5",
+        "V6"
+      ],
+      "shown_order": [
+        "V3",
+        "V6",
+        "V2",
+        "V5"
+      ],
+      "inclusion_probability": 0.5714285714285714
+    },
+    {
+      "synthetic_replicate_id": "S1-replicate-0004",
+      "segment_id": "S1",
+      "variation_ids": [
+        "V1",
+        "V2",
+        "V4",
+        "V6"
+      ],
+      "shown_order": [
+        "V6",
+        "V1",
+        "V4",
+        "V2"
+      ],
+      "inclusion_probability": 0.5714285714285714
+    },
+    {
+      "synthetic_replicate_id": "S1-replicate-0005",
+      "segment_id": "S1",
+      "variation_ids": [
+        "V1",
+        "V3",
+        "V4",
+        "V5"
+      ],
+      "shown_order": [
+        "V4",
+        "V5",
+        "V1",
+        "V3"
+      ],
+      "inclusion_probability": 0.5714285714285714
+    },
+    {
+      "synthetic_replicate_id": "S1-replicate-0006",
+      "segment_id": "S1",
+      "variation_ids": [
+        "V1",
+        "V2",
+        "V4",
+        "V7"
+      ],
+      "shown_order": [
+        "V1",
+        "V2",
+        "V7",
+        "V4"
+      ],
+      "inclusion_probability": 0.5714285714285714
+    },
+    {
+      "synthetic_replicate_id": "S1-replicate-0007",
+      "segment_id": "S1",
+      "variation_ids": [
+        "V3",
+        "V5",
+        "V6",
+        "V7"
+      ],
+      "shown_order": [
+        "V5",
+        "V7",
+        "V3",
+        "V6"
+      ],
+      "inclusion_probability": 0.5714285714285714
+    },
+    {
+      "synthetic_replicate_id": "S1-replicate-0008",
+      "segment_id": "S1",
+      "variation_ids": [
+        "V4",
+        "V5",
+        "V6",
+        "V7"
+      ],
+      "shown_order": [
+        "V6",
+        "V5",
+        "V4",
+        "V7"
+      ],
+      "inclusion_probability": 0.5714285714285714
+    },
+    {
+      "synthetic_replicate_id": "S1-replicate-0009",
+      "segment_id": "S1",
+      "variation_ids": [
+        "V1",
+        "V2",
+        "V3",
+        "V7"
+      ],
+      "shown_order": [
+        "V7",
+        "V2",
+        "V3",
+        "V1"
+      ],
+      "inclusion_probability": 0.5714285714285714
+    },
+    {
+      "synthetic_replicate_id": "S1-replicate-0010",
+      "segment_id": "S1",
+      "variation_ids": [
+        "V1",
+        "V2",
+        "V5",
+        "V6"
+      ],
+      "shown_order": [
+        "V2",
+        "V1",
+        "V6",
+        "V5"
+      ],
+      "inclusion_probability": 0.5714285714285714
+    },
+    {
+      "synthetic_replicate_id": "S1-replicate-0011",
+      "segment_id": "S1",
+      "variation_ids": [
+        "V2",
+        "V3",
+        "V4",
+        "V6"
+      ],
+      "shown_order": [
+        "V4",
+        "V3",
+        "V2",
+        "V6"
+      ],
+      "inclusion_probability": 0.5714285714285714
+    },
+    {
+      "synthetic_replicate_id": "S1-replicate-0012",
+      "segment_id": "S1",
+      "variation_ids": [
+        "V1",
+        "V3",
+        "V4",
+        "V5"
+      ],
+      "shown_order": [
+        "V1",
+        "V4",
+        "V5",
+        "V3"
+      ],
+      "inclusion_probability": 0.5714285714285714
+    },
+    {
+      "synthetic_replicate_id": "S1-replicate-0013",
+      "segment_id": "S1",
+      "variation_ids": [
+        "V1",
+        "V2",
+        "V5",
+        "V7"
+      ],
+      "shown_order": [
+        "V5",
+        "V7",
+        "V1",
+        "V2"
+      ],
+      "inclusion_probability": 0.5714285714285714
+    },
+    {
+      "synthetic_replicate_id": "S1-replicate-0014",
+      "segment_id": "S1",
+      "variation_ids": [
+        "V3",
+        "V4",
+        "V6",
+        "V7"
+      ],
+      "shown_order": [
+        "V3",
+        "V6",
+        "V7",
+        "V4"
+      ],
+      "inclusion_probability": 0.5714285714285714
+    },
+    {
+      "synthetic_replicate_id": "S1-replicate-0015",
+      "segment_id": "S1",
+      "variation_ids": [
+        "V1",
+        "V5",
+        "V6",
+        "V7"
+      ],
+      "shown_order": [
+        "V1",
+        "V7",
+        "V5",
+        "V6"
+      ],
+      "inclusion_probability": 0.5714285714285714
+    },
+    {
+      "synthetic_replicate_id": "S1-replicate-0016",
+      "segment_id": "S1",
+      "variation_ids": [
+        "V2",
+        "V3",
+        "V4",
+        "V5"
+      ],
+      "shown_order": [
+        "V5",
+        "V4",
+        "V3",
+        "V2"
+      ],
+      "inclusion_probability": 0.5714285714285714
+    }
+  ],
+  "diagnostics": {
+    "connected": true,
+    "one_block_resilient": true,
+    "exposure_range": 1,
+    "position_range": 1,
+    "neighbor_count_min": 6,
+    "pair_concurrence_max": 5,
+    "pair_concurrence_variance": 0.24489795918367344
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "snapshot_version": "population-public-proxy-snapshot-v1",
+  "source": {
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "program": "Occupational Employment and Wage Statistics",
+    "edition": "May 2025",
+    "vintage": "2025-05-01",
+    "retrieved_at": "2026-05-15T12:00:00Z",
+    "source_url": "https://www.bls.gov/news.release/ocwage.t01.htm"
+  },
+  "geography": [
+    "US"
+  ],
+  "unit": "persons",
+  "denominator": "employed-persons-excluding-self-employed",
+  "rows": [
+    {
+      "area": "US",
+      "occupation_code": "11-2011",
+      "occupation": "Advertising and Promotions Managers",
+      "employment": 21470,
+      "employment_rse_percent": 1.8
+    },
+    {
+      "area": "US",
+      "occupation_code": "11-2021",
+      "occupation": "Marketing Managers",
+      "employment": 395240,
+      "employment_rse_percent": 0.8
+    }
+  ]
+}

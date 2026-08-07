@@ -1,0 +1,149 @@
+{
+  "study_id": "dashboard-acme-001",
+  "themes": [
+    {
+      "stage": "screening",
+      "creative_id": "creative-a",
+      "segment_id": "growth-leader",
+      "lane": "copy",
+      "feedback_type": "strength",
+      "evidence_scope": "single_source_observation",
+      "theme": "The delayed-handoff example made the operating problem concrete.",
+      "why_it_matters": "A specific operating moment gives the marketer a clear message element to preserve in the next version.",
+      "recommended_action": "Keep the delayed-handoff example unchanged in the next test so its contribution can be compared against other revisions.",
+      "source_type": "model-generated synthesis",
+      "response_ids": ["response-screen-01"],
+      "exposed_base": {
+        "count": 1,
+        "label": "1 eligible accepted first-round response in the growth-leader segment"
+      },
+      "limitations": ["Single-source observation from one accepted AI response; it does not establish a repeated audience pattern."]
+    },
+    {
+      "stage": "finalist",
+      "creative_id": "creative-a",
+      "segment_id": "operations-leader",
+      "lane": "offer_appeal",
+      "feedback_type": "friction",
+      "evidence_scope": "single_source_observation",
+      "theme": "The workflow-review call to action could feel more consultative than immediate.",
+      "why_it_matters": "If the next step feels heavier than the ad promise, a marketer may want to examine whether the call to action is creating avoidable hesitation.",
+      "recommended_action": "Test the current workflow-review call to action against a lighter, more specific next step; do not assume the rewrite will perform better.",
+      "source_type": "model-generated synthesis",
+      "response_ids": ["response-final-01"],
+      "exposed_base": {
+        "count": 1,
+        "label": "1 eligible accepted closer-review response in the operations-leader segment"
+      },
+      "limitations": ["Single-source observation from one accepted AI response; the proposed change is a test hypothesis, not a proven fix."]
+    },
+    {
+      "stage": "finalist",
+      "creative_id": "creative-a",
+      "segment_id": "operations-leader",
+      "lane": "combined",
+      "feedback_type": "next_test",
+      "evidence_scope": "single_source_observation",
+      "theme": "The proof-led message is strong enough to isolate the effect of the call to action.",
+      "why_it_matters": "Holding the core message steady would make the next comparison easier to interpret.",
+      "recommended_action": "Test two call-to-action variants while keeping the headline, body copy, and visual fixed.",
+      "source_type": "model-generated synthesis",
+      "response_ids": ["response-final-01"],
+      "exposed_base": {
+        "count": 1,
+        "label": "1 eligible accepted closer-review response in the operations-leader segment"
+      },
+      "limitations": ["Single-source test recommendation based on synthetic evidence only; field performance remains unknown."]
+    },
+    {
+      "stage": "screening",
+      "creative_id": "creative-b",
+      "segment_id": "operations-leader",
+      "lane": "offer_appeal",
+      "feedback_type": "strength",
+      "evidence_scope": "single_source_observation",
+      "theme": "The promise of getting a day back made the benefit easy to recognize.",
+      "why_it_matters": "The time-recovery framing gives the marketer a clear benefit to retain while strengthening the reason to believe.",
+      "recommended_action": "Keep the time-recovery framing in the next comparison and vary the proof supporting it.",
+      "source_type": "model-generated synthesis",
+      "response_ids": ["response-screen-02"],
+      "exposed_base": {
+        "count": 1,
+        "label": "1 eligible accepted first-round response in the operations-leader segment"
+      },
+      "limitations": ["Single-source observation from one accepted AI response; it should not be described as audience consensus."]
+    },
+    {
+      "stage": "finalist",
+      "creative_id": "creative-b",
+      "segment_id": "operations-leader",
+      "lane": "proof",
+      "feedback_type": "friction",
+      "evidence_scope": "single_source_observation",
+      "theme": "The time-recovery promise lacked a concrete mechanism or proof point.",
+      "why_it_matters": "A benefit without a visible reason to believe may leave a marketer unsure which supporting detail to strengthen.",
+      "recommended_action": "Test the existing version against one version with a specific proof point beside the time framing.",
+      "source_type": "model-generated synthesis",
+      "response_ids": ["response-final-01"],
+      "exposed_base": {
+        "count": 1,
+        "label": "1 eligible accepted closer-review response in the operations-leader segment"
+      },
+      "limitations": ["Single-source observation from one accepted AI response; adding proof is a hypothesis to test, not a proven improvement."]
+    },
+    {
+      "stage": "finalist",
+      "creative_id": "creative-b",
+      "segment_id": "operations-leader",
+      "lane": "proof",
+      "feedback_type": "next_test",
+      "evidence_scope": "single_source_observation",
+      "theme": "The clearest next question is whether proof strengthens the appealing time-recovery promise.",
+      "why_it_matters": "This comparison would separate the value of the benefit framing from the value of its support.",
+      "recommended_action": "Test the current ad against one proof-added variant while keeping the time framing and visual constant.",
+      "source_type": "model-generated synthesis",
+      "response_ids": ["response-final-01"],
+      "exposed_base": {
+        "count": 1,
+        "label": "1 eligible accepted closer-review response in the operations-leader segment"
+      },
+      "limitations": ["Single-source test recommendation from synthetic evidence; it does not predict campaign lift."]
+    },
+    {
+      "stage": "screening",
+      "creative_id": "creative-c",
+      "segment_id": "growth-leader",
+      "lane": "copy",
+      "feedback_type": "strength",
+      "evidence_scope": "single_source_observation",
+      "theme": "The message was understandable even though it felt less urgent than the alternatives.",
+      "why_it_matters": "Clarity is worth preserving if the marketer chooses to test a sharper reason to act now.",
+      "recommended_action": "Keep the core explanation and test one version with a more specific urgency cue.",
+      "source_type": "model-generated synthesis",
+      "response_ids": ["response-screen-01"],
+      "exposed_base": {
+        "count": 1,
+        "label": "1 eligible accepted first-round response in the growth-leader segment"
+      },
+      "limitations": ["Single-source observation from one accepted AI response; urgency was not independently isolated."]
+    },
+    {
+      "stage": "screening",
+      "creative_id": "creative-d",
+      "segment_id": "operations-leader",
+      "lane": "combined",
+      "feedback_type": "friction",
+      "evidence_scope": "single_source_observation",
+      "theme": "The broad promise made it difficult to tell what would change first.",
+      "why_it_matters": "When the first change is unclear, the marketer lacks a concrete message element to carry into a revision.",
+      "recommended_action": "Test a narrower version that names one first change against the current broad promise.",
+      "source_type": "model-generated synthesis",
+      "response_ids": ["response-screen-02"],
+      "exposed_base": {
+        "count": 1,
+        "label": "1 eligible accepted first-round response in the operations-leader segment"
+      },
+      "limitations": ["Single-source observation tied to an unable-to-judge record; it is a revision hypothesis, not evidence of a general reaction."]
+    }
+  ]
+}

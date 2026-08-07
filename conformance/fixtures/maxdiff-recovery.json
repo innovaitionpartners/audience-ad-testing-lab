@@ -1,0 +1,17 @@
+{
+  "description": "Deterministic joint best-worst fixture with a known V1 > V2 > V3 > V4 order.",
+  "observations": [
+    {"response_id":"R01","segment_id":"S1","persona_archetype_id":"A1","assigned_variation_ids":["V1","V2","V3","V4"],"comparative_choice":{"status":"best_worst","best_variation_id":"V1","weakest_variation_id":"V4"},"usable_maxdiff_block":true},
+    {"response_id":"R02","segment_id":"S1","persona_archetype_id":"A2","assigned_variation_ids":["V1","V2","V3","V4"],"comparative_choice":{"status":"best_worst","best_variation_id":"V1","weakest_variation_id":"V4"},"usable_maxdiff_block":true},
+    {"response_id":"R03","segment_id":"S1","persona_archetype_id":"A3","assigned_variation_ids":["V1","V2","V3","V4"],"comparative_choice":{"status":"best_worst","best_variation_id":"V1","weakest_variation_id":"V4"},"usable_maxdiff_block":true},
+    {"response_id":"R04","segment_id":"S1","persona_archetype_id":"A1","assigned_variation_ids":["V1","V2","V3","V4"],"comparative_choice":{"status":"best_worst","best_variation_id":"V1","weakest_variation_id":"V4"},"usable_maxdiff_block":true},
+    {"response_id":"R05","segment_id":"S1","persona_archetype_id":"A2","assigned_variation_ids":["V1","V2","V3","V4"],"comparative_choice":{"status":"best_worst","best_variation_id":"V1","weakest_variation_id":"V3"},"usable_maxdiff_block":true},
+    {"response_id":"R06","segment_id":"S1","persona_archetype_id":"A3","assigned_variation_ids":["V1","V2","V3","V4"],"comparative_choice":{"status":"best_worst","best_variation_id":"V1","weakest_variation_id":"V3"},"usable_maxdiff_block":true},
+    {"response_id":"R07","segment_id":"S1","persona_archetype_id":"A1","assigned_variation_ids":["V1","V2","V3","V4"],"comparative_choice":{"status":"best_worst","best_variation_id":"V1","weakest_variation_id":"V3"},"usable_maxdiff_block":true},
+    {"response_id":"R08","segment_id":"S1","persona_archetype_id":"A2","assigned_variation_ids":["V1","V2","V3","V4"],"comparative_choice":{"status":"best_worst","best_variation_id":"V2","weakest_variation_id":"V4"},"usable_maxdiff_block":true},
+    {"response_id":"R09","segment_id":"S1","persona_archetype_id":"A3","assigned_variation_ids":["V1","V2","V3","V4"],"comparative_choice":{"status":"best_worst","best_variation_id":"V2","weakest_variation_id":"V4"},"usable_maxdiff_block":true},
+    {"response_id":"R10","segment_id":"S1","persona_archetype_id":"A1","assigned_variation_ids":["V1","V2","V3","V4"],"comparative_choice":{"status":"best_worst","best_variation_id":"V2","weakest_variation_id":"V4"},"usable_maxdiff_block":true},
+    {"response_id":"R11","segment_id":"S1","persona_archetype_id":"A2","assigned_variation_ids":["V1","V2","V3","V4"],"comparative_choice":{"status":"best_worst","best_variation_id":"V2","weakest_variation_id":"V3"},"usable_maxdiff_block":true},
+    {"response_id":"R12","segment_id":"S1","persona_archetype_id":"A3","assigned_variation_ids":["V1","V2","V3","V4"],"comparative_choice":{"status":"best_worst","best_variation_id":"V3","weakest_variation_id":"V4"},"usable_maxdiff_block":true}
+  ]
+}

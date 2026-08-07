@@ -1,0 +1,13 @@
+{
+  "schema_version": "audience-source-inventory-v1",
+  "sources": [
+    {
+      "source_id": "study-1",
+      "provenance_label": "Source 1",
+      "lane": "survey",
+      "decision": "accept",
+      "source_url": "https://example.test/research",
+      "evidence_item_ids": ["evidence-item-1"]
+    }
+  ]
+}

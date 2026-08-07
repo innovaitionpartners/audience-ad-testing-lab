@@ -1,0 +1,223 @@
+{
+  "audience_scope": {
+    "audience": "U.S. marketing and advertising decision-makers represented by the named public proxies",
+    "buying_context": "Evaluating campaign creative",
+    "category": "Marketing and advertising management",
+    "exclusions": [
+      "Self-employed people are outside the employer-reported person proxy"
+    ],
+    "geography": "United States",
+    "market": "United States employer economy",
+    "scope_fingerprint": "sha256:b647a4c0f15212e7acca1c826b9a4b5c3adad82bdd98631c5b9c90659f117360"
+  },
+  "audit_binding": {
+    "applicability": "release_b1",
+    "audit_sha256": "6c2d83d5da63f2e7e49fb69e53e31c1b26c17285ec9c99c004f4529210816eb8",
+    "auditor_run_id": "public-proxy-construction-audit",
+    "evidence_ledger_sha256": "06566301ba47de698c9de860bf112e68996bec4dbc890069cf26001aa4826852",
+    "finding_support_sha256": "d91a663c96cae1ab7bb5e33b9992cd3cf1e98c2b13fb9af37f76370d04a9e964",
+    "report_inputs_sha256": "ba134d2628424987545c7511c2979c6bb6aea896148df57d6d598420b8154333",
+    "report_manifest_sha256": "884b066a9670483984f50c140d7c815292dc13b3702d41ce9945e978268095ea",
+    "synthesis_matrix_sha256": "0e093d7917cdca213d4692dfc0627a5024b68093d6b4cf1894f214d8b51daba8"
+  },
+  "authorized_handoff_sha256": null,
+  "brief_id": "marketing-leader-public-proxy-brief",
+  "calibration_history": [],
+  "claim_boundary": "Public proxy frame only. employed-person-proxy: Employer-reported employed persons, excluding self-employed people.; employer-establishment-proxy: Employer establishments in published CBP rows.; employer-firm-proxy: Employer firms in published SUSB rows. These proxies do not represent the full commercial target audience.",
+  "composition_plan_sha256": "sha256:0d5ccd36da0407e18985fa6bfd749e586aaefaf1ffe45161d3d6261af76e7b2a",
+  "context_strata": [
+    {
+      "context_stratum_id": "creative-evaluation",
+      "dimensions": [
+        {
+          "finding_ids": [
+            "finding-public-proxy"
+          ],
+          "name": "decision_stage",
+          "source_evidence": [
+            "evidence-public-proxy"
+          ],
+          "status": "observed",
+          "value": "creative_evaluation"
+        }
+      ],
+      "planned_weight": 1.0,
+      "segment_id": "marketing-leader-proxy",
+      "weighting_rule": "planning_allocation"
+    }
+  ],
+  "created_at": "2026-07-02T12:00:00Z",
+  "evidence_basis": "public",
+  "governance": {
+    "allowed_uses": [
+      "Directional synthetic ad testing under the named public proxy boundary"
+    ],
+    "excluded_uses": [
+      "Population inference",
+      "Individual targeting",
+      "Combining person, firm, and establishment denominators"
+    ],
+    "pii_policy": "Aggregated non-personal evidence only",
+    "privacy_confirmation": {
+      "confirmed": true,
+      "confirmed_at": "2026-07-02T12:00:00Z",
+      "confirmed_by": "panel-owner",
+      "note": "No person-level records are included."
+    }
+  },
+  "grounded_context_profiles": [
+    {
+      "context_attribute_provenance": [
+        {
+          "attribute": "decision_stage",
+          "finding_ids": [
+            "finding-public-proxy"
+          ],
+          "source_evidence": [
+            "evidence-public-proxy"
+          ],
+          "status": "observed",
+          "value": "creative_evaluation"
+        }
+      ],
+      "context_stratum_id": "creative-evaluation",
+      "grounded_profile_id": "marketing-leader-proxy-v1",
+      "persona_archetype_id": "bounded-marketing-decision-maker",
+      "profile_snapshot": {
+        "anxieties": [
+          "Proxy evidence may be overclaimed"
+        ],
+        "decision_context": "Evaluating campaign creative",
+        "motivations": [
+          "Understand relevant creative quickly"
+        ],
+        "proof_needs": [
+          "Explicit source, unit, denominator, and missing-joint boundaries"
+        ],
+        "role_context": "Marketing or advertising manager represented by employer-reported public data"
+      },
+      "segment_id": "marketing-leader-proxy"
+    }
+  ],
+  "package_status": "unpackaged",
+  "panel_id": "marketing-leader-public-proxy",
+  "panel_name": "Marketing Leader Public Proxy",
+  "panel_tier": "tier_1",
+  "persona_archetypes": [
+    {
+      "anxieties": [
+        "Proxy evidence may be overclaimed"
+      ],
+      "decision_context": "Evaluating campaign creative",
+      "display_name": "Bounded marketing decision-maker",
+      "evidence_ids": [
+        "evidence-public-proxy"
+      ],
+      "evidence_strength": "medium",
+      "finding_ids": [
+        "finding-public-proxy"
+      ],
+      "inference_boundary": "A reusable synthetic profile for the named proxy, not a population prevalence claim.",
+      "motivations": [
+        "Understand relevant creative quickly"
+      ],
+      "objections": [
+        "The proxy excludes self-employed people and does not combine firm or establishment counts"
+      ],
+      "persona_archetype_id": "bounded-marketing-decision-maker",
+      "proof_needs": [
+        "Explicit source, unit, denominator, and missing-joint boundaries"
+      ],
+      "role_context": "Marketing or advertising manager represented by employer-reported public data",
+      "segment_id": "marketing-leader-proxy",
+      "triggers": [
+        "A campaign concept needs directional stress testing"
+      ]
+    }
+  ],
+  "persona_research": {
+    "approved_at": "2026-07-02T12:00:00Z",
+    "brief_id": "marketing-leader-public-proxy-brief",
+    "coverage": {
+      "buying_triggers": "thin",
+      "decision_criteria": "strong",
+      "fears_objections": "thin",
+      "media_behaviors": "empty",
+      "motivations_goals": "thin",
+      "pain_points_challenges": "thin",
+      "proof_needs": "thin"
+    },
+    "evidence_gaps": [
+      {
+        "gap": "The ACS/PUMS self-employed employment-status by geography joint is unavailable.",
+        "impact_on_panel": "The person proxy cannot support Tier 2 composition.",
+        "mitigation": "Downgrade to Tier 1 and retain the missing joint explicitly."
+      }
+    ],
+    "evidence_ids": [
+      "evidence-public-proxy"
+    ],
+    "expires_at": null,
+    "mode": "public_research",
+    "source_state": "documented_sources",
+    "source_types": [
+      "public_research"
+    ],
+    "status": "approved"
+  },
+  "population_frame_result_sha256": "sha256:1d80e46c0d9c38196f45ea0fa728ac1df185037cf9427d5893ad37c4de185ecc",
+  "population_frame_sha256": null,
+  "refresh_conditions": {
+    "max_age_days": 184,
+    "review_after": "2027-01-24T12:00:00Z",
+    "triggers": [
+      "A newer public source vintage is approved",
+      "The target or proxy definition changes"
+    ]
+  },
+  "replicate_strategy": {
+    "fields_allowed_to_vary": [
+      "language emphasis"
+    ],
+    "fields_never_to_invent": [
+      "segment",
+      "archetype",
+      "context stratum",
+      "evidence"
+    ],
+    "shared_context_fallback_allowed": false,
+    "worker_unit": "one_context_isolated_replicate_per_job"
+  },
+  "schema_version": "saved-audience-panel-v3",
+  "segments": [
+    {
+      "creative_implications": [
+        "Use conclusions as hypotheses for live validation."
+      ],
+      "description": "A directional profile bounded to the named public proxy universes.",
+      "evidence_ids": [
+        "evidence-public-proxy"
+      ],
+      "finding_ids": [
+        "finding-public-proxy"
+      ],
+      "name": "Marketing-leader public proxy",
+      "origin": "research_derived",
+      "primary_needs": [
+        "Understand relevant creative quickly"
+      ],
+      "primary_objections": [
+        "Proxy evidence does not represent the full target audience"
+      ],
+      "segment_id": "marketing-leader-proxy",
+      "study_weight": 1.0,
+      "weight_source_evidence": [
+        "evidence-public-proxy"
+      ],
+      "weighting_rule": "research_supported_planning_weight"
+    }
+  ],
+  "updated_at": "2026-07-02T12:00:00Z",
+  "validity_profile_sha256": "sha256:f90085cf945735c6f067634544b673bc333d48bbf6dadd622138e13b9d301cda",
+  "version": "1.0.0"
+}

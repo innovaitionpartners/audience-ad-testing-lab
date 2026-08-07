@@ -1,0 +1,8 @@
+{
+  "aggregate": {
+    "mean": 4.0,
+    "sample_count": 1,
+    "standard_deviation": 0.0
+  },
+  "metric_family": "continuous_mean"
+}

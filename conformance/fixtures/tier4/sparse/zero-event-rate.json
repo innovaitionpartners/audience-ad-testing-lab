@@ -1,0 +1,7 @@
+{
+  "aggregate": {
+    "event_count": 0,
+    "exposure_time": 100.0
+  },
+  "metric_family": "event_rate"
+}

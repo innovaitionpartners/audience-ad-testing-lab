@@ -1,0 +1,39 @@
+{
+  "snapshot_version": "population-public-proxy-snapshot-v1",
+  "source": {
+    "publisher": "U.S. Census Bureau",
+    "program": "County Business Patterns",
+    "edition": "2023",
+    "vintage": "2023-12-31",
+    "retrieved_at": "2025-06-26T12:00:00Z",
+    "source_url": "https://www2.census.gov/programs-surveys/cbp/datasets/2023/cbp23us.zip"
+  },
+  "geography": [
+    "US"
+  ],
+  "unit": "establishments",
+  "denominator": "employer-establishments",
+  "rows": [
+    {
+      "naics": "54----",
+      "industry": "Professional, Scientific, and Technical Services",
+      "legal_form": "all",
+      "employment_size": "all",
+      "establishments": 989182
+    },
+    {
+      "naics": "541810",
+      "industry": "Advertising Agencies",
+      "legal_form": "all",
+      "employment_size": "under-5",
+      "establishments": 10572
+    },
+    {
+      "naics": "11----",
+      "industry": "Agriculture, Forestry, Fishing and Hunting",
+      "legal_form": "corporations",
+      "employment_size": "500-999",
+      "establishments": "N"
+    }
+  ]
+}

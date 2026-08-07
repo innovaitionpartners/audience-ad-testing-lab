@@ -1,0 +1,89 @@
+{
+  "overlay_findings": [
+    {
+      "allocation_basis": "estimated",
+      "decision_relevance": "topic_bound",
+      "description": "Needs concrete implementation proof.",
+      "evidence_ids": [
+        "evidence-implementation-proof"
+      ],
+      "finding_ids": [
+        "finding-implementation-proof"
+      ],
+      "overlay_id": "proof-seeking",
+      "topic_bindings": [
+        {
+          "evidence_ids": [
+            "evidence-implementation-proof"
+          ],
+          "topic_id": "implementation-proof"
+        }
+      ]
+    },
+    {
+      "allocation_basis": "estimated",
+      "decision_relevance": "topic_bound",
+      "description": "Needs risk controls and operational clarity.",
+      "evidence_ids": [
+        "evidence-implementation-risk"
+      ],
+      "finding_ids": [
+        "finding-implementation-risk"
+      ],
+      "overlay_id": "risk-averse",
+      "topic_bindings": [
+        {
+          "evidence_ids": [
+            "evidence-implementation-risk"
+          ],
+          "topic_id": "implementation-risk"
+        }
+      ]
+    }
+  ],
+  "profile_specs": [
+    {
+      "conditional_overlay_allocation": 1.0,
+      "overlay_ids": [
+        "proof-seeking",
+        "risk-averse"
+      ],
+      "profile_id": "marketing-leader-proxy-v1",
+      "status": "supported",
+      "structural_group_id": "marketing-leader-group",
+      "support_evidence_ids": [
+        "evidence-directional-structure",
+        "evidence-implementation-proof",
+        "evidence-implementation-risk"
+      ],
+      "support_finding_ids": [
+        "finding-directional-structure",
+        "finding-implementation-proof",
+        "finding-implementation-risk"
+      ]
+    },
+    {
+      "overlay_ids": [
+        "risk-averse"
+      ],
+      "reason": "No separate structural-overlay pairing is supported.",
+      "reason_code": "unsupported-by-approved-evidence",
+      "status": "unsupported",
+      "structural_group_id": "marketing-leader-group"
+    }
+  ],
+  "structural_findings": [
+    {
+      "cell_ids": [],
+      "evidence_ids": [
+        "evidence-directional-structure"
+      ],
+      "must_cover": true,
+      "planning_allocation": 1.0,
+      "structural_finding_ids": [
+        "finding-directional-structure"
+      ],
+      "structural_group_id": "marketing-leader-group"
+    }
+  ]
+}

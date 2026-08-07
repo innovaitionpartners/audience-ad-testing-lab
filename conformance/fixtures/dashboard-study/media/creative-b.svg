@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="628" viewBox="0 0 1200 628" role="img" aria-labelledby="title desc">
+  <title id="title">Capacity recovered creative</title>
+  <desc id="desc">A weekly calendar clears Tuesday while an ownership map assigns work to accountable teams.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f1f4ff"/>
+      <stop offset="1" stop-color="#e7e5f7"/>
+    </linearGradient>
+    <linearGradient id="action" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4169e1"/>
+      <stop offset="1" stop-color="#6d7eea"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="628" fill="url(#background)"/>
+  <rect x="58" y="54" width="1084" height="520" rx="20" fill="#ffffff" stroke="#c7bfe8" stroke-width="2"/>
+  <text x="104" y="116" fill="#4169e1" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="3">ACME OPERATIONS</text>
+  <text x="104" y="184" fill="#151526" font-family="Arial, sans-serif" font-size="56" font-weight="700">Give the team Tuesday back.</text>
+  <text x="104" y="234" fill="#5a5a6e" font-family="Arial, sans-serif" font-size="25">Replace recurring status chases with a visible operating rhythm.</text>
+
+  <g transform="translate(104 282)">
+    <rect width="488" height="166" rx="14" fill="#f8f7fc" stroke="#d9dced" stroke-width="2"/>
+    <text x="28" y="38" fill="#8888a0" font-family="Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="2">WEEKLY CALENDAR</text>
+    <rect x="28" y="60" width="128" height="76" rx="10" fill="#ffffff" stroke="#d9dced" stroke-width="2"/>
+    <rect x="180" y="60" width="128" height="76" rx="10" fill="#4169e1"/>
+    <rect x="332" y="60" width="128" height="76" rx="10" fill="#ffffff" stroke="#d9dced" stroke-width="2"/>
+    <text x="72" y="90" fill="#5a5a6e" font-family="Arial, sans-serif" font-size="16" font-weight="700">MON</text>
+    <text x="222" y="90" fill="#ffffff" font-family="Arial, sans-serif" font-size="16" font-weight="700">TUE</text>
+    <text x="373" y="90" fill="#5a5a6e" font-family="Arial, sans-serif" font-size="16" font-weight="700">WED</text>
+    <line x1="52" y1="111" x2="132" y2="111" stroke="#c4c8d7" stroke-width="8" stroke-linecap="round"/>
+    <path d="M220 109l15 15 31-35" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="356" y1="111" x2="436" y2="111" stroke="#c4c8d7" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(646 282)">
+    <rect width="450" height="166" rx="14" fill="#151526"/>
+    <text x="28" y="38" fill="#c7bfe8" font-family="Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="2">CLEAR OWNERSHIP</text>
+    <line x1="84" y1="101" x2="210" y2="76" stroke="#6d7eea" stroke-width="5"/>
+    <line x1="210" y1="76" x2="346" y2="109" stroke="#6d7eea" stroke-width="5"/>
+    <circle cx="84" cy="101" r="24" fill="#4169e1"/>
+    <circle cx="210" cy="76" r="30" fill="#c7bfe8"/>
+    <circle cx="346" cy="109" r="24" fill="#4169e1"/>
+    <text x="51" y="146" fill="#ffffff" font-family="Arial, sans-serif" font-size="15">INTAKE</text>
+    <text x="177" y="146" fill="#ffffff" font-family="Arial, sans-serif" font-size="15">OWNER</text>
+    <text x="316" y="146" fill="#ffffff" font-family="Arial, sans-serif" font-size="15">ACTION</text>
+  </g>
+
+  <rect x="104" y="476" width="292" height="60" rx="9" fill="url(#action)"/>
+  <text x="136" y="514" fill="#ffffff" font-family="Arial, sans-serif" font-size="23" font-weight="700">See the operating model</text>
+  <text x="915" y="514" fill="#8888a0" font-family="Arial, sans-serif" font-size="18">ACME / OPERATIONS</text>
+</svg>

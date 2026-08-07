@@ -1,0 +1,65 @@
+{
+  "study_id": "dashboard-acme-001",
+  "creatives": [
+    {
+      "variation_id": "creative-a",
+      "display_name": "Proof before promise",
+      "format": "static image",
+      "headline": "See the delay before it costs another week",
+      "body": "Map the handoffs, identify the stalled approvals, and give operators one shared view before the next planning cycle begins.",
+      "cta": "Request a workflow review",
+      "visual_description": "A process map with one delayed handoff highlighted in cobalt.",
+      "input_fidelity": "supplied asset",
+      "media": [
+        {
+          "representation_id": "creative-a-static-01",
+          "content_hash": "sha256:817a3c9edf59e87254983c2f2234554b4280836903a6e8ff79c23690899491ed",
+          "kind": "image",
+          "path": "media/creative-a.svg",
+          "alt": "Proof before promise ad with an operating workflow diagram",
+          "label": "Supplied static creative"
+        }
+      ]
+    },
+    {
+      "variation_id": "creative-b",
+      "display_name": "Capacity recovered",
+      "format": "static image",
+      "headline": "Give the team Tuesday back",
+      "body": "Replace recurring status chases with a visible operating rhythm. The promise is practical: fewer handoff meetings and clearer ownership, without claiming a guaranteed time saving.",
+      "cta": "See the operating model",
+      "visual_description": "Calendar blocks resolving into a simple ownership map.",
+      "input_fidelity": "supplied asset",
+      "media": [
+        {
+          "representation_id": "creative-b-static-01",
+          "content_hash": "sha256:828abc47d16eaabe437045373dcf3111746f95db1a436b2fb3f76e0ef8bb94c6",
+          "kind": "image",
+          "path": "media/creative-b.svg",
+          "alt": "Capacity recovered ad with a cleared Tuesday calendar and ownership map",
+          "label": "Supplied static creative"
+        }
+      ]
+    },
+    {
+      "variation_id": "creative-c",
+      "display_name": "Shared operating picture",
+      "format": "static image",
+      "headline": "One view of work in motion",
+      "body": "See dependencies, decisions, and accountable owners across the program.",
+      "cta": "Explore the map",
+      "visual_description": "A restrained network of project dependencies.",
+      "input_fidelity": "copy and visual description"
+    },
+    {
+      "variation_id": "creative-d",
+      "display_name": "Automation everywhere",
+      "format": "static image",
+      "headline": "Automate everything at once",
+      "body": "Transform every workflow with one sweeping automation program.",
+      "cta": "Start now",
+      "visual_description": "Abstract rays behind a product screen.",
+      "input_fidelity": "copy and visual description"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "records": [
+    {
+      "cohort_id": "operations_leaders",
+      "outcome": "qualified_response_rate",
+      "value": 0.14
+    },
+    {
+      "cohort_id": "finance_leaders",
+      "outcome": "qualified_response_rate",
+      "value": 0.09
+    }
+  ]
+}

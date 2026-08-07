@@ -1,0 +1,54 @@
+{
+  "axes": {
+    "allocation_fidelity": {
+      "coverage": null,
+      "limitations": [
+        "B1 does not create or assess run allocations."
+      ],
+      "status": "not_available"
+    },
+    "external_validation": {
+      "coverage": null,
+      "limitations": [
+        "No predeclared panel-stage external validation design is available at the frame-provisional stage."
+      ],
+      "status": "not_available"
+    },
+    "outcome_calibration": {
+      "coverage": null,
+      "limitations": [
+        "Held-out aggregate outcome feedback is bound read-only; it does not mutate the frame or establish Tier 4."
+      ],
+      "status": "directional"
+    },
+    "overlay_evidence": {
+      "coverage": null,
+      "limitations": [
+        "Overlay evidence informs hypotheses but does not establish structural prevalence."
+      ],
+      "status": "directional"
+    },
+    "structural_frame": {
+      "coverage": 1.0,
+      "limitations": [],
+      "status": "supported"
+    }
+  },
+  "binding_state": "panel_final",
+  "evidence_basis": "first_party_aggregate",
+  "held_out_outcome_evidence": [
+    "sha256:6573381aa1f79b7ea6305d16eb29dc4e774c2be1de11ef436397517c29fb03c4"
+  ],
+  "panel_id": "fictional-marketplace-panel",
+  "panel_tier": "tier_3",
+  "predeclared_validation_design": null,
+  "schema_version": "panel-validity-profile-v1",
+  "source_bindings": {
+    "brief_sha256": "sha256:88b653e24d70e5dbf465cb46a6fe961f3812cc0097efe369ba8dd85aa4e861d8",
+    "composition_sha256": "sha256:3eacc026347364e07cfd5b7a77591c68eb6f646e8e535580d5dd6aa56a1c4c02",
+    "frame_result_sha256": "sha256:132bd04ae85ca30105e0f37236e607610a6ab235c3916844ab93d73bbbf59ddc",
+    "frame_sha256": "sha256:132bd04ae85ca30105e0f37236e607610a6ab235c3916844ab93d73bbbf59ddc",
+    "panel_sha256": "sha256:dad8fa1176b82780ff9876f803f0ebfbb449a5f42849045e65c9aed8f6cce4ca"
+  },
+  "validity_id": "fictional-marketplace-frame-validity"
+}

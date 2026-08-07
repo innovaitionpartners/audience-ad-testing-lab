@@ -1,0 +1,18 @@
+{
+  "study_id": "screening-acme-q3-large-001",
+  "creative_ids": [
+    "creative-a",
+    "creative-b",
+    "creative-c",
+    "creative-d",
+    "creative-e",
+    "creative-f",
+    "creative-g",
+    "creative-h",
+    "creative-i",
+    "creative-j"
+  ],
+  "creative_format": "static_image",
+  "requested_shortlist_size": 5,
+  "maximum_synthetic_panelists": 90
+}

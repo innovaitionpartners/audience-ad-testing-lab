@@ -1,0 +1,284 @@
+{
+  "schema_version": "saved-audience-panel-v2",
+  "panel_id": "acme-operations-transformation",
+  "panel_name": "Acme Operations and Transformation Leaders",
+  "version": "1.0.0",
+  "created_at": "2026-07-22T12:00:00Z",
+  "updated_at": "2026-07-22T12:00:00Z",
+  "audience_scope": {
+    "audience": "Operations and transformation leaders at mid-market software companies",
+    "market": "B2B software",
+    "geography": "United States",
+    "category": "Workflow software",
+    "buying_context": "Evaluating a replacement platform",
+    "exclusions": ["Individual contributors without purchase influence"],
+    "scope_fingerprint": "sha256:0d00a411c377a1b5f2859d165a30385349d2e2c9dab94dc309360e39a223d0c7"
+  },
+  "persona_research": {
+    "brief_id": "acme-operations-transformation-brief",
+    "mode": "user_provided_research",
+    "status": "approved",
+    "approved_at": "2026-07-22T12:00:00Z",
+    "expires_at": null,
+    "source_types": ["user_context"],
+    "evidence_ids": ["evidence-operations", "evidence-transformation"],
+    "coverage": {
+      "pain_points_challenges": "strong",
+      "motivations_goals": "strong",
+      "decision_criteria": "strong",
+      "buying_triggers": "thin",
+      "fears_objections": "strong",
+      "proof_needs": "strong",
+      "media_behaviors": "empty"
+    },
+    "evidence_gaps": [
+      {
+        "gap": "Media behavior evidence is unavailable.",
+        "impact_on_panel": "No channel-use assumptions are modeled.",
+        "mitigation": "Keep evaluation channel-neutral."
+      }
+    ],
+    "source_state": "documented_sources"
+  },
+  "segments": [
+    {
+      "segment_id": "operations-leaders",
+      "name": "Evidence-led operations leaders",
+      "origin": "research_derived",
+      "study_weight": 0.5,
+      "weighting_rule": "equal_planning_allocation",
+      "weight_source_evidence": ["evidence-operations"],
+      "finding_ids": ["finding-operations-proof"],
+      "evidence_ids": ["evidence-operations"],
+      "description": "Operations leaders assessing workflow replacement and implementation risk.",
+      "primary_needs": ["Reduce coordination load"],
+      "primary_objections": ["Implementation disruption"],
+      "creative_implications": ["Show how the change works and what supports adoption."]
+    },
+    {
+      "segment_id": "transformation-leaders",
+      "name": "Alignment-focused transformation leaders",
+      "origin": "research_derived",
+      "study_weight": 0.5,
+      "weighting_rule": "equal_planning_allocation",
+      "weight_source_evidence": ["evidence-transformation"],
+      "finding_ids": ["finding-transformation-alignment"],
+      "evidence_ids": ["evidence-transformation"],
+      "description": "Transformation leaders aligning teams and executive priorities around change.",
+      "primary_needs": ["Create shared operating visibility"],
+      "primary_objections": ["Another disconnected layer"],
+      "creative_implications": ["Connect the promise to shared visibility and coordinated action."]
+    }
+  ],
+  "persona_archetypes": [
+    {
+      "persona_archetype_id": "evidence-led-operator",
+      "segment_id": "operations-leaders",
+      "display_name": "Evidence-led operator",
+      "role_context": "Director or VP responsible for operating efficiency",
+      "decision_context": "Comparing workflow and operations software",
+      "motivations": ["Reduce coordination load"],
+      "anxieties": ["Implementation disruption"],
+      "triggers": ["A replacement initiative is funded"],
+      "objections": ["Adoption claims lack evidence"],
+      "proof_needs": ["Credible mechanism and adoption evidence"],
+      "finding_ids": ["finding-operations-proof"],
+      "evidence_ids": ["evidence-operations"],
+      "evidence_strength": "medium",
+      "inference_boundary": "A modeled mindset for this fictional context, not population prevalence."
+    },
+    {
+      "persona_archetype_id": "risk-checking-operator",
+      "segment_id": "operations-leaders",
+      "display_name": "Risk-checking operator",
+      "role_context": "Operations executive accountable for implementation continuity",
+      "decision_context": "Stress-testing workflow replacement claims before approval",
+      "motivations": ["Protect continuity while reducing coordination load"],
+      "anxieties": ["A disruptive rollout with unclear support"],
+      "triggers": ["Current workflow failures have become visible to leadership"],
+      "objections": ["The operating mechanism is too vague to assess"],
+      "proof_needs": ["Specific implementation safeguards and an observable mechanism"],
+      "finding_ids": ["finding-operations-proof"],
+      "evidence_ids": ["evidence-operations"],
+      "evidence_strength": "medium",
+      "inference_boundary": "A second modeled mindset within the fictional operations segment, not population prevalence."
+    },
+    {
+      "persona_archetype_id": "alignment-led-transformer",
+      "segment_id": "transformation-leaders",
+      "display_name": "Alignment-led transformer",
+      "role_context": "Transformation director coordinating cross-team change",
+      "decision_context": "Evaluating whether a platform can support shared operating change",
+      "motivations": ["Align teams around one operating picture"],
+      "anxieties": ["Creating another disconnected layer"],
+      "triggers": ["Executive sponsorship requires a coordinated plan"],
+      "objections": ["The promise does not connect to cross-team adoption"],
+      "proof_needs": ["Evidence of coordinated visibility and adoption"],
+      "finding_ids": ["finding-transformation-alignment"],
+      "evidence_ids": ["evidence-transformation"],
+      "evidence_strength": "medium",
+      "inference_boundary": "A modeled mindset for this fictional context, not population prevalence."
+    },
+    {
+      "persona_archetype_id": "coalition-building-transformer",
+      "segment_id": "transformation-leaders",
+      "display_name": "Coalition-building transformer",
+      "role_context": "Transformation leader responsible for cross-functional adoption",
+      "decision_context": "Building support for a shared operating platform",
+      "motivations": ["Give teams a common reason and method for changing"],
+      "anxieties": ["Stakeholders interpret the transformation promise differently"],
+      "triggers": ["Executive sponsorship requires a cross-team adoption case"],
+      "objections": ["The message does not make shared adoption concrete"],
+      "proof_needs": ["A clear coordination mechanism and credible adoption evidence"],
+      "finding_ids": ["finding-transformation-alignment"],
+      "evidence_ids": ["evidence-transformation"],
+      "evidence_strength": "medium",
+      "inference_boundary": "A second modeled mindset within the fictional transformation segment, not population prevalence."
+    }
+  ],
+  "context_strata": [
+    {
+      "context_stratum_id": "operations-active-evaluation",
+      "segment_id": "operations-leaders",
+      "planned_weight": 1.0,
+      "weighting_rule": "planning_allocation",
+      "dimensions": [
+        {
+          "name": "buying_stage",
+          "value": "active_evaluation",
+          "status": "observed",
+          "source_evidence": ["evidence-operations"],
+          "finding_ids": ["finding-operations-proof"]
+        }
+      ]
+    },
+    {
+      "context_stratum_id": "transformation-active-evaluation",
+      "segment_id": "transformation-leaders",
+      "planned_weight": 1.0,
+      "weighting_rule": "planning_allocation",
+      "dimensions": [
+        {
+          "name": "buying_stage",
+          "value": "active_evaluation",
+          "status": "observed",
+          "source_evidence": ["evidence-transformation"],
+          "finding_ids": ["finding-transformation-alignment"]
+        }
+      ]
+    }
+  ],
+  "grounded_context_profiles": [
+    {
+      "grounded_profile_id": "operations-evidence-led-v1",
+      "segment_id": "operations-leaders",
+      "persona_archetype_id": "evidence-led-operator",
+      "context_stratum_id": "operations-active-evaluation",
+      "profile_snapshot": {
+        "role_context": "Director or VP responsible for operating efficiency",
+        "decision_context": "Comparing workflow and operations software",
+        "motivations": ["Reduce coordination load"],
+        "anxieties": ["Implementation disruption"],
+        "proof_needs": ["Credible mechanism and adoption evidence"]
+      },
+      "context_attribute_provenance": [
+        {
+          "attribute": "buying_stage",
+          "value": "active_evaluation",
+          "status": "observed",
+          "source_evidence": ["evidence-operations"],
+          "finding_ids": ["finding-operations-proof"]
+        }
+      ]
+    },
+    {
+      "grounded_profile_id": "operations-risk-checking-v1",
+      "segment_id": "operations-leaders",
+      "persona_archetype_id": "risk-checking-operator",
+      "context_stratum_id": "operations-active-evaluation",
+      "profile_snapshot": {
+        "role_context": "Operations executive accountable for implementation continuity",
+        "decision_context": "Stress-testing workflow replacement claims before approval",
+        "motivations": ["Protect continuity while reducing coordination load"],
+        "anxieties": ["A disruptive rollout with unclear support"],
+        "proof_needs": ["Specific implementation safeguards and an observable mechanism"]
+      },
+      "context_attribute_provenance": [
+        {
+          "attribute": "buying_stage",
+          "value": "active_evaluation",
+          "status": "observed",
+          "source_evidence": ["evidence-operations"],
+          "finding_ids": ["finding-operations-proof"]
+        }
+      ]
+    },
+    {
+      "grounded_profile_id": "transformation-alignment-led-v1",
+      "segment_id": "transformation-leaders",
+      "persona_archetype_id": "alignment-led-transformer",
+      "context_stratum_id": "transformation-active-evaluation",
+      "profile_snapshot": {
+        "role_context": "Transformation director coordinating cross-team change",
+        "decision_context": "Evaluating whether a platform can support shared operating change",
+        "motivations": ["Align teams around one operating picture"],
+        "anxieties": ["Creating another disconnected layer"],
+        "proof_needs": ["Evidence of coordinated visibility and adoption"]
+      },
+      "context_attribute_provenance": [
+        {
+          "attribute": "buying_stage",
+          "value": "active_evaluation",
+          "status": "observed",
+          "source_evidence": ["evidence-transformation"],
+          "finding_ids": ["finding-transformation-alignment"]
+        }
+      ]
+    },
+    {
+      "grounded_profile_id": "transformation-coalition-building-v1",
+      "segment_id": "transformation-leaders",
+      "persona_archetype_id": "coalition-building-transformer",
+      "context_stratum_id": "transformation-active-evaluation",
+      "profile_snapshot": {
+        "role_context": "Transformation leader responsible for cross-functional adoption",
+        "decision_context": "Building support for a shared operating platform",
+        "motivations": ["Give teams a common reason and method for changing"],
+        "anxieties": ["Stakeholders interpret the transformation promise differently"],
+        "proof_needs": ["A clear coordination mechanism and credible adoption evidence"]
+      },
+      "context_attribute_provenance": [
+        {
+          "attribute": "buying_stage",
+          "value": "active_evaluation",
+          "status": "observed",
+          "source_evidence": ["evidence-transformation"],
+          "finding_ids": ["finding-transformation-alignment"]
+        }
+      ]
+    }
+  ],
+  "replicate_strategy": {
+    "worker_unit": "one_context_isolated_replicate_per_job",
+    "shared_context_fallback_allowed": false,
+    "fields_allowed_to_vary": ["language emphasis"],
+    "fields_never_to_invent": ["segment", "archetype", "context stratum", "evidence"]
+  },
+  "calibration_history": [],
+  "refresh_conditions": {
+    "review_after": "2027-01-22T12:00:00Z",
+    "max_age_days": 184,
+    "triggers": ["Material audience scope change", "New first-party evidence"]
+  },
+  "governance": {
+    "pii_policy": "Bundled fictional aggregate evidence only",
+    "allowed_uses": ["Synthetic ad testing"],
+    "excluded_uses": ["Population inference", "Individual targeting"],
+    "privacy_confirmation": {
+      "confirmed": true,
+      "confirmed_by": "conformance-research-owner",
+      "confirmed_at": "2026-07-22T12:00:00Z",
+      "note": "Only bundled fictional aggregate evidence is included."
+    }
+  }
+}

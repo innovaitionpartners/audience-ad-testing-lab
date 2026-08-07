@@ -1,0 +1,54 @@
+{
+  "axes": {
+    "allocation_fidelity": {
+      "coverage": null,
+      "limitations": [
+        "B1 does not create or assess run allocations."
+      ],
+      "status": "not_available"
+    },
+    "external_validation": {
+      "coverage": null,
+      "limitations": [
+        "No predeclared panel-stage external validation design is available at the frame-provisional stage."
+      ],
+      "status": "not_available"
+    },
+    "outcome_calibration": {
+      "coverage": null,
+      "limitations": [
+        "Held-out aggregate outcome feedback is bound read-only; it does not mutate the frame or establish Tier 4."
+      ],
+      "status": "directional"
+    },
+    "overlay_evidence": {
+      "coverage": null,
+      "limitations": [
+        "Overlay evidence informs hypotheses but does not establish structural prevalence."
+      ],
+      "status": "directional"
+    },
+    "structural_frame": {
+      "coverage": 1.0,
+      "limitations": [],
+      "status": "supported"
+    }
+  },
+  "binding_state": "frame_provisional",
+  "evidence_basis": null,
+  "held_out_outcome_evidence": [
+    "sha256:9999999999999999999999999999999999999999999999999999999999999999"
+  ],
+  "panel_id": null,
+  "panel_tier": null,
+  "predeclared_validation_design": null,
+  "schema_version": "panel-validity-profile-v1",
+  "source_bindings": {
+    "brief_sha256": null,
+    "composition_sha256": null,
+    "frame_result_sha256": "sha256:6e0b423d28821cfc366d75e72fcd47b09b8cfaa2403f8508e71594aff9ed6d0a",
+    "frame_sha256": "sha256:6e0b423d28821cfc366d75e72fcd47b09b8cfaa2403f8508e71594aff9ed6d0a",
+    "panel_sha256": null
+  },
+  "validity_id": "authorized-role-frame-validity"
+}

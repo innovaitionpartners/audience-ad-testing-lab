@@ -1,0 +1,91 @@
+{
+  "block_count": 1,
+  "coverage": {
+    "arm_rate": 1.0,
+    "block_rate": 1.0,
+    "mapping_rate": 1.0,
+    "status": "complete"
+  },
+  "decision": {
+    "status": "evaluated_with_limitations"
+  },
+  "evaluation_id": "validation-q3-held-out-evaluation",
+  "evaluation_sha256": "sha256:13541702102adc8b70b2576b8b36987cd8406e1935804e7155b0e4e948a97d21",
+  "independence": {
+    "status": "dependent"
+  },
+  "limitations": [
+    "reason-code:insufficient-uncertainty",
+    "reason-code:holm-adjusted-failure",
+    "reason-code:minimum-independent-blocks",
+    "reason-code:minimum-independent-batches",
+    "reason-code:sample-sufficiency",
+    "reason-code:material-segment-sparse"
+  ],
+  "missingness": {
+    "eligible_exposure_count": 300,
+    "missing_outcome_count": 0,
+    "rate": 0.0,
+    "status": "none"
+  },
+  "overall_diagnostics": {
+    "agreement": {
+      "available": false,
+      "one_sided_lower": null,
+      "point": null,
+      "two_sided_lower": null,
+      "two_sided_upper": null
+    },
+    "determinate_pair_coverage": 1.0,
+    "holm_adjusted_p_value": 0.5,
+    "one_sided_p_value": 1.0,
+    "status": "fail",
+    "tau": {
+      "available": false,
+      "one_sided_lower": null,
+      "point": null,
+      "two_sided_lower": null,
+      "two_sided_upper": null
+    }
+  },
+  "power": {
+    "design_status": "approved",
+    "documented_power": 0.8,
+    "method": "preregistered-randomized-power-analysis-v1",
+    "smallest_effect_of_interest": 0.03,
+    "status": "sufficient"
+  },
+  "sample_sufficiency": {
+    "minimum_achieved_ratio": 1.0,
+    "status": "insufficient"
+  },
+  "schema_version": "panel-held-out-evaluation-v1",
+  "segment_diagnostics": [
+    {
+      "agreement": {
+        "available": false,
+        "one_sided_lower": null,
+        "point": null,
+        "two_sided_lower": null,
+        "two_sided_upper": null
+      },
+      "block_coverage": 1.0,
+      "clear_reversal": false,
+      "creative_arms": 3,
+      "effective_panel_weight": 1.0,
+      "eligible_blocks": 1,
+      "material": true,
+      "must_cover": true,
+      "planned_blocks": 1,
+      "segment_id": "enterprise",
+      "status": "limitations",
+      "tau": {
+        "available": false,
+        "one_sided_lower": null,
+        "point": null,
+        "two_sided_lower": null,
+        "two_sided_upper": null
+      }
+    }
+  ]
+}

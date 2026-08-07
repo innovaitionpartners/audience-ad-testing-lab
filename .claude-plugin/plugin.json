@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "audience-ad-testing-lab",
+  "version": "1.0.0",
+  "description": "Privacy-reviewed audience data, evidence-grounded panel construction, model-conditional ad screening, real-world study preparation, and uploaded aggregate result import with deterministic scoring, calibration, and marketer-ready dashboards.",
+  "author": {
+    "name": "InnovAItion Partners",
+    "url": "https://github.com/innovaitionpartners"
+  },
+  "homepage": "https://github.com/innovaitionpartners/audience-ad-testing-lab",
+  "repository": "https://github.com/innovaitionpartners/audience-ad-testing-lab",
+  "license": "Apache-2.0",
+  "keywords": [
+    "advertising",
+    "audience-research",
+    "audience-panels",
+    "first-party-data",
+    "creative-testing",
+    "outcome-data-preparation",
+    "model-conditional-analysis"
+  ]
+}

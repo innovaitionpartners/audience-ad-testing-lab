@@ -1,0 +1,19 @@
+{
+  "evidence_packet_id": "acme-local-research-packet",
+  "fictional": true,
+  "public_urls_used": false,
+  "sources": [
+    {
+      "evidence_id": "evidence-operations",
+      "source_label": "Bundled fictional operations interview synthesis",
+      "collection_method": "supplied_by_user",
+      "summary": "Operations leaders evaluating workflow replacement want an implementation mechanism and adoption proof before supporting change."
+    },
+    {
+      "evidence_id": "evidence-transformation",
+      "source_label": "Bundled fictional transformation workshop synthesis",
+      "collection_method": "supplied_by_user",
+      "summary": "Transformation leaders focus on cross-team visibility, executive alignment, and the risk of another disconnected operating layer."
+    }
+  ]
+}
