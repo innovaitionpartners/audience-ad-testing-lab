@@ -128,7 +128,7 @@ codex plugin add audience-ad-testing-lab@innovaition-ad-testing
 gemini extensions install https://github.com/innovaitionpartners/audience-ad-testing-lab
 ```
 
-The repository is currently private, so GitHub installation requires access. Authorized users can also load a deliberate local checkout. See [Contributing](CONTRIBUTING.md) for dependencies, development commands, release manifests, and CI.
+The repository is public and can be installed directly from GitHub using the commands above. To contribute or run the project from source, use a local checkout. See [Contributing](CONTRIBUTING.md) for dependencies, development commands, release manifests, and CI.
 
 ## Documentation
 
@@ -147,6 +147,6 @@ Row-level private data belongs only in Audience Data Lab’s controlled local wo
 
 ## Release status
 
-This repository is a private pre-release maintained by InnovAItion Partners and prepared for a free public release under the [Apache License 2.0](LICENSE). See [NOTICE](NOTICE).
+Audience Ad Testing Lab is publicly available, maintained by InnovAItion Partners and licensed under the [Apache License 2.0](LICENSE). See [NOTICE](NOTICE).
 
 Built by [InnovAItion Partners](https://github.com/innovaitionpartners).
