@@ -2,6 +2,12 @@
 
 This sandbox uses fictional synthetic fixtures to propose and materialize a draft update to one existing persona. It does not validate real-world accuracy, cannot create a reusable package, and cannot register or activate a panel.
 
+This is not the Release C2 real-evidence workflow. For user-invocable
+post-validation calibration, use
+`references/real-world-persona-behavior-calibration.md`; C2 authenticates C1
+validation evidence and applies additional fresh-evaluation and human-approval
+gates that this sandbox cannot satisfy.
+
 Every sandbox report must also display:
 
 > Built and evaluated with fictional synthetic fixtures only. This output does not validate real-world panel accuracy, does not prove that the proposed change will improve outcomes, and cannot modify an active panel.

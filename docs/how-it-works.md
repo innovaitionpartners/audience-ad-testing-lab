@@ -16,6 +16,8 @@ Ad Testing Lab → synthetic screening + dashboard
 Real-World Outcome Data Prep → preregistration or aggregate result import
         ↓
 Separate Real-World Outcome Validation
+        ↓ optional after repeated authenticated misses
+Experimental Real-World Panel Calibration → bounded candidate → fresh validation → approval
 ```
 
 ## 1. Prepare private evidence only when needed
@@ -65,7 +67,7 @@ For imagery studies, attention overlays are created or imported after finalist a
 
 [Real-World Outcome Data Prep](../skills/real-world-outcome-data-prep/README.md) can freeze a study before launch or import permissioned aggregate platform exports afterward. It preserves chronology, source bytes, provenance, and readiness but does not judge whether the panel was correct.
 
-A separate Real-World Outcome Validation step can compare a preregistered synthetic ordering with eligible held-out aggregate outcomes. Any later persona change remains separately reviewed and cannot rewrite the original panel or test.
+A separate Real-World Outcome Validation step can compare a preregistered synthetic ordering with eligible held-out aggregate outcomes. After repeated disjoint authenticated misses, Experimental Real-World Panel Calibration in Audience Panel Builder can propose one bounded persona-behavior update, preserve a complete new candidate and exact diff, and test that candidate on fresh held-out outcomes. Registration requires every evidence gate and explicit human approval. It creates a new version and cannot rewrite or silently activate the original panel.
 
 ## What never crosses the boundaries
 
@@ -74,10 +76,12 @@ A separate Real-World Outcome Validation step can compare a preregistered synthe
 - Synthetic feedback never becomes survey or market evidence.
 - Outcome preparation never evaluates or calibrates the panel.
 - Real-world validation never rewrites past predictions, responses, or packages.
+- Experimental panel calibration never learns and evaluates from the same study or bypasses human approval.
 
 ## Next steps
 
 - [Build an audience panel](guides/build-an-audience-panel.md)
 - [Test ads](guides/test-ads.md)
 - [Understand synthetic evidence and validity](concepts/synthetic-evidence-and-validity.md)
+- [Understand calibration and real-world validation](concepts/calibration-and-real-world-validation.md)
 - [Review every output and file](reference/outputs-and-files.md)

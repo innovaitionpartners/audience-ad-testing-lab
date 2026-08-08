@@ -117,6 +117,36 @@ def _string_list(value: object, path: str, *, nonempty: bool = False) -> list[st
     return result
 
 
+def registered_behavior_hypotheses(
+    attribute_registry: Mapping[str, object],
+    *,
+    target_persona_id: str | None = None,
+) -> list[dict[str, object]]:
+    """Return canonical pre-outcome behavior hypotheses for both evidence lanes."""
+
+    registry = validate_creative_attribute_registry(attribute_registry)
+    if target_persona_id is not None:
+        require_identifier(target_persona_id, "target_persona_id")
+    rows: list[dict[str, object]] = []
+    for definition in registry["attribute_definitions"]:
+        if not isinstance(definition, Mapping):
+            continue
+        hypothesis = definition.get("behavioral_hypothesis")
+        if not isinstance(hypothesis, Mapping):
+            continue
+        if (
+            target_persona_id is not None
+            and hypothesis.get("target_persona_id") != target_persona_id
+        ):
+            continue
+        rows.append({
+            "attribute_id": definition["attribute_id"],
+            "attribute_version": definition["attribute_version"],
+            **deepcopy(dict(hypothesis)),
+        })
+    return sorted(rows, key=lambda row: str(row["hypothesis_id"]))
+
+
 def _validate_scenario_manifest(
     value: object,
     *,

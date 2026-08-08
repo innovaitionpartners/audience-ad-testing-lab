@@ -1,4 +1,4 @@
 interface:
   display_name: "Audience Panel Builder"
-  short_description: "Build evidence-grounded reusable audience panels"
-  default_prompt: "Use $audience-panel-builder to research and build a reusable audience panel for this buying decision."
+  short_description: "Build, review, and calibrate reusable audience panels"
+  default_prompt: "Use $audience-panel-builder to research and build a reusable audience panel, or experimentally calibrate one existing persona behavior from authenticated held-out evidence."

@@ -82,6 +82,10 @@ AUDIENCE_PACKAGE_BINDING_KEYS = {
     "package_manifest_byte_count", "package_zip_sha256", "package_zip_byte_count",
     "resolved_snapshot_path",
 }
+EXPERIMENTAL_C2_REGISTRATION_ACTION = (
+    "experimental_c2_candidate_requires_gated_registration"
+)
+_EXPERIMENTAL_C2_REGISTRATION_TOKEN = object()
 
 
 class LibraryError(ValueError):
@@ -530,7 +534,22 @@ def _validate_registered_directory(
         _assert_real_path(root, child, require_file=True)
 
 
-def register_package(source: Path | str, *, library_root: Path | str | None = None) -> dict[str, Any]:
+def _requires_experimental_c2_gate(panel: Mapping[str, Any]) -> bool:
+    history = panel.get("calibration_history")
+    return isinstance(history, list) and any(
+        isinstance(row, Mapping)
+        and row.get("action") == EXPERIMENTAL_C2_REGISTRATION_ACTION
+        for row in history
+    )
+
+
+def register_package(
+    source: Path | str,
+    *,
+    library_root: Path | str | None = None,
+    _experimental_c2_token: object | None = None,
+    _experimental_c2_expected_binding: Mapping[str, object] | None = None,
+) -> dict[str, Any]:
     root = resolve_library_root(library_root)
     if isinstance(source, (str, os.PathLike)):
         _reject_symlink_components(Path(source), label="package source path")
@@ -541,6 +560,40 @@ def register_package(source: Path | str, *, library_root: Path | str | None = No
         raise LibrarySafetyError(str(exc)) from exc
     except (PackageValidationError, UnicodeError, json.JSONDecodeError):
         raise
+    c2_candidate = _requires_experimental_c2_gate(panel)
+    if c2_candidate and _experimental_c2_token is not _EXPERIMENTAL_C2_REGISTRATION_TOKEN:
+        raise PackageValidationError(
+            "experimental C2 candidates require fresh held-out validation "
+            "and the gated calibration registration route"
+        )
+    if (
+        not c2_candidate
+        and _experimental_c2_token is _EXPERIMENTAL_C2_REGISTRATION_TOKEN
+    ):
+        raise PackageValidationError(
+            "the experimental C2 registration capability cannot authorize "
+            "an ordinary audience package"
+        )
+    if _experimental_c2_token is _EXPERIMENTAL_C2_REGISTRATION_TOKEN:
+        actual_binding = {
+            "panel_id": validation["panel_id"],
+            "panel_version": validation["panel_version"],
+            "panel_sha256": "sha256:" + hashlib.sha256(
+                files["saved-audience-panel.json"]
+            ).hexdigest(),
+            "package_sha256": "sha256:" + validation["package_zip_sha256"],
+        }
+        if (
+            not isinstance(_experimental_c2_expected_binding, Mapping)
+            or dict(_experimental_c2_expected_binding) != actual_binding
+        ):
+            raise PackageValidationError(
+                "registration source does not match the approved candidate package"
+            )
+    elif _experimental_c2_expected_binding is not None:
+        raise PackageValidationError(
+            "ordinary registration cannot accept a C2 expected package binding"
+        )
     if panel["persona_research"]["source_state"] == "no_research_sources" or panel["persona_research"]["status"] != "approved":
         raise PackageValidationError("provisional packages cannot be registered for reuse")
     panel_id, version = validation["panel_id"], validation["panel_version"]
@@ -1138,6 +1191,22 @@ def resolve_audience_panel(
         raise AudienceResolutionBlocked(result)
     _materialize_snapshot(run_dir, raw, files, result)
     return result
+
+
+def _register_experimental_c2_package(
+    source: Path | str,
+    *,
+    library_root: Path | str | None = None,
+    expected_binding: Mapping[str, object],
+) -> dict[str, Any]:
+    """Use only after the C2 module validates evidence and human approvals."""
+
+    return register_package(
+        source,
+        library_root=library_root,
+        _experimental_c2_token=_EXPERIMENTAL_C2_REGISTRATION_TOKEN,
+        _experimental_c2_expected_binding=expected_binding,
+    )
 
 
 def require_ready_audience_resolution(value: Any) -> dict[str, Any]:

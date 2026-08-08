@@ -21,11 +21,46 @@ from .contracts import (
     validate_experimental_proposal,
     validate_study_manifest,
 )
-from .diagnosis import diagnose_persona_behavior
+from .diagnosis import diagnose_persona_behavior, registered_behavior_hypotheses
 
 
 class ProposalNotPermitted(ContractError):
     """The diagnosis is an abstention/invalid state and seals no proposal."""
+
+
+def build_bounded_profile_snapshot_operation(
+    *,
+    target_persona_id: str,
+    target_persona_field: str,
+    proposed_value: object,
+) -> dict[str, object]:
+    """Build the one-persona, one-behavior operation shared by sandbox and C2."""
+
+    persona_id = require_identifier(target_persona_id, "target_persona_id")
+    if target_persona_field not in {
+        "anxieties", "decision_context", "motivations", "proof_needs",
+        "role_context",
+    }:
+        raise ContractError("target_persona_field is not a behavioral field")
+    if isinstance(proposed_value, str):
+        if not proposed_value:
+            raise ContractError("proposed_value must not be empty")
+    elif (
+        not isinstance(proposed_value, list)
+        or not proposed_value
+        or any(not isinstance(item, str) or not item for item in proposed_value)
+    ):
+        raise ContractError(
+            "proposed_value must be a non-empty string or string array"
+        )
+    return {
+        "operation_type": "profile_snapshot_update",
+        "target_persona_id": persona_id,
+        "changed_fields": [target_persona_field],
+        "proposed_after": {
+            target_persona_field: deepcopy(proposed_value),
+        },
+    }
 
 
 def _closed_panel_binding(value: Mapping[str, object]) -> dict[str, object]:
@@ -165,18 +200,15 @@ def build_experimental_proposal(
         assert isinstance(selected, Mapping)
         definitions = [
             definition
-            for definition in registry["attribute_definitions"]
-            if isinstance(definition, Mapping)
-            and isinstance(definition.get("behavioral_hypothesis"), Mapping)
-            and definition["behavioral_hypothesis"]["hypothesis_id"]
-            == selected["hypothesis_id"]
+            for definition in registered_behavior_hypotheses(registry)
+            if definition["hypothesis_id"] == selected["hypothesis_id"]
         ]
         if len(definitions) != 1:
             raise ContractError(
                 "selected diagnosis hypothesis is not uniquely preregistered"
             )
         definition = definitions[0]
-        registered = definition["behavioral_hypothesis"]
+        registered = definition
         if (
             definition["attribute_id"] != selected["attribute_id"]
             or registered["target_persona_id"]
@@ -194,11 +226,12 @@ def build_experimental_proposal(
         field = str(selected["target_persona_field"])
         evidence_ids = list(selected["evidence_entry_ids"])
         operation = {
-            "operation_type": "profile_snapshot_update",
-            "target_persona_id": selected["target_persona_id"],
+            **build_bounded_profile_snapshot_operation(
+                target_persona_id=str(selected["target_persona_id"]),
+                target_persona_field=field,
+                proposed_value=selected["proposed_value"],
+            ),
             "hypothesis_id": selected["hypothesis_id"],
-            "proposed_after": {field: deepcopy(selected["proposed_value"])},
-            "changed_fields": [field],
             "evidence_sha256": list(selected["evidence_sha256"]),
             "creative_attribute_registry_sha256": registry["registry_sha256"],
             "rationale": (

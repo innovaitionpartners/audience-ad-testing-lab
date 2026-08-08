@@ -48,7 +48,9 @@ Read [Calibration and real-world validation](../concepts/calibration-and-real-wo
 
 ## Later panel changes
 
-Changing a panel is a separate process that requires its own evidence and human approval. Validation never edits the panel automatically. The experimental persona behavior sandbox uses fictional data to test the software; it is not evidence that the audience model works in a real market.
+Validation never edits the panel automatically. After repeated authenticated misses from disjoint studies, the experimental real-world panel-calibration route in Audience Panel Builder can diagnose one predeclared persona-behavior hypothesis, create a complete newer candidate, and preserve the exact diff and provenance. The candidate must then pass a fresh, nonoverlapping held-out validation. Registration adds a new version only after explicit human approval of the exact calibration proposal and package; it never overwrites or silently activates the original.
+
+One miss, descriptive outcome feedback, a late explanation, or fictional sandbox data cannot begin this route. The sandbox tests the software mechanics only; it is not evidence that an audience model works in a real market. Even a registered candidate remains explicitly experimental and supports only its narrow validated scope.
 
 ## Next step
 

@@ -25,6 +25,8 @@ Raw private inputs are never panel or dashboard deliverables.
 | `panel-review-manifest.json` | Binds the review to the exact panel and inputs |
 | construction audit | Blind audit of profile construction and evidence support |
 | immutable panel ZIP | Authorized transfer or registration package; not the primary preview |
+| experimental calibration candidate bundle | Authenticated Outcome Evidence Library projection, diagnosis, one-field proposal, complete newer candidate, exact diff, and provenance; not registration authority |
+| calibration registration proposal | Binds the candidate package to a fresh nonoverlapping Real-World Outcome Validation evaluation for exact human approval |
 
 ## Ad Testing Lab
 
@@ -82,6 +84,7 @@ The marketer-facing dashboard preserves this navigation contract: Overview, Ads 
 - Reviewing private-data preparation: open `data-methodology-report.html`.
 - Reviewing a real study before launch: open `study-summary.md`.
 - Reviewing imported outcomes: open `readiness-report.md` and `matching-report.md`.
+- Reviewing an experimental panel update: open the calibration diagnosis, exact diff, fresh validation report, and registration proposal together.
 
 ## Related guides
 

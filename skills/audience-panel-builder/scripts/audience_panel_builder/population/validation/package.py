@@ -208,7 +208,16 @@ def _input_documents(inputs: Mapping[str, object]) -> dict[str, object]:
     return result
 
 
-def _panel_snapshot(panel_package_path: Path) -> tuple[dict[str, object], dict[str, object]]:
+def read_authenticated_panel_snapshot(
+    panel_package_path: Path,
+) -> tuple[dict[str, object], dict[str, object], dict[str, object]]:
+    """Return one authenticated package binding, validation, and panel copy.
+
+    C1, C2, and future governed panel lifecycles must all derive their panel
+    identity from the same safe archive reader.  Keeping this boundary public
+    prevents downstream workflows from reimplementing package dispatch or
+    trusting caller-supplied panel JSON.
+    """
     try:
         raw = _archive_bytes(
             panel_package_path, max_archive_bytes=MAX_ARCHIVE_BYTES,
@@ -249,6 +258,17 @@ def _panel_snapshot(panel_package_path: Path) -> tuple[dict[str, object], dict[s
         "panel_sha256": "sha256:" + _sha(members["saved-audience-panel.json"]),
         "package_sha256": "sha256:" + package_hash,
     }
+    return binding, validation, panel
+
+
+def _panel_snapshot(
+    panel_package_path: Path,
+) -> tuple[dict[str, object], dict[str, object]]:
+    """Backward-compatible C1 projection of the authenticated snapshot."""
+
+    binding, validation, _panel = read_authenticated_panel_snapshot(
+        panel_package_path
+    )
     return binding, validation
 
 
@@ -832,5 +852,6 @@ __all__ = [
     "ARCHIVE_FILES", "CLAIM_MEMBER", "COMMON_PACKAGE_FILES", "MANIFEST_MEMBER",
     "NEGATIVE_MEMBER", "PACKAGE_FILES", "VALIDATION_GENERATOR_VERSION",
     "VALIDATION_PACKAGE_VERSION", "ValidationPackageError", "ValidationPackageSafetyError",
-    "build_validation_package", "validate_validation_package",
+    "build_validation_package", "read_authenticated_panel_snapshot",
+    "validate_validation_package",
 ]

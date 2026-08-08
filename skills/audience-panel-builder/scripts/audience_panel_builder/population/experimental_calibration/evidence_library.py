@@ -7,6 +7,7 @@ It has no production package, registration, library, or activation seam.
 from __future__ import annotations
 
 from contextlib import AbstractContextManager
+from copy import deepcopy
 from datetime import datetime
 import fcntl
 import hashlib
@@ -57,6 +58,14 @@ TRANSACTION_KEYS = {
     "entry_relative_path", "entry_bytes", "entry_file_sha256",
     "entry_sha256", "receipt_relative_path", "receipt_bytes",
     "receipt_file_sha256", "receipt_sha256", "transaction_sha256",
+}
+AUTHENTICATED_C1_PROJECTION_VERSION = (
+    "authenticated-c1-outcome-evidence-library-projection-v1"
+)
+_AUTHENTICATED_C1_ENTRY_KEYS = {
+    "package_sha256", "package_manifest_sha256", "evaluation_id",
+    "evaluation_sha256", "study_ids", "block_ids", "comparison_sha256",
+    "creative_ids", "source_sha256", "outcome_accessed_at",
 }
 
 
@@ -1514,3 +1523,185 @@ def list_compatible_evidence(
         and entry["platform"] == platform
         and entry["metric_identity_sha256"] == metric_identity_sha256
     ]
+
+
+def _c1_digest(value: object, path: str) -> str:
+    text = require_string(value, path)
+    if (
+        len(text) != 71
+        or not text.startswith("sha256:")
+        or any(character not in "0123456789abcdef" for character in text[7:])
+    ):
+        raise EvidenceHistoryError(f"{path} must be a prefixed SHA-256")
+    return text
+
+
+def build_authenticated_c1_evidence_projection(
+    *,
+    as_of: str,
+    base_panel_binding: Mapping[str, object],
+    target_persona_id: str,
+    target_segment_id: str,
+    attribute_registry_binding: Mapping[str, object],
+    entries: list[Mapping[str, object]],
+    hypothesis_results: list[Mapping[str, object]],
+) -> dict[str, object]:
+    """Build the real-evidence projection through the existing library seam.
+
+    C1 remains the authority for each entry. This projection gives C2 the same
+    deterministic, immutable evidence-history boundary used by the synthetic
+    machinery without translating authenticated evaluations into fictional
+    platform observations.
+    """
+
+    require_timestamp(as_of, "authenticated_c1_projection.as_of")
+    persona_id = require_identifier(
+        target_persona_id, "authenticated_c1_projection.target_persona_id"
+    )
+    segment_id = require_identifier(
+        target_segment_id, "authenticated_c1_projection.target_segment_id"
+    )
+    if not isinstance(base_panel_binding, Mapping) or not base_panel_binding:
+        raise EvidenceHistoryError(
+            "authenticated C1 projection requires a base panel binding"
+        )
+    registry = dict(attribute_registry_binding)
+    if set(registry) != {"registry_id", "registry_sha256", "registered_at"}:
+        raise EvidenceHistoryError(
+            "authenticated C1 projection registry binding is not closed"
+        )
+    require_identifier(registry["registry_id"], "registry_binding.registry_id")
+    _c1_digest(registry["registry_sha256"], "registry_binding.registry_sha256")
+    require_timestamp(registry["registered_at"], "registry_binding.registered_at")
+    if len(entries) < 2:
+        raise EvidenceHistoryError(
+            "authenticated C1 projection requires at least two entries"
+        )
+
+    checked_entries: list[dict[str, object]] = []
+    package_hashes: set[str] = set()
+    study_ids: set[str] = set()
+    source_hashes: set[str] = set()
+    for index, raw in enumerate(entries):
+        path = f"authenticated_c1_projection.entries[{index}]"
+        if not isinstance(raw, Mapping) or set(raw) != _AUTHENTICATED_C1_ENTRY_KEYS:
+            raise EvidenceHistoryError(f"{path} keys are not closed")
+        row = deepcopy(dict(raw))
+        package_sha = _c1_digest(row["package_sha256"], f"{path}.package_sha256")
+        _c1_digest(
+            row["package_manifest_sha256"], f"{path}.package_manifest_sha256"
+        )
+        _c1_digest(row["evaluation_sha256"], f"{path}.evaluation_sha256")
+        require_identifier(row["evaluation_id"], f"{path}.evaluation_id")
+        if package_sha in package_hashes:
+            raise EvidenceHistoryError(
+                "authenticated C1 projection package bytes must be unique"
+            )
+        package_hashes.add(package_sha)
+        for field in (
+            "study_ids", "block_ids", "comparison_sha256", "creative_ids",
+            "source_sha256", "outcome_accessed_at",
+        ):
+            values = row[field]
+            if not isinstance(values, list) or not values:
+                raise EvidenceHistoryError(f"{path}.{field} must be non-empty")
+            if values != sorted(values) or len(values) != len(set(values)):
+                raise EvidenceHistoryError(
+                    f"{path}.{field} must be unique and sorted"
+                )
+        for field in ("study_ids", "block_ids", "creative_ids"):
+            for value in row[field]:
+                require_identifier(value, f"{path}.{field}")
+        for field in ("comparison_sha256", "source_sha256"):
+            for value in row[field]:
+                _c1_digest(value, f"{path}.{field}")
+        for value in row["outcome_accessed_at"]:
+            require_timestamp(value, f"{path}.outcome_accessed_at")
+        package_studies = set(row["study_ids"])
+        package_sources = set(row["source_sha256"])
+        if study_ids.intersection(package_studies):
+            raise EvidenceHistoryError(
+                "authenticated C1 projection study IDs must be disjoint"
+            )
+        if source_hashes.intersection(package_sources):
+            raise EvidenceHistoryError(
+                "authenticated C1 projection source bytes must be disjoint"
+            )
+        study_ids.update(package_studies)
+        source_hashes.update(package_sources)
+        checked_entries.append(row)
+    checked_entries.sort(key=lambda row: str(row["package_sha256"]))
+
+    checked_results: list[dict[str, object]] = []
+    hypothesis_ids: set[str] = set()
+    for index, raw in enumerate(hypothesis_results):
+        path = f"authenticated_c1_projection.hypothesis_results[{index}]"
+        if not isinstance(raw, Mapping) or set(raw) != {
+            "hypothesis_id", "supporting_packages", "supporting_pairs",
+            "contrary_pairs",
+        }:
+            raise EvidenceHistoryError(f"{path} keys are not closed")
+        row = deepcopy(dict(raw))
+        hypothesis_id = require_identifier(
+            row["hypothesis_id"], f"{path}.hypothesis_id"
+        )
+        if hypothesis_id in hypothesis_ids:
+            raise EvidenceHistoryError(
+                "authenticated C1 projection hypothesis IDs must be unique"
+            )
+        hypothesis_ids.add(hypothesis_id)
+        for field in ("supporting_packages", "supporting_pairs", "contrary_pairs"):
+            value = row[field]
+            if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+                raise EvidenceHistoryError(
+                    f"{path}.{field} must be a nonnegative integer"
+                )
+        checked_results.append(row)
+    checked_results.sort(key=lambda row: str(row["hypothesis_id"]))
+
+    document: dict[str, object] = {
+        "schema_version": AUTHENTICATED_C1_PROJECTION_VERSION,
+        "as_of": as_of,
+        "base_panel_binding": deepcopy(dict(base_panel_binding)),
+        "target_persona_id": persona_id,
+        "target_segment_id": segment_id,
+        "attribute_registry_binding": registry,
+        "entries": checked_entries,
+        "hypothesis_results": checked_results,
+        "projection_sha256": None,
+    }
+    document["projection_sha256"] = sha256_json(document)
+    return document
+
+
+def validate_authenticated_c1_evidence_projection(
+    payload: object,
+) -> dict[str, object]:
+    """Validate and deterministically replay an authenticated C1 projection."""
+
+    if not isinstance(payload, Mapping) or set(payload) != {
+        "schema_version", "as_of", "base_panel_binding", "target_persona_id",
+        "target_segment_id", "attribute_registry_binding", "entries",
+        "hypothesis_results", "projection_sha256",
+    }:
+        raise EvidenceHistoryError(
+            "authenticated C1 evidence projection keys are not closed"
+        )
+    if payload["schema_version"] != AUTHENTICATED_C1_PROJECTION_VERSION:
+        raise EvidenceHistoryError(
+            "authenticated C1 evidence projection schema is unknown"
+        )
+    rebuilt = build_authenticated_c1_evidence_projection(
+        as_of=str(payload["as_of"]),
+        base_panel_binding=payload["base_panel_binding"],
+        target_persona_id=str(payload["target_persona_id"]),
+        target_segment_id=str(payload["target_segment_id"]),
+        attribute_registry_binding=payload["attribute_registry_binding"],
+        entries=list(payload["entries"]),
+        hypothesis_results=list(payload["hypothesis_results"]),
+    )
+    if rebuilt != dict(payload):
+        raise EvidenceHistoryError(
+            "authenticated C1 evidence projection does not replay"
+        )
+    return rebuilt
