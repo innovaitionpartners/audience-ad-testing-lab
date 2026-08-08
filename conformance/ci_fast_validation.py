@@ -59,7 +59,7 @@ PARTITIONS: dict[str, tuple[str, ...]] = {
 EXPECTED_TEST_COUNTS = {
     "workflow-contracts": 2,
     "smoke": 80,
-    "outcome-release": 359,
+    "outcome-release": 360,
     "calibration-engine-and-evaluation": 182,
     "calibration-contracts-and-lifecycle": 76,
 }

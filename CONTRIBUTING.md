@@ -53,7 +53,7 @@ python3 skills/audience-ad-testing-lab/scripts/validate-dashboard.py \
 
 ## Release identity
 
-Any tracked byte change requires regeneration of the co-shipped runtime release manifest before CI can pass. Use the repository generator rather than editing the manifest manually.
+Any operational byte change requires regeneration of the co-shipped runtime release manifest before CI can pass. The root `README.md` is a public landing page rather than an operational runtime surface, so README-only edits use the public-documentation checks and do not require manifest regeneration. Use the repository generator rather than editing the manifest manually.
 
 See [Development and release](docs/maintainers/development-and-release.md) for the current command and release checklist.
 

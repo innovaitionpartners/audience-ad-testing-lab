@@ -23,6 +23,13 @@ _RELEASE_MANIFEST_RELATIVE = PurePosixPath(
     "skills/real-world-outcome-data-prep/references/"
     "runtime-release-manifest.json"
 )
+RUNTIME_IDENTITY_EXCLUDED_PATHS = frozenset(
+    {
+        # The root README is the public landing page. Public-documentation
+        # checks protect its contract; it is not an operational runtime byte.
+        PurePosixPath("README.md"),
+    }
+)
 _MAX_RELEASE_MANIFEST_BYTES = 1_048_576
 _EXCLUDED_ROOTS = frozenset(
     {
@@ -921,7 +928,7 @@ def verify_runtime_identity(
 
     live_hashes = hash_closed_runtime_tree(
         root,
-        excluded={_RELEASE_MANIFEST_RELATIVE},
+        excluded=RUNTIME_IDENTITY_EXCLUDED_PATHS | {_RELEASE_MANIFEST_RELATIVE},
         expected_paths=set(files),
     )
     for relative_path, expected_digest in files.items():

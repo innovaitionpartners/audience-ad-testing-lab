@@ -23,6 +23,7 @@ from outcome_data_prep.common import canonical_json_bytes, sha256_bytes  # noqa:
 from outcome_data_prep import runtime_guard as runtime_guard_module  # noqa: E402
 from outcome_data_prep.runtime_guard import (  # noqa: E402
     RUNTIME_IDENTITY_NOTICE,
+    RUNTIME_IDENTITY_EXCLUDED_PATHS,
     RuntimeGuardError,
     RuntimeIdentity,
     closed_runtime_inventory,
@@ -79,6 +80,10 @@ class RuntimeGuardTests(unittest.TestCase):
         self.addCleanup(self.temporary_directory.cleanup)
         self.base = Path(self.temporary_directory.name)
         self.runtime = self.base / "portable-runtime"
+        (self.runtime / "README.md").parent.mkdir(parents=True)
+        (self.runtime / "README.md").write_text(
+            "public landing page\n", encoding="utf-8"
+        )
         skill = self.runtime / "skills" / "real-world-outcome-data-prep"
         skill.mkdir(parents=True)
         (skill / "SKILL.md").write_text("approved release\n", encoding="utf-8")
@@ -92,6 +97,8 @@ class RuntimeGuardTests(unittest.TestCase):
         files = {}
         for path in sorted(item for item in root.rglob("*") if item.is_file()):
             relative = path.relative_to(root).as_posix()
+            if PurePosixPath(relative) in RUNTIME_IDENTITY_EXCLUDED_PATHS:
+                continue
             files[relative] = hashlib.sha256(path.read_bytes()).hexdigest()
         identity = {
             "schema_version": "outcome-prep-runtime-release-v2",
@@ -218,6 +225,17 @@ else:
                 release_manifest=self.valid_manifest,
                 operation="import_results",
             )
+
+    def test_root_readme_change_does_not_invalidate_runtime_identity(self):
+        root = self.copy_runtime_tree()
+        (root / "README.md").write_text(
+            "updated public landing page\n", encoding="utf-8"
+        )
+        verify_runtime_identity(
+            plugin_root=root,
+            release_manifest=self.valid_manifest,
+            operation="import_results",
+        )
 
     def test_every_public_operation_rejects_modified_runtime(self):
         root = self.copy_runtime_tree()
@@ -770,6 +788,10 @@ class RuntimeReleaseManifestTests(unittest.TestCase):
         included_cache_like = self.root / ".unknown-cache" / "must-be-hashed.txt"
         included_cache_like.parent.mkdir()
         included_cache_like.write_bytes(b"runtime byte\n")
+        root_readme = self.root / "README.md"
+        root_readme.write_bytes(b"public landing page\n")
+        nested_readme = self.root / "skills" / "sample" / "README.md"
+        nested_readme.write_bytes(b"co-shipped skill documentation\n")
         self.output.write_bytes(b"prior self-excluded manifest\n")
 
         manifest = self.build()
@@ -781,12 +803,16 @@ class RuntimeReleaseManifestTests(unittest.TestCase):
             "runtime.py": hashlib.sha256(
                 (self.root / "runtime.py").read_bytes()
             ).hexdigest(),
+            "skills/sample/README.md": hashlib.sha256(
+                nested_readme.read_bytes()
+            ).hexdigest(),
             "skills/sample/SKILL.md": hashlib.sha256(
                 (self.root / "skills/sample/SKILL.md").read_bytes()
             ).hexdigest(),
         }
         self.assertEqual(expected, manifest["files"])
         self.assertNotIn("release.json", manifest["files"])
+        self.assertNotIn("README.md", manifest["files"])
 
     def test_generator_is_reproducible_and_binds_the_closed_identity(self):
         first = self.build()
@@ -865,11 +891,13 @@ class RuntimeReleaseManifestTests(unittest.TestCase):
         self.assertEqual(
             module.runtime_file_hashes(
                 ROOT,
-                excluded={RELEASE_MANIFEST_RELATIVE},
+                excluded=RUNTIME_IDENTITY_EXCLUDED_PATHS
+                | {RELEASE_MANIFEST_RELATIVE},
             ),
             manifest["files"],
         )
         self.assertNotIn(RELEASE_MANIFEST_RELATIVE.as_posix(), manifest["files"])
+        self.assertNotIn("README.md", manifest["files"])
 
     @unittest.skipUnless(RELEASE_MANIFEST.is_file(), "release manifest not generated yet")
     def test_real_release_accepts_exact_tree_and_rejects_adapter_or_release_change(self):
