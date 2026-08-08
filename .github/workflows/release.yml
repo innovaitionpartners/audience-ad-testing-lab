@@ -34,6 +34,8 @@ jobs:
           python3 skills/audience-panel-builder/scripts/generate-calibration-manifests.py
 
       - name: Regenerate platform release manifest
+        env:
+          PYTHONPATH: skills/real-world-outcome-data-prep/scripts
         run: |
           python3 skills/real-world-outcome-data-prep/scripts/generate-runtime-release-manifest.py \
             --plugin-root . \
@@ -43,16 +45,18 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          
+
           if [ -n "$(git status --porcelain)" ]; then
             echo "Changes detected in manifests! Committing and pushing back to main..."
-            git add .
+            git add \
+              skills/audience-panel-builder/scripts/audience_panel_builder/population/experimental_calibration/private_stage_manifests \
+              skills/real-world-outcome-data-prep/references/runtime-release-manifest.json
             git commit -m "chore: auto-regenerate manifests for release ${{ github.ref_name }}"
-            git push origin main
-            
+            git push origin HEAD:main
+
             echo "Updating tag ${{ github.ref_name }} to point to the new commit..."
             git tag -f "${{ github.ref_name }}"
-            git push origin -f "${{ github.ref_name }}"
+            git push origin -f "refs/tags/${{ github.ref_name }}"
           else
             echo "No manifest changes detected."
           fi
@@ -67,6 +71,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           ref: ${{ github.ref_name }}
+          fetch-depth: 0
 
       - name: Set up sealed private-stage runtime
         uses: ./.github/actions/setup-private-stage

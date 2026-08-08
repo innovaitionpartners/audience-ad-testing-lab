@@ -34,12 +34,6 @@ FAST_CI_MARKERS = (
     "conformance.test_audience_data_lab",
     "conformance.test_audience_panel_builder",
     "conformance.test_audience_prompt_contracts",
-    "sudo apt-get install --yes bubblewrap",
-    "sudo sysctl --write kernel.apparmor_restrict_unprivileged_userns=0",
-    'test -x /usr/bin/bwrap',
-    'stat -c \'%u\' /usr/bin/bwrap',
-    "Seal the private-stage Python runtime",
-    "stat.S_IMODE(path.stat().st_mode) & ~0o022",
     "validate-dashboard.py",
     "Check canonical skill layout",
     "py_compile",
@@ -52,9 +46,23 @@ FAST_CI_MARKERS = (
     "ci_fast_validation.py verify-release-identity",
     "ci_fast_validation.py run workflow-contracts",
     "ci_fast_validation.py run smoke",
+)
+RELEASE_GATE_MARKERS = (
+    "uses: ./.github/actions/setup-private-stage",
+    "generate-calibration-manifests.py",
+    "generate-runtime-release-manifest.py",
+    "ci_fast_validation.py verify-release-identity",
     "ci_fast_validation.py run outcome-release",
     "calibration-engine-and-evaluation",
     "calibration-contracts-and-lifecycle",
+)
+PRIVATE_STAGE_SETUP_MARKERS = (
+    "sudo apt-get install --yes bubblewrap",
+    "sudo sysctl --write kernel.apparmor_restrict_unprivileged_userns=0",
+    'test -x /usr/bin/bwrap',
+    'stat -c \'%u\' /usr/bin/bwrap',
+    "Seal the private-stage Python runtime",
+    "stat.S_IMODE(path.stat().st_mode) & ~0o022",
 )
 FULL_CONFORMANCE_MARKERS = (
     "workflow_dispatch",
@@ -962,29 +970,27 @@ class RuntimeAndPackageIntegrationTests(unittest.TestCase):
         workflow = (ROOT / ".github" / "workflows" / "validate-package.yml").read_text(
             encoding="utf-8"
         )
-        setup = (
-            ROOT / ".github" / "actions" / "setup-private-stage" / "action.yml"
-        ).read_text(encoding="utf-8")
         partition_runner = (ROOT / "conformance" / "ci_fast_validation.py").read_text(
             encoding="utf-8"
         )
-        normalized_workflow = " ".join(
-            f"{workflow}\n{setup}\n{partition_runner}".split()
-        )
+        normalized_workflow = " ".join(f"{workflow}\n{partition_runner}".split())
         for required in FAST_CI_MARKERS:
             self.assertIn(" ".join(required.split()), normalized_workflow)
-        self.assertEqual(
-            1,
-            setup.count(
-                "sudo sysctl --write "
-                "kernel.apparmor_restrict_unprivileged_userns=0"
-            ),
-        )
         self.assertNotIn("sudo sysctl --write", workflow)
         self.assertNotIn("node --check", workflow)
+        self.assertNotIn("uses: ./.github/actions/setup-private-stage", workflow)
+        for heavy in (
+            "ci_fast_validation.py run outcome-release",
+            "calibration-engine-and-evaluation",
+            "calibration-contracts-and-lifecycle",
+        ):
+            self.assertNotIn(heavy, workflow)
 
     def test_split_fast_ci_is_closed_parallel_and_fail_safe(self):
         workflow = (ROOT / ".github" / "workflows" / "validate-package.yml").read_text(
+            encoding="utf-8"
+        )
+        release = (ROOT / ".github" / "workflows" / "release.yml").read_text(
             encoding="utf-8"
         )
         setup = (
@@ -992,69 +998,71 @@ class RuntimeAndPackageIntegrationTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
         jobs = workflow.split("jobs:\n", 1)[1]
         self.assertEqual(
-            [
-                "contract-and-package",
-                "outcome-release",
-                "calibration",
-                "private-stage-release-gate",
-            ],
+            ["contract-and-package"],
             re.findall(r"^  ([a-z][a-z0-9-]*):$", jobs, re.MULTILINE),
         )
         self.assertNotIn("\n  validate:\n", workflow)
         self.assertNotIn("python3 -m unittest", workflow)
-
-        aggregate = workflow.split("  private-stage-release-gate:\n", 1)[1]
-        needs_match = re.search(
-            r"^    needs:\n((?:^      - [a-z][a-z0-9-]*\n)+)",
-            aggregate,
-            re.MULTILINE,
-        )
-        self.assertIsNotNone(needs_match)
-        aggregate_dependencies = re.findall(
-            r"^      - ([a-z][a-z0-9-]*)$",
-            needs_match.group(1),
-            re.MULTILINE,
-        )
-        self.assertEqual(
-            ["contract-and-package", "outcome-release", "calibration"],
-            aggregate_dependencies,
-        )
         for required in (
             "contract-and-package:",
-            "outcome-release:",
-            "calibration:",
-            "private-stage-release-gate:",
-            "name: Private-stage release gate",
-            "fail-fast: false",
-            "calibration-engine-and-evaluation",
-            "calibration-contracts-and-lifecycle",
             "ci_fast_validation.py verify-inventory",
             "ci_fast_validation.py verify-release-identity",
             "ci_fast_validation.py run workflow-contracts",
             "ci_fast_validation.py run smoke",
-            "ci_fast_validation.py run outcome-release",
-            'test "$CONTRACT_AND_PACKAGE" = "success"',
-            'test "$OUTCOME_RELEASE" = "success"',
-            'test "$CALIBRATION" = "success"',
             "cancel-in-progress: ${{ github.event_name == 'pull_request' }}",
         ):
             self.assertIn(required, workflow)
+
+        release_jobs = release.split("jobs:\n", 1)[1]
         self.assertEqual(
-            2,
-            workflow.count("uses: ./.github/actions/setup-private-stage"),
+            ["update-manifests", "verify-release"],
+            re.findall(r"^  ([a-z][a-z0-9-]*):$", release_jobs, re.MULTILINE),
         )
+        verify = release.split("  verify-release:\n", 1)[1]
+        needs_list = re.search(
+            r"^    needs:\n((?:^      - [a-z][a-z0-9-]*\n)+)",
+            verify,
+            re.MULTILINE,
+        )
+        needs_scalar = re.search(
+            r"^    needs:\s*([a-z][a-z0-9-]*)\s*$",
+            verify,
+            re.MULTILINE,
+        )
+        if needs_list is not None:
+            dependencies = re.findall(
+                r"^      - ([a-z][a-z0-9-]*)$",
+                needs_list.group(1),
+                re.MULTILINE,
+            )
+        elif needs_scalar is not None:
+            dependencies = [needs_scalar.group(1)]
+        else:
+            self.fail("verify-release must declare needs: update-manifests")
+        self.assertEqual(["update-manifests"], dependencies)
+        normalized_release = " ".join(release.split())
+        for required in RELEASE_GATE_MARKERS:
+            self.assertIn(" ".join(required.split()), normalized_release)
+        self.assertEqual(
+            1,
+            release.count("uses: ./.github/actions/setup-private-stage"),
+        )
+        self.assertIn('tags:\n      - "v*"', release)
 
         for required in (
             "actions/setup-python@v6",
             "cache: pip",
-            "sudo apt-get install --yes bubblewrap",
-            "sudo sysctl --write kernel.apparmor_restrict_unprivileged_userns=0",
-            'test -x /usr/bin/bwrap',
-            'stat -c \'%u\' /usr/bin/bwrap',
-            "stat.S_IMODE(path.stat().st_mode) & ~0o022",
+            *PRIVATE_STAGE_SETUP_MARKERS,
             "numpy==2.4.2 scipy==1.17.0 openpyxl==3.1.5",
         ):
             self.assertIn(required, setup)
+        self.assertEqual(
+            1,
+            setup.count(
+                "sudo sysctl --write "
+                "kernel.apparmor_restrict_unprivileged_userns=0"
+            ),
+        )
 
     def test_manual_full_conformance_runs_every_extended_gate(self):
         workflow = (ROOT / ".github" / "workflows" / "full-conformance.yml").read_text(

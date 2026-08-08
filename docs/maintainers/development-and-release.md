@@ -64,7 +64,7 @@ Never hand-edit the manifest. After regeneration, run the runtime-guard and pack
 
 ## CI
 
-The required private-stage release gate aggregates separate contract/package, outcome-data, and calibration lanes. Do not reintroduce a duplicate serial validator. Workflow contract tests must prove that every required lane remains in the aggregate dependency graph.
+Fast private-stage validation on pull requests and `main` runs the contract/package lane only. Outcome-data and calibration release gates run from the version-tag release workflow after manifests are regenerated. Workflow contract tests must keep that split closed: heavy gates stay on the tag release path, and the reusable sealed private-stage setup action remains available for those gates.
 
 ## Documentation maintenance
 
