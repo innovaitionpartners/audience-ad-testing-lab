@@ -16,7 +16,11 @@ Receive one exact `target_audience` intake with audience, category, market, geog
 - Coverage is exactly `pain_points_challenges`, `motivations_goals`, `decision_criteria`, `buying_triggers`, `fears_objections`, `proof_needs`, and `media_behaviors`; every value is `strong | thin | empty`.
 - A research-backed segment origin is `research_derived` or `user_proposed_research_validated`. `provisional_user_defined` is allowed only in `provisional_no_research`, with no findings or evidence and low confidence.
 - Record every gap as `gap`, `impact_on_panel`, and `mitigation`. Empty evidence is a gap, never permission to infer a trait.
-- Require `privacy_confirmation.confirmed: true` before approval. Sensitive traits may be discussed in aggregate findings but must not become operational segments or profile attributes.
+- Require `privacy_confirmation.confirmed: true` before approval. Synthetic
+  profiles may model sensitive audience concepts when explicitly relevant and
+  supported by public or privacy-reviewed aggregate evidence. Never derive an
+  operational attribute from raw or person-level sensitive data or from an
+  unsupported stereotype.
 
 ## Codex-Only Bounded Research Option
 

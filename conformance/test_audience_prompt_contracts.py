@@ -298,6 +298,8 @@ class AudiencePromptContractTests(unittest.TestCase):
         self.assertNotIn("simulate responses", builder.lower())
         self.assertNotIn("Always state:", builder)
         self.assertNotIn("not a human sample or a customer survey", builder.lower())
+        self.assertIn("Synthetic representation is not person-level data", builder)
+        self.assertIn("treat that as a validator defect", builder)
         self.assertIn("model-generated, not responses from recruited people", readme)
 
     def test_references_define_exact_routes_and_approval_boundary(self) -> None:

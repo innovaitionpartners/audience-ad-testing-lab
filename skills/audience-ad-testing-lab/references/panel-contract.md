@@ -63,7 +63,10 @@ Nested allowlists:
 - Every context dimension and grounded-profile variation is `observed`, `estimated`, or `experimental` and has resolving finding and evidence IDs.
 - Do not create an implicit archetype-by-stratum cross-product. Only explicit `grounded_context_profiles` may enter dispatch.
 - Segment and stratum weights require a named rule and source. Unsupported composition uses a labeled planning allocation, not a prevalence claim.
-- Raw person-level data and operational sensitive traits are prohibited throughout segments, archetypes, strata, profiles, and governance.
+- Raw person-level and sensitive source data are prohibited throughout
+  segments, archetypes, strata, profiles, and governance. Evidence-grounded
+  synthetic sensitive-audience concepts are permitted; unsupported stereotypes
+  are not.
 
 Run both `validate_saved_panel` and `validate_audience_research_pair` before package construction. Validation failure is a stop, not permission to invent missing support.
 

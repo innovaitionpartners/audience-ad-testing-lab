@@ -26,20 +26,6 @@ _URL_PHONE_RE = re.compile(
 )
 _ACCOUNT_RE = re.compile(r"(?i)\b(?:account|contact)[\s_-]*(?:id|number)\b")
 _GPS_COORD_RE = re.compile(r"(?<![\d.])[-+]?\d{1,2}\.\d{3,}\s*[,/]\s*[-+]?\d{1,3}\.\d{3,}(?!\d)")
-_BLOCKED_TRAITS = (
-    "race", "racial", "ethnic", "ethnicity", "religion", "religious",
-    "sexual orientation", "health", "disabled", "disability", "biometric",
-    "genetic", "dna", "exact geolocation", "exact coordinates", "gps",
-    "lat-long", "latitude", "longitude", "financial account", "political",
-    "union member", "union membership", "citizenship", "immigration",
-    # Representative protected-trait values. These are scanned only in
-    # operational audience-construction structures, never research prose.
-    "black", "hispanic", "latino", "latina", "asian", "indigenous",
-    "christian", "muslim", "jewish", "hindu", "buddhist", "gay", "lesbian",
-    "bisexual", "wheelchair user", "democratic voter", "republican voter",
-    "afl-cio member", "afl-cio", "labor union member", "noncitizen",
-    "non-citizen", "undocumented immigrant", "immigrant status",
-)
 _PERSON_KEYS = {
     "person_name", "full_name", "email", "phone", "street_address",
     "account_id", "contact_id", "speaker_identity",
@@ -334,23 +320,6 @@ def _privacy_scan(value: Any, path: str, errors: list[ValidationError]) -> None:
             _add(errors, "pii_precise_geolocation", path, "precise GPS coordinate values are prohibited")
 
 
-def _sensitive_trait_scan(value: Any, path: str, errors: list[ValidationError]) -> None:
-    """Reject operationalized protected traits while allowing research discussion."""
-
-    if isinstance(value, Mapping):
-        for key, child in value.items():
-            _sensitive_trait_scan(child, f"{path}.{key}", errors)
-    elif isinstance(value, list):
-        for index, child in enumerate(value):
-            _sensitive_trait_scan(child, f"{path}[{index}]", errors)
-    elif isinstance(value, str):
-        lowered = value.casefold()
-        for trait in _BLOCKED_TRAITS:
-            if re.search(rf"(?<![a-z]){re.escape(trait)}(?![a-z])", lowered):
-                _add(errors, "blocked_sensitive_trait", path, f"protected trait cannot be operationalized: {trait}")
-                break
-
-
 def _reject_provisional_refs(value: Any, path: str, errors: list[ValidationError]) -> None:
     if isinstance(value, Mapping):
         for key, child in value.items():
@@ -503,8 +472,6 @@ def validate_research_brief(payload: Mapping[str, Any]) -> list[ValidationError]
             if isinstance(value, list) and value:
                 _add(errors, "provisional_research_content", f"$.{key}", "provisional_no_research requires an empty array")
         _reject_provisional_refs(brief, "$", errors)
-    _sensitive_trait_scan(brief.get("target_audience"), "$.target_audience", errors)
-    _sensitive_trait_scan(brief.get("segment_hypotheses"), "$.segment_hypotheses", errors)
     _privacy_scan(brief, "$", errors)
     return sorted(set(errors))
 
@@ -791,8 +758,6 @@ def validate_saved_panel(payload: Mapping[str, Any], brief: Mapping[str, Any] | 
             _text(privacy.get("note"), "$.governance.privacy_confirmation.note", errors, allow_empty=True)
     if status == "provisional_no_research":
         _reject_provisional_refs(panel, "$", errors)
-    for key in ("audience_scope", "segments", "persona_archetypes", "context_strata", "grounded_context_profiles"):
-        _sensitive_trait_scan(panel.get(key), f"$.{key}", errors)
     _privacy_scan(panel, "$", errors)
     return sorted(set(errors))
 

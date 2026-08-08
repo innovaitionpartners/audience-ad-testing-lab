@@ -18,7 +18,9 @@ Accept only `audience-research-brief-v2` with `status: approved`, `approval.appr
 - Do not create an implicit archetype-by-stratum cross-product. Emit only explicitly supported `grounded_context_profiles` combinations.
 - Segment weights require a declared source and rule. If prevalence is unsupported, use a visibly labeled planning allocation.
 - Compute `scope_fingerprint` with the shipped deterministic implementation; never improvise it.
-- Copy confirmed privacy into governance, prohibit raw PII and operational sensitive traits, and include immutable refresh conditions.
+- Copy confirmed privacy into governance, prohibit raw PII and person-level
+  sensitive source data, require evidence for any synthetic sensitive-audience
+  concept, and include immutable refresh conditions.
 
 ## Output Contract
 

@@ -18,6 +18,15 @@ Lab response contracts. Do not stop at panel delivery or narrate a handoff.
   construction.
 - Never treat post count, engagement, a synthetic profile count, or source count as audience prevalence.
 - Never turn raw CRM rows, social handles, or named people into panelists.
+- Allow synthetic panels to represent sensitive audience concepts, including
+  health conditions, when the user requests them and the attributes are
+  evidence-grounded. Synthetic representation is not person-level data. Never
+  derive these attributes from raw, named, or row-level sensitive data, and
+  never invent unsupported stereotypes.
+- Preserve accurate industry, organizational, and occupational terminology.
+  `health care`, `health system`, `digital health`, `public health`, and similar
+  sector labels are ordinary context. Do not rename valid terms or neutral
+  evidence IDs to evade a validator.
 - Never process row-level CRM or performance data here. Accept only an
   approved `authorized-audience-handoff-v1`,
   `audience-first-party-evidence-v1`, or
@@ -446,12 +455,15 @@ approved frame, measured performance, or confidence.
 - Preserve exact source URLs and access dates.
 - Keep social quotes short, traceable, and free of personal identifiers.
 - Report the number of explicit panel profiles separately from later response jobs or model calls.
+- Keep validator mechanics and maintenance logging out of user-facing delivery.
+  If a valid sector term is rejected, treat that as a validator defect rather
+  than euphemizing the audience or narrating a workaround.
 - For a paired run review, report requested/planned unique synthetic panelists (job slots), response jobs, accepted response records, retries, rejected provider returns, and model calls as distinct counts. Do not substitute the maximum synthetic-panelist ceiling for the planned total.
 - Refuse unsupported weighting or prevalence claims.
 
 ## Stop Conditions
 
-Stop before panel construction when the research brief is unapproved, required evidence lanes are empty without an accepted gap, source use is prohibited or unknown, sensitive traits would become operational attributes, or the proposed profile requires an unsupported joint combination.
+Stop before panel construction when the research brief is unapproved, required evidence lanes are empty without an accepted gap, source use is prohibited or unknown, raw or person-level sensitive data would become an operational attribute, or the proposed profile requires an unsupported joint combination.
 
 Downgrade to Tier 1 when the required critical joint is missing, calculated
 modeled share exceeds `0.30`, the frame is experimental or not defensible, or
