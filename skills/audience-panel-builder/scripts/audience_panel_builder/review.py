@@ -185,8 +185,6 @@ def _render_validity_scope(
     lines.extend(
         [
             "- Directional creative hypothesis stress test.",
-            "- Synthetic panel output is not a customer survey or a human sample.",
-            "- This synthetic panel is not a representative human sample.",
             "",
         ]
     )
@@ -1242,8 +1240,6 @@ def render_validation_report(
                 )
             ),
             "- Directional creative hypothesis stress test.",
-            "- Synthetic panel output is not a customer survey or a human sample.",
-            "- This synthetic panel is not a representative human sample.",
             (
                 f"- Claim boundary: {_text(panel['claim_boundary'])}"
                 if panel["schema_version"] == "saved-audience-panel-v3"

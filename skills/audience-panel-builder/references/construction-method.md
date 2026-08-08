@@ -264,8 +264,7 @@ frame, composition plan, validity profile, and authorized handoff bindings as
 population or calibrated-performance claim. Population composition is not
 available in Release A. An approved v2 package remains a Tier 1
 evidence-grounded panel; it supports a Directional creative hypothesis stress
-test. Synthetic panel output is not a customer survey or a human sample. A
-failed audit blocks canonical packaging and registration.
+test. A failed audit blocks canonical packaging and registration.
 
 The deterministic document-aware gate validates the exact brief, panel,
 ledger, finding support, synthesis matrix, and report manifest; recomputes all

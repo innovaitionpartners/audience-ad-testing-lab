@@ -59,7 +59,7 @@ In Codex, public-research collection may use a small bounded set of research sub
 
 Each finding must resolve to existing evidence. Segment hypotheses must cite both findings and evidence. If support is absent, record a gap rather than inferring a plausible trait.
 
-Private first-party evidence must be aggregated and anonymized. Never store names, email addresses, phone numbers, street addresses, account or contact IDs, speaker identities, raw CRM rows, or raw transcript identities. Aggregate research may discuss sensitive subjects when relevant, but race or ethnicity, religion, sexual orientation, health or disability, biometrics or genetics, exact geolocation, financial-account data, politics, union membership, and citizenship or immigration status must not become operational audience attributes.
+Private first-party evidence must be aggregated and anonymized. Never store names, email addresses, phone numbers, street addresses, account or contact IDs, speaker identities, raw CRM rows, or raw transcript identities. A synthetic panel may represent sensitive audience concepts when they are explicitly relevant and supported by public or privacy-reviewed aggregate evidence. Representation does not make the panel person-level data. Never derive an operational attribute from raw or person-level sensitive data, and never invent an unsupported stereotype.
 
 ## Approval Gate
 

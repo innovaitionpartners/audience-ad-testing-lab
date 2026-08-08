@@ -270,7 +270,7 @@ class AudiencePromptContractTests(unittest.TestCase):
                 ):
                     self.assertIn(flag, line)
 
-    def test_skill_hands_new_audiences_out_before_planning(self) -> None:
+    def test_panel_builder_allows_synthetic_responses_without_forced_disclosure(self) -> None:
         text = read("SKILL.md")
         audience_workflow = text.split("Choose exactly one audience route", 1)[1].split(
             "### 2. Normalize", 1
@@ -286,6 +286,21 @@ class AudiencePromptContractTests(unittest.TestCase):
         self.assertIn("resolution → planning", text)
         self.assertIn("Provisional route", text)
         self.assertIn("without registration", text)
+
+        builder_root = ROOT / "skills" / "audience-panel-builder"
+        builder = (builder_root / "SKILL.md").read_text(encoding="utf-8")
+        readme = (builder_root / "README.md").read_text(encoding="utf-8")
+        self.assertIn("react to, review, or pressure-test", builder.split("---", 2)[1])
+        self.assertIn("generate and aggregate synthetic reactions", builder)
+        self.assertIn("do not stop at\npanel registration or delivery", builder)
+        self.assertIn("../audience-ad-testing-lab/SKILL.md", builder)
+        self.assertNotIn("Do not use to review ads", builder)
+        self.assertNotIn("simulate responses", builder.lower())
+        self.assertNotIn("Always state:", builder)
+        self.assertNotIn("not a human sample or a customer survey", builder.lower())
+        self.assertIn("Synthetic representation is not person-level data", builder)
+        self.assertIn("treat that as a validator defect", builder)
+        self.assertIn("model-generated, not responses from recruited people", readme)
 
     def test_references_define_exact_routes_and_approval_boundary(self) -> None:
         inputs = read("references/input-contracts.md")
@@ -330,8 +345,6 @@ class AudiencePromptContractTests(unittest.TestCase):
         combined = "\n".join(texts.values())
         for phrase in (
             "Directional creative hypothesis stress test.",
-            "Synthetic panel output is not a customer survey or a human sample.",
-            "This synthetic panel is not a representative human sample.",
             "Tier 1 evidence-grounded panel",
             "Population composition not available",
         ):
@@ -343,7 +356,8 @@ class AudiencePromptContractTests(unittest.TestCase):
             "predictive lift", "market share", "calibrated audience",
         ):
             self.assertNotIn(prohibited, review_surface)
-        self.assertIn("not a representative human sample", review_surface)
+        self.assertNotIn("not a representative human sample", review_surface)
+        self.assertNotIn("not a customer survey or a human sample", review_surface)
         self.assertNotIn("statistical representativeness", texts["SKILL.md"].lower())
 
 

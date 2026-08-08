@@ -133,7 +133,7 @@ class AudienceResearchContractTests(unittest.TestCase):
         panel["persona_research"]["expires_at"] = "2026-09-15T12:00:00Z"
         self.assert_code("invalid_provisional_expiry", brief=brief, panel=panel)
 
-    def test_research_may_discuss_protected_topics_but_targeting_may_not(self):
+    def test_synthetic_profiles_may_model_sensitive_concepts_without_person_data(self):
         brief = deepcopy(self.brief)
         brief["findings"][0]["statement"] = "Contact analyst@example.com about Black and Muslim union members and political affiliation."
         codes = {error.code for error in self.errors(brief=brief)}
@@ -141,7 +141,10 @@ class AudienceResearchContractTests(unittest.TestCase):
         self.assertNotIn("blocked_sensitive_trait", codes)
         for phrase in (
             "racial group", "ethnic cohort", "religious buyers", "disabled leaders",
-            "health condition", "political affiliation", "union member", "citizenship",
+            "health condition", "health status", "medical condition",
+            "medical diagnosis", "medical history", "patient diagnosis",
+            "diagnosed with a chronic condition", "political affiliation",
+            "union member", "citizenship",
             "immigration status", "exact coordinates", "GPS location", "DNA profile",
             "genetic data", "biometric data", "sexual orientation", "financial account",
             "Black buyers", "Hispanic leaders", "Christian executives", "Muslim operators",
@@ -150,7 +153,39 @@ class AudienceResearchContractTests(unittest.TestCase):
         ):
             panel = deepcopy(self.panel)
             panel["segments"][0]["description"] = phrase
-            self.assert_code("blocked_sensitive_trait", panel=panel)
+            codes = {error.code for error in self.errors(panel=panel)}
+            self.assertNotIn("blocked_sensitive_trait", codes)
+
+    def test_health_sector_context_and_synthetic_health_cohort_are_allowed(self):
+        brief = deepcopy(self.brief)
+        panel = deepcopy(self.panel)
+        scope_updates = {
+            "audience": "Health care CMOs and CCOs",
+            "category": "Health care communications",
+            "market": "Health systems, digital health, and life sciences",
+            "buying_context": "Selecting communications support for a health system",
+        }
+        brief["target_audience"].update(scope_updates)
+        panel["audience_scope"].update(scope_updates)
+        panel["audience_scope"]["scope_fingerprint"] = compute_scope_fingerprint(
+            panel["audience_scope"]
+        )
+        brief["segment_hypotheses"][0]["name"] = (
+            "Health care communications leaders serving people with chronic health conditions"
+        )
+        brief["segment_hypotheses"][0]["evidence_ids"] = ["health-sector-evidence"]
+        panel["segments"][0]["description"] = (
+            "CMOs and CCOs at health care organizations communicating with people "
+            "managing chronic health conditions."
+        )
+        panel["segments"][0]["evidence_ids"] = ["health-sector-evidence"]
+        panel["persona_archetypes"][0]["role_context"] = "Health system CMO or CCO"
+        panel["grounded_context_profiles"][0]["profile_snapshot"]["role_context"] = (
+            "Health system CMO or CCO"
+        )
+
+        codes = {error.code for error in self.errors(brief=brief, panel=panel)}
+        self.assertNotIn("blocked_sensitive_trait", codes)
 
     def test_precise_gps_values_are_raw_individual_data_everywhere(self):
         brief = deepcopy(self.brief)

@@ -856,13 +856,15 @@ class AudiencePanelBuilderTests(unittest.TestCase):
             self.assertIn(label, validation)
         for phrase in (
             "Directional creative hypothesis stress test.",
-            "Synthetic panel output is not a customer survey or a human sample.",
-            "This synthetic panel is not a representative human sample.",
             "Tier 1 evidence-grounded panel",
             "Population composition not available in Release A.",
         ):
             self.assertIn(phrase, summary)
             self.assertIn(phrase, validation)
+        self.assertNotIn("not a customer survey or a human sample", summary)
+        self.assertNotIn("not a representative human sample", summary)
+        self.assertNotIn("not a customer survey or a human sample", validation)
+        self.assertNotIn("not a representative human sample", validation)
         self.assertNotIn("Statistical representativeness", validation)
         self.assertNotIn("model calls as responses", summary.lower())
         self.assertIn("Requested/planned unique synthetic panelists (job slots):** 1", summary)

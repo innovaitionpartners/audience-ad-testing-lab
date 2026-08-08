@@ -101,7 +101,9 @@ hand-author it.
 - Do not create an implicit archetype-by-stratum cross-product.
 - Weights require named provenance; unsupported composition uses
   `planning_allocation`.
-- Raw person-level data and operational sensitive traits are prohibited.
+- Raw person-level and sensitive source data are prohibited. Evidence-grounded
+  synthetic sensitive-audience concepts are permitted; unsupported stereotypes
+  are not.
 - Provisional packages cannot be registered or reused.
 
 Run the deterministic shared validators before packaging. A validation failure

@@ -24,13 +24,11 @@ The builder checks whether each source studies the relevant audience and answers
 - You want one approved audience package that can be reused across creative studies.
 - You need to refresh, augment, or audit an existing panel.
 - You have approved aggregate evidence from Audience Data Lab.
+- You want the panel to react to or pressure-test ads, newsletter concepts, messages, content, or other creative.
 
 ## Do not use it for
 
-- Reviewing or scoring ads.
-- Simulating ad responses.
 - Processing raw CRM or performance rows.
-- Creating a provisional one-run audience for finished creatives; Ad Testing Lab owns that route.
 
 ## Inputs
 
@@ -44,7 +42,7 @@ Audience scope, decision, category, geography, buying context, exclusions, resea
 - Construction audit and approval bindings.
 - Immutable reusable panel package.
 
-Grounded profiles are evidence snapshots. They are not literal people or the number of synthetic executions used in a later test.
+Grounded profiles are evidence snapshots. Synthetic reactions produced from them are model-generated, not responses from recruited people.
 
 ## Start here
 
@@ -57,4 +55,4 @@ Grounded profiles are evidence snapshots. They are not literal people or the num
 
 ## Next capability
 
-Supply the approved immutable panel to [Ad Testing Lab](../audience-ad-testing-lab/README.md) with the exact finished creatives.
+Supply the approved immutable panel and the exact finished creatives or concepts to generate synthetic reactions.

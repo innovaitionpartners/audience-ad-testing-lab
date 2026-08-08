@@ -1,41 +1,51 @@
 ---
 name: audience-panel-builder
 version: 1.0.0
-description: Research, construct, validate, package, refresh, or audit reusable evidence-grounded audience panels for synthetic testing. Use when the user asks to build panelists, personas, audience segments, buyer mindsets, a reusable audience panel, a research-backed test audience, or an audience research report; when they provide CRM aggregates, public surveys, social/community data, supplied Last30Days JSON, Apify exports, interviews, reviews, or performance data to improve a panel; or when Ad Testing Lab needs an approved audience package. Do not use to review ads, score creative, simulate responses, or change the Ad Testing Lab questionnaire.
+description: Research, construct, validate, package, refresh, audit, or use reusable evidence-grounded audience panels for synthetic testing. Use when the user asks to build panelists, personas, audience segments, buyer mindsets, a reusable audience panel, a research-backed test audience, or an audience research report; when they want a panel to react to, review, or pressure-test ads, newsletter concepts, messages, content, or other creative; when they provide CRM aggregates, public surveys, social/community data, supplied Last30Days JSON, Apify exports, interviews, reviews, or performance data to improve a panel; or when a synthetic test needs a new or materially updated reusable audience package.
 ---
 
 # Audience Panel Builder
 
-Build the reusable audience model that another skill can test with. Keep evidence discovery, panel construction, and package approval here. Keep creative exposure, panelist responses, scoring, and ad-test aggregation in Ad Testing Lab.
+Build and use reusable evidence-grounded audience models for synthetic testing.
+When the request includes creative or concepts, use the approved panel profiles
+to generate and aggregate synthetic reactions under the co-shipped Ad Testing
+Lab response contracts. Do not stop at panel delivery or narrate a handoff.
 
-## Non-Negotiable Boundary
+## Internal Method Invariants
 
-- Construction decides which researched segments, mindsets, contexts, and profile combinations exist.
-- Ad Testing Lab decides how an approved profile reviews creative.
-- Never change review prompts, exposure order, score fields, retest rules, or aggregation while improving panel construction.
+- Preserve the co-shipped creative-review questionnaire, exposure order, score
+  fields, retest rules, and aggregation contracts while improving panel
+  construction.
 - Never treat post count, engagement, a synthetic profile count, or source count as audience prevalence.
 - Never turn raw CRM rows, social handles, or named people into panelists.
+- Allow synthetic panels to represent sensitive audience concepts, including
+  health conditions, when the user requests them and the attributes are
+  evidence-grounded. Synthetic representation is not person-level data. Never
+  derive these attributes from raw, named, or row-level sensitive data, and
+  never invent unsupported stereotypes.
+- Preserve accurate industry, organizational, and occupational terminology.
+  `health care`, `health system`, `digital health`, `public health`, and similar
+  sector labels are ordinary context. Do not rename valid terms or neutral
+  evidence IDs to evade a validator.
 - Never process row-level CRM or performance data here. Accept only an
   approved `authorized-audience-handoff-v1`,
   `audience-first-party-evidence-v1`, or
   `audience-performance-evidence-v1` handoff from Audience Data Lab.
 - Preserve the existing saved-panel ontology and dynamic one-panelist-per-worker interview behavior.
-- Treat an approved v2 package as a Tier 1 evidence-grounded panel. It supports a Directional creative hypothesis stress test. Synthetic panel output is not a customer survey or a human sample. This synthetic panel is not a representative human sample.
-- Release B1 may build a population frame, composition plan, validity profile,
-  and v3 brief/panel documents. It does not build a v3 package, resolve one
-  from the library, allocate study quotas or jobs, assign profiles, run tests,
-  score or rank results, or render dashboards. Those remain Release B2 or the
-  unchanged Ad Testing Lab.
+- Treat an approved v2 package as a Tier 1 evidence-grounded panel. It supports a Directional creative hypothesis stress test.
+- Release B1 builds the population frame, composition plan, validity profile,
+  and v3 brief/panel documents. When synthetic reactions are requested,
+  continue through the co-shipped B2 allocation and testing runtime without
+  changing its quotas, jobs, assignments, questionnaire, scoring, or dashboard
+  contracts.
 - An approved v3 Tier 1 panel is reusable. Its planning allocations remain
   directional and do not use the five-percentage-point structural-frame gate.
   Only a provisional panel is run-local.
-- Provisional panel materialization is an internal run-local helper for Ad
-  Testing Lab, not a separate user-facing Panel Builder workflow. When
-  creatives are supplied, Ad Testing Lab owns the provisional route and its
-  run-plan approval. Panel Builder performs no empty research or package
-  approval, automatically sets unsupported fields to `unknown`, automatically
-  sets expiry to no more than 30 days, and must never register or reuse the
-  materialized panel.
+- Provisional panel materialization is an internal run-local helper. When
+  creatives are supplied without research, continue through the co-shipped Ad
+  Testing Lab testing runtime. Perform no empty research or package approval,
+  set unsupported fields to `unknown`, set expiry to no more than 30 days, and
+  never register or reuse the materialized panel.
 - For a v3 run whose selected roster is distorted, present the three user
   decisions without choosing: increase synthetic capacity; approve an explicit
   scope merge or exclusion and rebuild; or explicitly continue as a Tier 1
@@ -63,6 +73,7 @@ Do not normalize raw real campaign exports here.
 | Curated social-export field mapping | `references/social-mapping-contract.md` |
 | Question-level synthesis, conflicts, confidence, and segment sufficiency | `references/research-synthesis-method.md` |
 | Research and panel-construction rules | `references/construction-method.md` |
+| Generate synthetic reactions to ads, newsletter concepts, messages, content, or other creative | Read `../audience-ad-testing-lab/SKILL.md` and follow its response-collection, scoring, and dashboard contracts with the approved panel |
 | V3 population, composition, validity, outcome-feedback binding, and calibration-proposal contracts | `references/v3-population-contracts.md` |
 | Create, refresh, augment, audit, provisional, and approval-response templates | `references/route-workflows-and-output-templates.md` |
 | Concrete plan, source, brief, profile, refresh, and audit examples | `references/worked-route-examples.md` |
@@ -154,6 +165,12 @@ synthesize evidence
 → build the canonical package
 → register
 ```
+
+When the request also supplies creative or concepts to evaluate, do not stop at
+panel registration or delivery. Continue with the co-shipped review workflow
+using the exact approved panel. Treat comparable text-only newsletter concepts
+or messages as `copy_only` creative variations unless the user supplies another
+supported representation.
 
 Dogfood exits after report and audit. Provisional work cannot call either canonical package entry point. It has no research-plan approval, no research-brief approval, and no panel-package approval.
 
@@ -423,8 +440,7 @@ scope merge or exclusion and rebuild, or explicitly continue directionally.
 Never make that decision for the user. A directional continuation changes the
 run claim, not the approved reusable tier of the saved panel.
 
-Always state: “This is not a human sample or a customer survey.” Describe the
-five-percentage-point test only as the product allocation threshold, never a
+Describe the five-percentage-point test only as the product allocation threshold, never a
 margin of error. Do not present target weights, slot shares, or
 analysis-effective shares as survey incidence, audience prevalence beyond the
 approved frame, measured performance, or confidence.
@@ -439,12 +455,15 @@ approved frame, measured performance, or confidence.
 - Preserve exact source URLs and access dates.
 - Keep social quotes short, traceable, and free of personal identifiers.
 - Report the number of explicit panel profiles separately from later response jobs or model calls.
+- Keep validator mechanics and maintenance logging out of user-facing delivery.
+  If a valid sector term is rejected, treat that as a validator defect rather
+  than euphemizing the audience or narrating a workaround.
 - For a paired run review, report requested/planned unique synthetic panelists (job slots), response jobs, accepted response records, retries, rejected provider returns, and model calls as distinct counts. Do not substitute the maximum synthetic-panelist ceiling for the planned total.
 - Refuse unsupported weighting or prevalence claims.
 
 ## Stop Conditions
 
-Stop before panel construction when the research brief is unapproved, required evidence lanes are empty without an accepted gap, source use is prohibited or unknown, sensitive traits would become operational attributes, or the proposed profile requires an unsupported joint combination.
+Stop before panel construction when the research brief is unapproved, required evidence lanes are empty without an accepted gap, source use is prohibited or unknown, raw or person-level sensitive data would become an operational attribute, or the proposed profile requires an unsupported joint combination.
 
 Downgrade to Tier 1 when the required critical joint is missing, calculated
 modeled share exceeds `0.30`, the frame is experimental or not defensible, or
@@ -461,11 +480,12 @@ canonical output or library mutation. Dogfood stops after its report and
 audit. Provisional work stays run-local and cannot use the canonical build or
 registration commands.
 
-For Release B1 v3 work, stop after the validated v3 brief, v3 panel,
-population-frame result, composition plan, and final validity profile (plus an
-optional read-only outcome-feedback binding or non-executable calibration
-proposal). Do not invoke the v2 package, registration, or library commands for
-those v3 documents.
+For v3 construction, finish the validated brief, panel, population-frame
+result, composition plan, and final validity profile (plus an optional
+read-only outcome-feedback binding or non-executable calibration proposal).
+Do not invoke the v2 package, registration, or library commands for those v3
+documents. If synthetic reactions are requested, continue through the
+co-shipped B2 run-planning and testing workflow using the validated v3 panel.
 
 For the Experimental Persona Behavior Calibration Sandbox, stop without a
 proposal or candidate on late, immature, observational-only, duplicated,

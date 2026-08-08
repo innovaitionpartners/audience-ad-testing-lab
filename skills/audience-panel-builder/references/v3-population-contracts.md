@@ -1302,8 +1302,6 @@ The exact claim language is:
 - Directional continuation: `This run remains a Tier 1 directional creative
   hypothesis stress test even though the saved panel retains its approved
   reusable tier.`
-- Always: `This is not a human sample or a customer survey.`
-
 The five-percentage-point value is a product allocation threshold, never a
 margin of error. Target weights, raw slot shares, and analysis-effective
 shares are allocation diagnostics, not survey results, population prevalence
