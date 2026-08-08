@@ -16,7 +16,7 @@ import tempfile
 MARKETPLACE = "innovaition-ad-testing"
 PLUGIN = "audience-ad-testing-lab"
 PLUGIN_ID = f"{PLUGIN}@{MARKETPLACE}"
-VERSION = "0.3.1"
+VERSION = "1.0.0"
 EXPECTED_SKILLS = (
     "audience-ad-testing-lab",
     "audience-data-lab",
