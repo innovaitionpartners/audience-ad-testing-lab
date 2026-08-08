@@ -290,6 +290,10 @@ class AudiencePromptContractTests(unittest.TestCase):
         builder_root = ROOT / "skills" / "audience-panel-builder"
         builder = (builder_root / "SKILL.md").read_text(encoding="utf-8")
         readme = (builder_root / "README.md").read_text(encoding="utf-8")
+        source_strategy = (builder_root / "references" / "source-strategy.md").read_text(
+            encoding="utf-8"
+        )
+        persona_research = read("references/persona-research.md")
         self.assertIn("react to, review, or pressure-test", builder.split("---", 2)[1])
         self.assertIn("generate and aggregate synthetic reactions", builder)
         self.assertIn("do not stop at\npanel registration or delivery", builder)
@@ -301,6 +305,15 @@ class AudiencePromptContractTests(unittest.TestCase):
         self.assertIn("Synthetic representation is not person-level data", builder)
         self.assertIn("treat that as a validator defect", builder)
         self.assertIn("model-generated, not responses from recruited people", readme)
+        for research_contract in (source_strategy, persona_research):
+            normalized_contract = " ".join(research_contract.split())
+            self.assertIn(
+                "Evidence-grounded synthetic sensitive-audience concepts remain permitted",
+                normalized_contract,
+            )
+            self.assertNotIn("operationalizes a sensitive trait", normalized_contract)
+
+        self.assertNotIn("human respondents: 0", text.lower())
 
     def test_references_define_exact_routes_and_approval_boundary(self) -> None:
         inputs = read("references/input-contracts.md")

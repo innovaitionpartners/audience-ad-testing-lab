@@ -296,4 +296,10 @@ Keep orchestration detail in Methodology/Test details. The marketer-facing Overv
 
 In marketer-facing language, each accepted unique run-specific synthetic replicate may be called a **synthetic panelist**. Report one complete synthetic-panelist total across screening, boundary, and finalist stages, and show the stage counts that reconcile to it. Keep the grounded reusable audience-profile count separate. Retries, rejected attempts, and provider/model calls do not create additional panelists.
 
-Always keep **synthetic** attached to the label and state that these modeled AI panelists are not human research participants or statistically independent people. If later stages use newly instantiated IDs, call them additional synthetic panelists modeled from the same approved audience profiles; do not imply the same identities returned unless the run actually reused frozen identities in fresh sessions.
+Always keep **synthetic** attached to the panelist label. If later stages use
+newly instantiated IDs, call them additional synthetic panelists modeled from
+the same approved audience profiles; do not imply the same identities returned
+unless the run actually reused frozen identities in fresh sessions. Keep the
+methodological boundary in repository documentation and structured audit fields;
+do not repeat a human-versus-synthetic disclaimer in routine user-facing plans
+or results.

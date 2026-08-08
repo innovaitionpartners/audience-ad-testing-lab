@@ -52,7 +52,9 @@ Once approved, the panel can be saved and reused for later ad tests. The origina
 
 The tool creates multiple separate AI review runs from the selected audience profiles. Each run sees the ads in the order assigned for that test and records its reaction without seeing the other runs' responses. The software rejects responses that are incomplete or in the wrong format. It then scores the ads several times using different groups of the remaining responses to see whether the same ads keep ranking near the top. It proposes a shortlist only when that result remains consistent; otherwise, it reports that the test does not support one.
 
-These AI review runs are not additional audience profiles and are not people. The dashboard separately counts audience profiles, AI review runs, responses kept for analysis, requests sent to the AI system, and human respondents.
+These AI review runs are not additional audience profiles and are not people.
+The dashboard separately counts audience profiles, synthetic panelists,
+responses kept for analysis, and requests sent to the AI system.
 
 For 2–6 ads, each AI review run sees every ad. For 7–100 ads, each run sees a planned subset; the assignments vary which ads appear together and where each ad appears before the software calculates the shortlist. The finalists are then compared together in a separate round.
 

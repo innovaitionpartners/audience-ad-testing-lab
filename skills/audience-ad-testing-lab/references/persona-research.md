@@ -49,7 +49,9 @@ Research-backed segment origins are `research_derived` and `user_proposed_resear
 5. Give each finding evidence IDs, a confidence label, an inference boundary, and creative implications.
 6. Mark every coverage category `strong`, `thin`, or `empty`; record thin or empty decision-relevant areas as explicit gaps.
 7. Propose evidence-backed segment hypotheses. Do not create persona archetypes, context strata, or grounded profiles.
-8. Confirm that the brief contains no raw individual data and does not operationalize sensitive traits.
+8. Confirm that the brief contains no raw individual data and does not derive
+   sensitive audience attributes from raw or person-level data. Evidence-grounded
+   synthetic sensitive-audience concepts remain permitted.
 9. In `approval_gate` mode, store and present the complete draft-shaped candidate field-for-field. A summary is not the approval authority. The final validator intentionally does not accept a draft as reusable authority.
 10. After user approval, deep-copy that exact stored candidate. The only permitted mutations are `status`, `updated_at`, and `approval`: set approved status, emission time, and the supplied approval record. Canonical-JSON compare every other field unchanged, then validate with `validate_research_brief` before panel construction.
 

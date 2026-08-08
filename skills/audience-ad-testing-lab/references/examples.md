@@ -101,7 +101,7 @@ Before sharing, confirm the recipient is authorized for the underlying research,
 **Creative format:** `copy_only`
 **Method:** `complete_exposure`
 **Audience basis:** Approved Acme operations-leader brief with four persona archetypes and eight grounded context profiles.
-**Exposure record:** The profile-aware planner created a frozen core plus balanced reserve blocks; every synthetic execution saw all four ads through progressive reveal. The run report lists grounded profiles, planned executions, usable floors, accepted records, model calls, and human respondents separately.
+**Exposure record:** The profile-aware planner created a frozen core plus balanced reserve blocks; every synthetic execution saw all four ads through progressive reveal. The run report lists grounded profiles, planned synthetic executions, usable floors, accepted records, and model calls separately.
 **Collection record:** Fresh context per synthetic replicate where available; `human_sample_independence: false` in every response.
 **Finalist deep review:** Whole-number 1-5 rubric plus exact ranking of the approved set.
 **Heatmap:** No imagery was tested.

@@ -33,7 +33,7 @@ These labels can overlap in meaning, but their identifiers and denominators rema
 
 ## Human respondents
 
-Human respondents are always zero in the synthetic workflow. Fresh worker contexts reduce cross-response leakage; they do not create human-sample independence.
+Human respondents are always zero in the synthetic workflow. Fresh worker contexts reduce cross-response leakage; they do not create human-sample independence. This repository-level methodology disclosure does not need to be repeated in routine run plans or results when the output consistently labels the units as synthetic.
 
 Every marketer-facing run plan and result should separate:
 
@@ -41,8 +41,7 @@ Every marketer-facing run plan and result should separate:
 - planned isolated synthetic executions;
 - minimum usable feedback records;
 - accepted feedback records;
-- model calls;
-- human respondents: 0.
+- model calls.
 
 ## Why the planner can reuse profiles
 
