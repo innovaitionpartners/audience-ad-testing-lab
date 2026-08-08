@@ -1,0 +1,84 @@
+name: Release manifest update and verification
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  update-manifests:
+    name: Auto-regenerate and update manifests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies required for manifest generation
+        run: |
+          python3 -m pip install numpy==2.4.2 scipy==1.17.0 openpyxl==3.1.5
+
+      - name: Regenerate calibration manifests
+        run: |
+          python3 skills/audience-panel-builder/scripts/generate-calibration-manifests.py
+
+      - name: Regenerate platform release manifest
+        run: |
+          python3 skills/real-world-outcome-data-prep/scripts/generate-runtime-release-manifest.py \
+            --plugin-root . \
+            --output skills/real-world-outcome-data-prep/references/runtime-release-manifest.json
+
+      - name: Commit and push changes back to main and tag
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "Changes detected in manifests! Committing and pushing back to main..."
+            git add .
+            git commit -m "chore: auto-regenerate manifests for release ${{ github.ref_name }}"
+            git push origin main
+            
+            echo "Updating tag ${{ github.ref_name }} to point to the new commit..."
+            git tag -f "${{ github.ref_name }}"
+            git push origin -f "${{ github.ref_name }}"
+          else
+            echo "No manifest changes detected."
+          fi
+
+  verify-release:
+    name: Verify release on updated tag
+    needs: update-manifests
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout updated tag
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Set up sealed private-stage runtime
+        uses: ./.github/actions/setup-private-stage
+
+      - name: Verify release identity
+        run: python3 conformance/ci_fast_validation.py verify-release-identity
+
+      - name: Run outcome data prep release gate
+        run: python3 conformance/ci_fast_validation.py run outcome-release
+
+      - name: Run calibration life-cycle tests
+        run: python3 conformance/ci_fast_validation.py run calibration-contracts-and-lifecycle
+
+      - name: Run calibration engine and evaluation tests
+        run: python3 conformance/ci_fast_validation.py run calibration-engine-and-evaluation
