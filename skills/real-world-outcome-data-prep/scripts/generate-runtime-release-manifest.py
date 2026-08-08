@@ -11,6 +11,7 @@ from pathlib import Path, PurePosixPath
 import tempfile
 
 from outcome_data_prep.runtime_guard import (
+    RUNTIME_IDENTITY_EXCLUDED_PATHS,
     closed_runtime_inventory,
     hash_closed_runtime_tree,
 )
@@ -68,7 +69,7 @@ def build_release_manifest(
     )
     files = runtime_file_hashes(
         plugin_root,
-        excluded={output_relative},
+        excluded=RUNTIME_IDENTITY_EXCLUDED_PATHS | {output_relative},
     )
     identity = {
         "schema_version": SCHEMA_VERSION,

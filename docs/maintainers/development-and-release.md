@@ -52,7 +52,7 @@ python3 -m unittest discover -s conformance -p 'test_*.py' -v
 
 ## Release manifest
 
-The runtime release manifest binds the shipped tree. Regenerate it after all intended changes are complete:
+The runtime release manifest binds the shipped operational tree. The root `README.md` is excluded because it is the public landing page and is validated by the public-documentation checks instead. Regenerate the manifest after all intended operational changes are complete:
 
 ```bash
 python3 skills/real-world-outcome-data-prep/scripts/generate-runtime-release-manifest.py \
