@@ -96,9 +96,9 @@ class ProvisionalNoResearchRouteContractTests(unittest.TestCase):
             "minimum usable feedback records",
             "accepted feedback records",
             "model calls",
-            "human respondents: 0",
         ):
             self.assertIn(required, text)
+        self.assertNotIn("human respondents: 0", text)
 
     def test_panel_builder_labels_provisional_materialization_internal(self) -> None:
         skill = compact(read("skills/audience-panel-builder/SKILL.md"))

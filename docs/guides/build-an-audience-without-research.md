@@ -29,7 +29,9 @@ It does not proliferate unsupported persona detail to make the panel look richer
 
 There is no research-plan approval, research-brief approval, or reusable-package approval. Those would be empty formalities without research.
 
-The frozen run plan is the approval surface. It shows the audience lock, profiles, planned synthetic executions, usable-feedback floor, reserves, method, exposure order, cost range, and human respondents: 0.
+The frozen run plan is the approval surface. It shows the audience lock,
+profiles, planned synthetic executions, usable-feedback floor, reserves,
+method, exposure order, and cost range.
 
 The provisional audience:
 

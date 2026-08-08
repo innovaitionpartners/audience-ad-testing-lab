@@ -3835,7 +3835,7 @@
           <p>Each ID belongs to one distinct, run-specific AI panelist. Segment counts are parts of the stage total, not separate totals.</p>
         </header>
         <div class="response-stage-grid" id="response-stage-grid"></div>
-        <p class="response-roster-note">Only accepted panelists appear here. Failed or unusable attempts are excluded, and these modeled AI panelists are not human research participants.</p>
+        <p class="response-roster-note">Only accepted synthetic panelists appear here. Failed or unusable attempts are excluded.</p>
       </section>
     </section>
 
@@ -4507,7 +4507,7 @@
           denominatorGrid.append(item);
         });
         denominatorRoot.append(denominatorGrid);
-        denominatorRoot.append(make("p", "notice", `${number(totalSyntheticPanelists)} unique synthetic panelists participated across the complete run: ${number(counts.screening || 0)} main-test, ${number(counts.boundary || 0)} tie-break, and ${number(counts.finalist || 0)} closer-review panelists. They were run-specific AI instantiations generated from ${number(audienceProfileCount)} reusable audience profiles, not human research participants. Use each stage’s base beside that stage’s result.`));
+        denominatorRoot.append(make("p", "notice", `${number(totalSyntheticPanelists)} unique synthetic panelists participated across the complete run: ${number(counts.screening || 0)} main-test, ${number(counts.boundary || 0)} tie-break, and ${number(counts.finalist || 0)} closer-review panelists. They were run-specific AI instantiations generated from ${number(audienceProfileCount)} reusable audience profiles. Use each stage’s base beside that stage’s result.`));
       }
 
       function appendMedia(card, medium, creativeName) {

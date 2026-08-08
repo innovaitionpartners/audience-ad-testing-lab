@@ -46,9 +46,9 @@ PAYLOAD_RE = re.compile(
     re.S,
 )
 LEGACY_DASHBOARD_SHA256 = {
-    "v1_partial": "61688765cc74616753582e30a642198435589436d88036f40a15573ce81bc4f7",
-    "v1_complete": "7ac3b1bdc31766784f013896e129a136f5dc017c728b09ae8c76854ca60afa54",
-    "v2_complete": "533d4d892270f59596ff6c2355addb8a8615e446704fdbba1c6c35051f585935",
+    "v1_partial": "dd002ea57df4f54b5de38edeeab6179b91299ecb7996a43d4efd318c45d687c2",
+    "v1_complete": "6ba660269aa6ca09015f2f42a0ccf1cdc45a3cb5b166c835123d3525a88332aa",
+    "v2_complete": "ecd5aa53899c7fbacf90eeb99b72a72c32ac65c7d72d1da0835418c688f6b4b0",
 }
 
 
@@ -2490,7 +2490,8 @@ class DashboardContractTests(unittest.TestCase):
         self.assertIn("Tie-break synthetic panelists", html)
         self.assertIn("Closer-review synthetic panelists", html)
         self.assertIn("unique synthetic panelists participated across the complete run", html)
-        self.assertIn("not human research participants", html)
+        self.assertNotIn("not human research participants", html)
+        self.assertNotIn("not human respondents", html)
         self.assertIn("mainPanelBySegment", html)
         self.assertIn('make("span", "denominator-help", help)', html)
         self.assertNotIn("AI panelist runs", html)
@@ -2731,7 +2732,7 @@ class DashboardContractTests(unittest.TestCase):
             "Main test",
             "Tie-break",
             "Closer review",
-            "Only accepted panelists appear here",
+            "Only accepted synthetic panelists appear here",
         ):
             self.assertIn(label, html)
         self.assertGreater(

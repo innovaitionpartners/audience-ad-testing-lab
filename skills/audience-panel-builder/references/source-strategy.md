@@ -312,6 +312,10 @@ Run `score-research-sources.py`. The scorer uses declared assessment states for:
 - useful subgroup cuts;
 - permitted use.
 
-Permission marked `prohibited` or `unknown` fails. A source with a high numeric score may still be rejected when it lacks exact provenance, duplicates an upstream source, operationalizes a sensitive trait, or leaks candidate-creative knowledge.
+Permission marked `prohibited` or `unknown` fails. A source with a high numeric
+score may still be rejected when it lacks exact provenance, duplicates an
+upstream source, would derive a sensitive attribute from raw or person-level
+data, or leaks candidate-creative knowledge. Evidence-grounded synthetic
+sensitive-audience concepts remain permitted.
 
 Source count never substitutes for direct relevance.

@@ -3404,7 +3404,7 @@ def _build_run_integrity(
             ),
             "details": [
                 f"Approved audience research brief: {brief_id or 'not recorded'}.",
-                "Synthetic panelists are instantiated from these profiles; they are not human respondents.",
+                "Synthetic panelists are instantiated from these profiles.",
             ],
         },
         {

@@ -39,7 +39,8 @@ Strategy notes and landing-page fragments are not silently converted into a crea
 - Attention evidence for imagery.
 - Self-contained dashboard and downloadable source exports.
 
-Synthetic executions are not people. The dashboard reports grounded profiles, synthetic executions, accepted feedback records, model calls, and human respondents separately.
+Synthetic executions are not people. The dashboard reports grounded profiles,
+synthetic executions, accepted feedback records, and model calls separately.
 
 ## Start here
 
