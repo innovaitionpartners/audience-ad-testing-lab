@@ -185,6 +185,42 @@ earliest active claim remains current until an append-only authenticated
 supersession event identifies its replacement. Active displays must match the
 registered package and manifest hashes exactly.
 
+## Experimental Real-World Panel Calibration Route (Release C2)
+
+This is a post-validation Panel Builder route, not another construction-route
+enum and not a separate skill. Use it only after repeated authenticated C1
+negative results can be bound to the same immutable base package.
+
+1. Authenticate at least two disjoint C1 packages and replay their evaluations.
+2. Require every diagnostic result to be negative while its chronology,
+   coverage, sample, independence, power, leakage, multiplicity, and
+   repeated-look gates pass.
+3. Use only a creative-behavior hypothesis registered before outcome access.
+   Require exactly one supported existing-persona/one-field hypothesis and
+   explicitly clear attribution, delivery, landing-page, offer, targeting,
+   timing, and tracking alternatives.
+4. Seal the diagnosis and bounded proposal, then materialize a complete newer
+   v3 candidate. Propagate the one behavior field to matching grounded profile
+   snapshots, retain the exact diff and provenance, and preserve the base
+   package bytes.
+5. Build the normal review, construction audit, approved workflow, and package
+   for that complete candidate using existing Panel Builder infrastructure.
+6. Authenticate a fresh C1 package for the exact candidate package. Its study
+   and outcome-source hashes must not overlap diagnosis, its result must be
+   `tier4_supported`, every evidence gate must pass, and its exact claim must
+   be active.
+7. Require a human `calibration` approval for the sealed registration proposal
+   and a `package_registration` approval for the exact candidate package.
+8. Use only the gated C2 registration route. Standard registration rejects the
+   candidate's C2 history marker. Gated registration calls the unchanged
+   immutable audience-library transaction and adds a new version without
+   changing any original bytes or active pointer.
+
+All C2 files and reports must state that the route is experimental. Passing
+fresh evidence supports only the candidate ordering in its exact registered
+scope. It does not prove that the persona update caused the result and does
+not predict CTR, conversion, revenue, lift, or human-sample behavior.
+
 ## Authorized-Audience Import Route
 
 Use `import_authorized_audience` when the user supplies arbitrary authorized

@@ -1,6 +1,6 @@
 # Audience Panel Builder
 
-Audience Panel Builder researches and saves a reusable description of the audience that should review your ads. The saved panel contains audience segments and research-supported profiles that Ad Testing Lab can use across multiple creative tests.
+Audience Panel Builder researches and saves a reusable description of the audience that should review your ads. The saved panel contains audience segments and research-supported profiles that Ad Testing Lab can use across multiple creative tests. Its experimental post-validation route can also propose one bounded behavior update after repeated authenticated real-world validation misses, without changing the original panel.
 
 ## Where the research comes from
 
@@ -23,12 +23,14 @@ The builder checks whether each source studies the relevant audience and answers
 - You need audience segments, buyer mindsets, or grounded profiles supported by research.
 - You want one approved audience package that can be reused across creative studies.
 - You need to refresh, augment, or audit an existing panel.
+- You have repeated authenticated Real-World Outcome Validation misses and want to evaluate one evidence-supported persona-behavior candidate against fresh held-out outcomes.
 - You have approved aggregate evidence from Audience Data Lab.
 - You want the panel to react to or pressure-test ads, newsletter concepts, messages, content, or other creative.
 
 ## Do not use it for
 
 - Processing raw CRM or performance rows.
+- Changing a panel from one study, descriptive feedback, late creative annotations, or synthetic sandbox evidence.
 
 ## Inputs
 
@@ -41,6 +43,7 @@ Audience scope, decision, category, geography, buying context, exclusions, resea
 - Canonical saved-audience JSON.
 - Construction audit and approval bindings.
 - Immutable reusable panel package.
+- For Experimental Real-World Panel Calibration: an exact diagnosis, bounded proposal, complete versioned candidate, diff and provenance bundle, fresh validation result, and human approval record. Registration is available only when every evidence gate passes.
 
 Grounded profiles are evidence snapshots. Synthetic reactions produced from them are model-generated, not responses from recruited people.
 
@@ -50,6 +53,7 @@ Grounded profiles are evidence snapshots. Synthetic reactions produced from them
 - [Build a reusable audience panel](../../docs/guides/build-an-audience-panel.md)
 - [Research and grounding](../../docs/concepts/research-and-grounding.md)
 - [Profiles, replicates, and people](../../docs/concepts/profiles-replicates-and-people.md)
+- [Calibration and real-world validation](../../docs/concepts/calibration-and-real-world-validation.md)
 - [Outputs and files](../../docs/reference/outputs-and-files.md)
 - [Technical skill instructions](SKILL.md)
 

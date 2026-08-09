@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+from datetime import datetime, timedelta, timezone
 import io
 import json
 import os
@@ -194,9 +195,13 @@ class AudienceLibraryTest(unittest.TestCase):
                 dimension.update(status="experimental", source_evidence=[], finding_ids=[])
             for provenance in panel["grounded_context_profiles"][0]["context_attribute_provenance"]:
                 provenance.update(status="experimental", source_evidence=[], finding_ids=[])
+            created_at = datetime.now(timezone.utc) - timedelta(days=1)
+            expires_at = created_at + timedelta(days=30)
+            panel["created_at"] = created_at.isoformat().replace("+00:00", "Z")
+            panel["updated_at"] = panel["created_at"]
             panel["persona_research"].update(
                 mode="provisional_no_research", status="provisional_no_research",
-                expires_at="2026-07-30T12:00:00Z", source_types=[], evidence_ids=[],
+                expires_at=expires_at.isoformat().replace("+00:00", "Z"), source_types=[], evidence_ids=[],
                 source_state="no_research_sources", coverage=brief["coverage"],
             )
             provisional = build_audience_package(brief, panel, base / "provisional")

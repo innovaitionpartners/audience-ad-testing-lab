@@ -1,4 +1,4 @@
-"""Pre-outcome creative-attribute registration for the synthetic sandbox."""
+"""Pre-outcome creative-attribute registration shared by the sandbox and C2."""
 
 from __future__ import annotations
 

@@ -1137,6 +1137,12 @@ complete feedback binding from its canonical documents, and verifies the
 binding and panel hashes before emitting a proposal. Its status is exactly
 `requires_calibration_approval` and `executable` is false.
 
+This is the legacy B1 descriptive seam. It is not an authenticated C1
+evaluation, cannot satisfy a C2 diagnosis gate, and must never be upgraded into
+an executable candidate. Release C2 uses its separate authenticated evidence,
+diagnosis, proposal, candidate, fresh-evaluation, approval, and registration
+contracts.
+
 The proposal contains only panel and feedback bindings, the evaluation scope,
 review items, limitations, and this empty non-executable diff:
 
@@ -1373,3 +1379,60 @@ dashboards compare both package ZIP and manifest hashes to the authoritative
 library entry before displaying an active claim.
 Release C1 performs no panel adjustment or calibration and does not begin
 Release C2.
+
+## Release C2 experimental real-world panel calibration boundary
+
+Release C2 is a clearly invocable post-validation route inside Audience Panel
+Builder. It is not a fifth skill and is outside the six construction-route
+values. This ownership keeps panel versioning, report/audit generation,
+approval state, packaging, and audience-library registration in the component
+that already governs them.
+
+The diagnostic input is at least two disjoint authenticated C1 validation
+packages bound to one exact immutable base package. Every diagnostic evaluation
+must be a real negative result while all non-result evidence gates pass. Study
+IDs and outcome-source hashes are mutually disjoint. A creative-attribute
+registry frozen before outcomes must support one and only one hypothesis for
+one existing persona and one behavioral field. Attribution, delivery,
+landing-page, offer, targeting, timing, and tracking causes must be explicitly
+reviewed and cleared rather than inferred away.
+
+The evidence projection preserves the exact authority, package, evaluation,
+comparison, block, and source hashes replayed from C1. The diagnosis and
+proposal preserve that projection and the selected hypothesis. Candidate
+materialization accepts only one of `anxieties`, `decision_context`,
+`motivations`, `proof_needs`, or `role_context`; it changes one existing
+persona, propagates that value to every matching grounded profile snapshot,
+and appends one experimental C2 calibration-history entry. All structural and
+overlay weights, allocations, capacity, segments, prompts, responses, scores,
+aggregation rules, and unrelated personas remain unchanged. The complete
+candidate is a newer v3 panel and the original remains byte-for-byte unchanged.
+
+The sealed candidate bundle contains the authenticated Outcome Evidence
+Library projection,
+alternative-cause review, diagnosis, proposal, complete candidate, exact diff,
+and manifest. Replay reauthenticates the original C1 packages and regenerates
+every derived byte. It is not registration authority.
+
+The candidate uses the existing v3 validation, report, blind construction
+audit, workflow approval, package, and registration infrastructure. The C2
+calibration-history marker makes ordinary audience-library registration fail
+closed. The gated route replays the candidate bundle and then requires a fresh
+authenticated C1 package for the exact candidate package. Fresh study IDs and
+source hashes cannot overlap diagnosis; the result must be
+`tier4_supported`; every chronology, coverage, sample, independence, power,
+leakage, multiplicity, repeated-look, and claim gate must pass; and the exact
+claim must remain active.
+
+Registration also requires an approved workflow with a human `calibration`
+approval targeting the sealed registration-proposal digest and a human
+`package_registration` approval targeting the exact candidate package hash.
+Both approvals occur after fresh evaluation. The gated command then invokes
+the same immutable audience-library transaction, which adds one version and
+does not select an active pointer or rewrite any prior bytes.
+
+All Release C2 documents retain the experimental disclaimer. A passing fresh
+evaluation supports use of the candidate ordering only in the registered
+scope. It does not prove that the persona update caused the result or establish
+universal accuracy, absolute performance, CTR, conversion, revenue, lift, or
+human-sample equivalence.

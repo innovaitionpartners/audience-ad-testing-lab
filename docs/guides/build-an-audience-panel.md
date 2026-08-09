@@ -76,6 +76,8 @@ See [Outputs and files](../reference/outputs-and-files.md) for which files a mar
 
 Before a new ad study, resolve the exact saved panel version against the new scope. A compatible panel is copied into the run as a hash-bound snapshot. A `needs_refresh` or `incompatible` result stops dispatch; update the research and publish a new version rather than editing the old one.
 
+Repeated authenticated real-world validation misses may instead qualify for Experimental Real-World Panel Calibration. It can change only one supported behavioral field in one existing persona, produces a complete new candidate and exact diff, and requires fresh nonoverlapping validation plus explicit human approval before registration. Read [Calibration and real-world validation](../concepts/calibration-and-real-world-validation.md).
+
 ## What this does not establish
 
 A researched synthetic panel is not a representative human sample. Structural weights and evidence improve scope discipline, but they do not convert synthetic feedback into population preference or predicted campaign results. Read [Research and grounding](../concepts/research-and-grounding.md) and [Synthetic evidence and validity](../concepts/synthetic-evidence-and-validity.md).

@@ -53,6 +53,7 @@ PARTITIONS: dict[str, tuple[str, ...]] = {
         "conformance.test_experimental_calibration_candidate",
         "conformance.test_experimental_calibration_golden_paths",
         "conformance.test_experimental_calibration_public_claims",
+        "conformance.test_experimental_calibration_real_world",
     ),
 }
 
@@ -61,7 +62,7 @@ EXPECTED_TEST_COUNTS = {
     "smoke": 80,
     "outcome-release": 360,
     "calibration-engine-and-evaluation": 182,
-    "calibration-contracts-and-lifecycle": 76,
+    "calibration-contracts-and-lifecycle": 86,
 }
 
 # This anti-tautology coverage suite remains in full conformance. Listing the

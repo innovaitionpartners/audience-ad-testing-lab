@@ -60,6 +60,7 @@ def _positive_claim_text(text: str) -> str:
         "does not",
         "do not",
         "not proven",
+        "is not",
         "never",
     )
     return " ".join(
@@ -90,7 +91,7 @@ class ExperimentalCalibrationPublicClaimsTests(unittest.TestCase):
                 / "audience-panel-builder"
                 / "SKILL.md"
             ).read_text(),
-            "### 7b. Run The Experimental Persona Behavior Calibration Sandbox",
+            "### 7c. Run The Experimental Persona Behavior Calibration Sandbox",
         )
         inputs = evaluation_inputs_fixture()
         evaluation = evaluate_synthetic_study(**inputs)

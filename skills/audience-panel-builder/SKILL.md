@@ -1,7 +1,7 @@
 ---
 name: audience-panel-builder
 version: 1.0.0
-description: Research, construct, validate, package, refresh, audit, or use reusable evidence-grounded audience panels for synthetic testing. Use when the user asks to build panelists, personas, audience segments, buyer mindsets, a reusable audience panel, a research-backed test audience, or an audience research report; when they want a panel to react to, review, or pressure-test ads, newsletter concepts, messages, content, or other creative; when they provide CRM aggregates, public surveys, social/community data, supplied Last30Days JSON, Apify exports, interviews, reviews, or performance data to improve a panel; or when a synthetic test needs a new or materially updated reusable audience package.
+description: Research, construct, validate, package, refresh, audit, calibrate, or use reusable evidence-grounded audience panels for synthetic testing. Use when the user asks to build panelists, personas, audience segments, buyer mindsets, a reusable audience panel, a research-backed test audience, or an audience research report; when they want a panel to react to, review, or pressure-test ads, newsletter concepts, messages, content, or other creative; when they provide CRM aggregates, public surveys, social/community data, supplied Last30Days JSON, Apify exports, interviews, reviews, or performance data to improve a panel; when authenticated Real-World Outcome Validation evidence shows repeated persona-behavior misses and they want an experimental bounded panel update; or when a synthetic test needs a new or materially updated reusable audience package.
 ---
 
 # Audience Panel Builder
@@ -50,12 +50,20 @@ Lab response contracts. Do not stop at panel delivery or narrate a handoff.
   decisions without choosing: increase synthetic capacity; approve an explicit
   scope merge or exclusion and rebuild; or explicitly continue as a Tier 1
   directional creative hypothesis stress test.
-- Treat later aggregate outcome feedback as a separate read-only lane. It does not turn current synthetic results into observed customer behavior and cannot change scores, rankings, profiles, frame weights, or panel weights.
+- Treat descriptive aggregate outcome feedback as a separate read-only lane. It does not turn current synthetic results into observed customer behavior and cannot change scores, rankings, profiles, frame weights, or panel weights. Release C2 may instead create a separately versioned experimental candidate from authenticated C1 evidence, but it never changes the original panel and cannot register the candidate without fresh held-out C1 evidence plus exact human approval.
 - Treat the Experimental Persona Behavior Calibration Sandbox as a
   fictional-fixture engineering test only. It may materialize one separately
   versioned sandbox candidate for one existing persona and one behavioral
   field, but it cannot create a reusable package, register or activate a
   panel, modify an active panel, or validate real-world accuracy.
+- Treat Experimental Real-World Persona Behavior Calibration as a distinct
+  post-validation route inside Panel Builder, not a seventh construction
+  intake route and not part of the fictional sandbox. It may change one
+  existing persona behavioral field in a new complete version only after
+  repeated authenticated C1 misses, pre-outcome attribute evidence, and
+  alternative-cause clearance. Standard registration must reject its marked
+  candidate until fresh non-overlapping C1 evidence and exact human approvals
+  pass the gated C2 route.
 
 ## Routing
 
@@ -92,9 +100,14 @@ Do not normalize raw real campaign exports here.
 | Render the hash-bound evidence-derived report | `python3 scripts/render-research-report.py --workflow-state <state.json> --brief <brief.json> --panel <panel.json> --plan <plan.json> --scored-sources <scored.json> --ledger <ledger.json> --finding-support <finding-support.json> --synthesis <synthesis.json> --panel-review-manifest <panel-review-manifest.json> --panel-summary <panel-summary.md> --panel-review-html <audience-panel-review.html> --generated-at <timestamp> --output-dir <new-directory>` |
 | Validate the blind construction audit | `python3 scripts/validate-panel-construction-audit.py --audit <audit.json> --brief <brief.json> --panel <panel.json> --ledger <ledger.json> --finding-support <finding-support.json> --synthesis <synthesis.json> --panel-review-manifest <panel-review-manifest.json> --report-manifest <report-manifest.json>` |
 | Bind approved aggregate outcome feedback without changing the panel | `python3 scripts/bind-panel-outcome-feedback.py --panel <saved-audience-panel-v3.json> --feedback <panel-outcome-feedback-v1.json> --binding-id <id> --bound-at <timestamp> --output <new-binding.json>` |
+| Diagnose, materialize, validate, approve, and register an experimental real-world persona update | `references/real-world-persona-behavior-calibration.md` |
+| Materialize one C2 candidate from repeated authenticated C1 misses | `python3 scripts/materialize-real-world-persona-candidate.py [authenticated base/C1/attribute/review inputs] --output-dir <new-directory>` |
+| Seal the exact C2 registration proposal after fresh candidate validation | `python3 scripts/propose-real-world-panel-registration.py [candidate, diagnostic, package, and fresh C1 inputs] --output <new-proposal.json>` |
+| Register the exact approved C2 candidate through the gated library route | `python3 scripts/register-real-world-calibrated-panel.py [same replay inputs] --registration-proposal <proposal.json> --workflow-state <approved-state.json> --library-root <library>` |
 | Operate the fictional-only persona behavior sandbox | `references/experimental-persona-behavior-calibration.md` |
 | Freeze and generate the fictional sandbox study | `python3 scripts/build-synthetic-persona-behavior-study.py --manifest-output <new-manifest.json> --public-fixtures-root <new-public-root> --oracle-fixtures-root <new-oracle-root> --created-at <timestamp>` |
 | Register creative attributes before outcome access | `python3 scripts/register-synthetic-creative-attributes.py --input <registration-input.json> --output <new-registry.json>` |
+| Register C2 creative attributes before real outcome access | `python3 scripts/register-real-world-creative-attributes.py --input <registration-input.json> --output <new-registry.json>` |
 | Normalize one fictional platform export | `python3 scripts/import-synthetic-platform-outcomes.py --platform <meta|google|linkedin|tiktok> --input <raw-export.json> --source-sha256 <digest> --study-manifest <manifest.json> --attribute-registry <registry.json> --output <new-observations.json>` |
 | Manage the append-only synthetic evidence library | `python3 scripts/manage-synthetic-outcome-evidence-library.py <init|append|correct|list|show|verify> [command arguments]` |
 | Diagnose one frozen synthetic evidence projection | `python3 scripts/diagnose-experimental-persona-behavior.py --input <diagnosis-input.json> --output <new-diagnosis.json>` |
@@ -332,11 +345,12 @@ for the exact study, variants, cohorts, metrics, sources, windows, and holdout
 design; it does not make the synthetic panel responses observed customer
 behavior.
 
-If the feedback warrants further work, create a separate non-executable
-calibration-refresh proposal. Its status remains
+If the descriptive feedback warrants further work, the legacy B1 seam may
+create a separate non-executable calibration-refresh proposal. Its status remains
 `requires_calibration_approval`, its diff contains no operations, and it does
 not change the current panel or feedback binding. Only a separately approved,
-versioned refresh may later specify panel changes.
+versioned workflow may later specify panel changes. This descriptive seam is
+not C2 evidence and does not substitute for the authenticated C1 workflow below.
 
 ### 7a. Publish Held-Out Ordering Validation (Release C1)
 
@@ -384,11 +398,49 @@ same-scope registration remains inactive for current-selection purposes until
 an explicit authenticated supersession event names it.
 
 Release C1 ends at evaluation, narrow reporting, optional behavior-neutral
-display, and claim lifecycle governance. Do not use validation outcomes to
-modify panel construction, profiles, weights, allocations, prompts, responses,
-scores, aggregation, or dispatch. Those are not C1 behaviors.
+display, and claim lifecycle governance. C1 itself never modifies panel
+construction, profiles, weights, allocations, prompts, responses, scores,
+aggregation, or dispatch. Release C2 is a separate post-validation route with
+its own diagnosis, candidate, fresh-evidence, approval, and registration gates.
 
-### 7b. Run The Experimental Persona Behavior Calibration Sandbox
+### 7b. Calibrate One Persona Behavior From Real Evidence (Release C2)
+
+Use `references/real-world-persona-behavior-calibration.md` when the user asks
+to refine an existing panel after repeated authenticated Real-World Outcome
+Validation misses. This is a post-validation Panel Builder route, not a seventh
+construction intake route.
+
+Require at least two disjoint authenticated C1 negative packages bound to the
+exact base package. Each diagnostic evaluation must otherwise pass chronology,
+coverage, sample, independence, power, leakage, multiplicity, and repeated-look
+gates. Require a pre-outcome creative-attribute registry, exactly one supported
+existing-persona/one-field hypothesis, and explicit clearance of attribution,
+delivery, landing-page, offer, targeting, timing, and tracking alternatives.
+
+Materialize a complete newer v3 candidate, propagate the one behavioral field
+to every matching grounded profile snapshot, append the experimental
+calibration-history provenance, retain the exact diff, and preserve the base
+panel byte-for-byte. Preserve every segment, structural or overlay weight,
+allocation, capacity rule, prompt, response, score, aggregation rule, and
+unrelated persona.
+
+Package the candidate only through the existing v3 report, audit, workflow,
+and package infrastructure. Standard library registration must reject its C2
+marker. Evaluate the exact candidate package through fresh C1 held-out evidence
+whose study IDs and source hashes do not overlap diagnosis. Require
+`tier4_supported`, every C1 evidence gate, an active exact-scope claim, an exact
+`calibration` approval targeting the sealed registration proposal, and an exact
+`package_registration` approval targeting the candidate package. Only then use
+the gated C2 registration command, which calls the existing immutable audience
+library transaction. It adds one new version and never changes an active
+pointer or any original panel byte.
+
+Keep every claim experimental. A passing fresh evaluation supports use of the
+candidate ordering only in its registered scope; it does not prove the persona
+edit caused the result or establish universal accuracy, CTR, conversion,
+revenue, lift, or human-sample equivalence.
+
+### 7c. Run The Experimental Persona Behavior Calibration Sandbox
 
 This sandbox uses fictional synthetic fixtures to propose and materialize a draft update to one existing persona. It does not validate real-world accuracy, cannot create a reusable package, and cannot register or activate a panel.
 

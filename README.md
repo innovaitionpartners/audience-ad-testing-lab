@@ -34,6 +34,7 @@ Every test needs an audience panel. Choose one of these three routes:
 
 - Before choosing or building the panel, use [Audience Data Lab](skills/audience-data-lab/README.md) only when permissioned CRM or performance data should shape the audience. It releases privacy-reviewed summaries while keeping raw private rows out of prompts and panels.
 - If you plan to run the tested ads in a real campaign, [Real-World Outcome Data Prep](skills/real-world-outcome-data-prep/README.md) records the panel's prediction and campaign plan before launch. After the campaign, it imports the platform's aggregate results and packages both sets of evidence for a separate check of whether the panel's ranking matched what happened. Data Prep does not run that comparison itself.
+- After repeated disjoint authenticated validation misses, [Audience Panel Builder](skills/audience-panel-builder/README.md) has an Experimental Real-World Panel Calibration route that can propose one bounded persona-behavior update, evaluate the complete new candidate against fresh held-out outcomes, and register it as a new version only after exact human approval. It never edits or silently activates the original panel.
 
 Read [How the four capabilities work together](docs/how-it-works.md) for the complete sequence.
 

@@ -1,6 +1,6 @@
 # Calibration and real-world validation
 
-Synthetic testing, real-world outcome validation, and the experimental calibration sandbox are separate evidence lanes.
+Synthetic testing, real-world outcome validation, experimental real-world panel calibration, and the fictional calibration sandbox are separate evidence lanes.
 
 ## Synthetic testing
 
@@ -29,13 +29,19 @@ Only an authenticated passing evaluation can issue a narrow, expiring claim. Neg
 
 Validation does not create a master score, predict absolute performance, or rewrite the original panel, prompts, synthetic responses, scoring, or aggregation.
 
-## Later behavior-calibration proposals
+## Experimental Real-World Panel Calibration
 
-Sufficient fresh real evidence may motivate a bounded proposal about one modeled behavior. That proposal remains separately reviewed and cannot silently modify or activate an audience panel.
+Repeated authenticated validation misses can begin a separate Audience Panel Builder route. It requires at least two disjoint negative validation packages that are bound to the same immutable base package and pass the non-result evidence gates. A creative-attribute registry frozen before outcomes must support exactly one existing-persona, one-field hypothesis, and the review must explicitly clear attribution, delivery, landing-page, offer, targeting, timing, and tracking explanations.
+
+The route diagnoses the repeated miss, proposes one bounded behavior update, and materializes a complete newer panel candidate with an exact diff and provenance. The original panel remains byte-for-byte unchanged. The candidate then needs a new, nonoverlapping held-out Real-World Outcome Validation evaluation. It can be registered as a new version only when the fresh evaluation supports the exact candidate package, every evidence gate passes, the claim remains active, and a human explicitly approves both the sealed calibration proposal and the exact package registration.
+
+This route remains experimental. A passing candidate evaluation supports only the registered ordering and scope. It does not prove that the persona edit caused the result, validate absolute performance, or authorize silent activation.
+
+The older `panel-calibration-refresh-proposal-v1` is a non-executable descriptive seam. It is not calibration evidence and cannot create a candidate. The authoritative route consumes authenticated Real-World Outcome Validation packages instead.
 
 ## Experimental Persona Behavior Calibration Sandbox
 
-The sandbox is an internal known-answer engineering harness. It uses fictional synthetic fixtures and a separately held answer key to test protected engineering mechanics. It can show whether the pipeline detects a known synthetic condition without leaking the answer.
+The sandbox is an internal known-answer engineering harness. It uses fictional synthetic fixtures and a separately held answer key to test protected engineering mechanics. It can show whether the pipeline detects a known synthetic condition without leaking the answer. It does not invoke or authorize the real-evidence route.
 
 It cannot be registered or activated as an audience panel. It also cannot establish:
 
@@ -57,8 +63,10 @@ Synthetic creative stress test
 Aggregate real campaign outcomes
         ↓ eligible held-out validation
 Narrow expiring validation claim, if supported
-        ↓ separate human review
-Possible bounded behavior proposal
+        ↓ repeated disjoint misses + bounded diagnosis
+Complete versioned panel candidate with exact diff
+        ↓ fresh nonoverlapping held-out validation
+Explicit human approval + gated new-version registration
 ```
 
 Each arrow is a governed handoff. No stage silently upgrades the evidence produced by the earlier one.
@@ -66,5 +74,6 @@ Each arrow is a governed handoff. No stage silently upgrades the evidence produc
 ## Related documentation
 
 - [Real-World Outcome Data Prep](../../skills/real-world-outcome-data-prep/README.md)
+- [Audience Panel Builder](../../skills/audience-panel-builder/README.md)
 - [Synthetic evidence and validity](synthetic-evidence-and-validity.md)
 - [Privacy and data boundaries](../reference/privacy-and-data-boundaries.md)
