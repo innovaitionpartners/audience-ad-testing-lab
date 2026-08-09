@@ -76,7 +76,9 @@ See [Outputs and files](../reference/outputs-and-files.md) for which files a mar
 
 Before a new ad study, resolve the exact saved panel version against the new scope. A compatible panel is copied into the run as a hash-bound snapshot. A `needs_refresh` or `incompatible` result stops dispatch; update the research and publish a new version rather than editing the old one.
 
-Repeated authenticated real-world validation misses may instead qualify for Experimental Real-World Panel Calibration. It can change only one supported behavioral field in one existing persona, produces a complete new candidate and exact diff, and requires fresh nonoverlapping validation plus explicit human approval before registration. Read [Calibration and real-world validation](../concepts/calibration-and-real-world-validation.md).
+If the same saved panel repeatedly ranks ads differently from eligible real campaign outcomes, ask Audience Panel Builder to improve the panel from real results. Provide or identify the aggregate campaign-result exports. The workflow routes new exports through Outcome Data Prep and Validation, finds any repeated narrow miss, checks other explanations, and—only when the evidence supports one hypothesis—shows one proposed behavioral change in one existing persona. You do not prepare the evidence packages or edit the panel yourself.
+
+The builder creates a complete new candidate and exact diff, then pauses until you provide aggregate results from a fresh held-out campaign. If the new evidence supports the candidate, the builder asks you to approve the exact change and registration. Registration creates a new version without overwriting or silently activating the original. Read [Calibration and real-world validation](../concepts/calibration-and-real-world-validation.md).
 
 ## What this does not establish
 

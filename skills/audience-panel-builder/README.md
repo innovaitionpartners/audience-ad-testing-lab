@@ -1,6 +1,6 @@
 # Audience Panel Builder
 
-Audience Panel Builder researches and saves a reusable description of the audience that should review your ads. The saved panel contains audience segments and research-supported profiles that Ad Testing Lab can use across multiple creative tests. Its experimental post-validation route can also propose one bounded behavior update after repeated authenticated real-world validation misses, without changing the original panel.
+Audience Panel Builder researches and saves a reusable description of the audience that should review your ads. The saved panel contains audience segments and research-supported profiles that Ad Testing Lab can use across multiple creative tests. It can also propose one narrow behavior update when the same saved panel repeatedly ranks ads differently from eligible real campaign results, without changing the original panel.
 
 ## Where the research comes from
 
@@ -23,7 +23,7 @@ The builder checks whether each source studies the relevant audience and answers
 - You need audience segments, buyer mindsets, or grounded profiles supported by research.
 - You want one approved audience package that can be reused across creative studies.
 - You need to refresh, augment, or audit an existing panel.
-- You have repeated authenticated Real-World Outcome Validation misses and want to evaluate one evidence-supported persona-behavior candidate against fresh held-out outcomes.
+- The same saved panel has repeatedly ranked ads differently from eligible real campaign results and you want to evaluate one evidence-supported persona-behavior change against fresh results.
 - You have approved aggregate evidence from Audience Data Lab.
 - You want the panel to react to or pressure-test ads, newsletter concepts, messages, content, or other creative.
 
@@ -32,9 +32,23 @@ The builder checks whether each source studies the relevant audience and answers
 - Processing raw CRM or performance rows.
 - Changing a panel from one study, descriptive feedback, late creative annotations, or synthetic sandbox evidence.
 
+## Improve an existing panel from real results
+
+Use Experimental Real-World Panel Calibration when an existing saved panel has repeatedly ranked ads differently from eligible real campaign outcomes. The user selects the saved panel and provides or identifies the aggregate campaign-result exports. The surrounding workflow routes any new exports through Real-World Outcome Data Prep and Outcome Validation before Audience Panel Builder receives them. The system handles the rest of the evidence workflow:
+
+1. It resolves the authenticated validation results and looks for the same narrow miss across at least two independent studies of the exact panel version.
+2. It checks whether delivery, tracking, targeting, timing, the offer, the landing page, or attribution better explains the mismatch. It asks the user a targeted factual question only when the available evidence cannot resolve one of those causes.
+3. If exactly one supported persona-behavior explanation remains, it creates a complete new panel candidate and shows the exact before-and-after change. The candidate is not registered and the original panel remains unchanged.
+4. It freezes a new validation plan for the candidate. The user later provides aggregate results from a fresh held-out campaign; the studies used to diagnose the change cannot be reused to evaluate it.
+5. If the fresh results support the candidate and every gate passes, it presents the exact change and exact package for human approval. Approval registers a new version without overwriting or silently activating the original.
+
+The user does not assemble validation packages, registries, JSON contracts, hashes, internal identifiers, authority files, candidate folders, or registration proposals. Those are system-managed records.
+
 ## Inputs
 
-Audience scope, decision, category, geography, buying context, exclusions, research direction, and optional approved aggregate evidence.
+For a new panel: audience scope, decision, category, geography, buying context, exclusions, research direction, and optional approved aggregate evidence.
+
+For Experimental Real-World Panel Calibration: the saved panel, the relevant aggregate campaign-result exports or registered study references, a later fresh held-out result export, any factual answer needed to rule out a non-panel cause, and the user's final approval or rejection. The workflow routes new exports through the proper outcome-intake and validation steps, then materializes and authenticates every internal calibration record.
 
 ## Outputs
 

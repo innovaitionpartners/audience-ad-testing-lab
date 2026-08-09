@@ -1,4 +1,4 @@
-# Experimental Real-World Persona Behavior Calibration
+# Experimental Real-World Panel Calibration
 
 Use this Release C2 route only after Real-World Outcome Validation has produced
 authenticated C1 evidence for an existing reusable v3 panel. This route is
@@ -9,6 +9,14 @@ panel.
 Every C2 output and user-facing summary must say:
 
 > Experimental only. Authenticated real-world outcome evidence supports a bounded persona-behavior hypothesis within the cited scopes; it does not prove causality, universal panel accuracy, or absolute performance.
+
+## User-facing boundary
+
+The user provides or identifies aggregate campaign-result exports for the saved panel, answers a targeted factual question only when a non-panel cause cannot be resolved from available evidence, later provides a fresh held-out result export, and explicitly approves or rejects the exact candidate and package registration. Route any new exports through Real-World Outcome Data Prep and C1 validation before invoking this Panel Builder route; Panel Builder does not process raw performance rows.
+
+The skill owns authentication, repeated-miss discovery, evidence projection, alternative-cause review records, diagnosis, proposal selection, candidate materialization, exact diff and provenance, fresh validation preparation and evaluation, packaging, approval binding, and immutable new-version registration. Do not ask the user to build C1 packages, registries, JSON contracts, hashes, internal IDs, authority files, candidate directories, or registration proposals.
+
+The pre-outcome creative-attribute registry is still a hard gate, but the workflow freezes it during study preparation. If it was not frozen before outcome access, stop; never ask the user to reconstruct or backdate it.
 
 ## Why this is a Panel Builder route
 
@@ -37,11 +45,13 @@ must otherwise pass chronology, coverage, sample, independence, leakage,
 multiplicity, repeated-look, and power gates. Limited, invalid, descriptive,
 in-sample, or unauthenticated evidence cannot diagnose a behavioral miss.
 
-## Operating sequence
+## Skill-executed operating sequence
 
-Run commands from `skills/audience-panel-builder/`. Every output path must be
-new. Keep authority secrets outside the candidate, reports, and reusable
-package.
+The skill executes the following operations from
+`skills/audience-panel-builder/`. The commands document the governed runtime
+sequence for maintainers; they are not customer instructions. Every output
+path must be new. Keep authority secrets outside the candidate, reports, and
+reusable package.
 
 ### 1. Freeze the behavior hypothesis before outcomes
 

@@ -114,6 +114,31 @@ class ExperimentalCalibrationPublicClaimsTests(unittest.TestCase):
             "SKILL sandbox section": skill,
             "rendered sandbox report": report,
         }
+        cls.real_world_surfaces = {
+            "root README": (ROOT / "README.md").read_text(),
+            "Panel Builder README": (
+                ROOT / "skills" / "audience-panel-builder" / "README.md"
+            ).read_text(),
+            "panel-building guide": (
+                ROOT / "docs" / "guides" / "build-an-audience-panel.md"
+            ).read_text(),
+            "real-results guide": (
+                ROOT / "docs" / "guides" / "validate-with-real-results.md"
+            ).read_text(),
+            "calibration concept": (
+                ROOT
+                / "docs"
+                / "concepts"
+                / "calibration-and-real-world-validation.md"
+            ).read_text(),
+            "real-world technical reference": (
+                ROOT
+                / "skills"
+                / "audience-panel-builder"
+                / "references"
+                / "real-world-persona-behavior-calibration.md"
+            ).read_text(),
+        }
 
     def test_public_surfaces_require_exact_fictional_nonregisterable_boundary(self):
         for label, text in self.surfaces.items():
@@ -145,12 +170,65 @@ class ExperimentalCalibrationPublicClaimsTests(unittest.TestCase):
         ):
             self.assertIn(required, report)
 
-    def test_public_surfaces_reject_real_world_and_internal_architecture_claims(self):
+    def test_public_surfaces_preserve_sandbox_and_explain_real_world_user_boundary(self):
         for label, text in self.surfaces.items():
             positive_text = _positive_claim_text(text)
             for pattern in FORBIDDEN:
                 with self.subTest(surface=label, pattern=pattern.pattern):
                     self.assertIsNone(pattern.search(positive_text))
+
+        required_by_surface = {
+            "root README": (
+                "Improve a panel from real campaign results",
+                "You provide or identify the aggregate campaign-result exports.",
+                "The workflow pauses until you run a fresh held-out campaign",
+            ),
+            "Panel Builder README": (
+                "Improve an existing panel from real results",
+                "The system handles the rest of the evidence workflow",
+                "The user does not assemble validation packages",
+            ),
+            "panel-building guide": (
+                "ask Audience Panel Builder to improve the panel from real results",
+                "You do not prepare the evidence packages or edit the panel yourself.",
+            ),
+            "real-results guide": (
+                "### What you do",
+                "### What happens automatically",
+                "provide the result exports, not hand-built calibration files",
+            ),
+            "calibration concept": (
+                "guided two-phase improvement workflow",
+                "The user does not assemble the internal evidence graph",
+            ),
+            "real-world technical reference": (
+                "## User-facing boundary",
+                "The skill owns authentication",
+                "they are not customer instructions",
+            ),
+        }
+        for label, required in required_by_surface.items():
+            text = self.real_world_surfaces[label]
+            for phrase in required:
+                with self.subTest(surface=label, phrase=phrase):
+                    self.assertIn(phrase, text)
+
+        customer_docs = "\n".join(
+            self.real_world_surfaces[label]
+            for label in (
+                "root README",
+                "Panel Builder README",
+                "panel-building guide",
+                "real-results guide",
+                "calibration concept",
+            )
+        )
+        for internal_input in (
+            "--base-panel-package",
+            "--authority-secret-file",
+            "registration_proposal_sha256",
+        ):
+            self.assertNotIn(internal_input, customer_docs)
 
 
 if __name__ == "__main__":

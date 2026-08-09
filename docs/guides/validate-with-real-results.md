@@ -52,6 +52,19 @@ Validation never edits the panel automatically. After repeated authenticated mis
 
 One miss, descriptive outcome feedback, a late explanation, or fictional sandbox data cannot begin this route. The sandbox tests the software mechanics only; it is not evidence that an audience model works in a real market. Even a registered candidate remains explicitly experimental and supports only its narrow validated scope.
 
+### What you do
+
+1. Choose the saved panel and provide or identify the aggregate result exports from the relevant registered studies.
+2. Review the one proposed before-and-after persona change if the workflow finds an eligible repeated miss.
+3. After the candidate is created, run the planned fresh held-out campaign and provide its aggregate result export.
+4. Approve or reject the exact candidate and exact new panel version after the fresh validation is complete.
+
+### What happens automatically
+
+The workflow routes new exports through Outcome Data Prep and Validation. Audience Panel Builder then resolves the authenticated result packages, identifies eligible independent misses, checks alternative campaign explanations, diagnoses at most one supported persona-behavior change, materializes the complete candidate, preserves the diff and provenance, prepares the fresh validation, evaluates the new results, packages the candidate, binds the approvals, and registers the approved new version. You do not create its internal registries, evidence files, hashes, identifiers, authority records, or registration proposal.
+
+The workflow pauses after candidate creation because evidence used to discover a change cannot also validate that change. Fresh held-out results are a real second phase, not another file the system can derive from the original campaigns.
+
 ## Next step
 
-When Data Prep reports that the package is ready, start Real-World Outcome Validation with the saved prediction, campaign plan, original results files, and readiness report. Read [Outputs and files](../reference/outputs-and-files.md) if you need to inspect the files produced at each step.
+When Data Prep reports that the package is ready, start Real-World Outcome Validation with the saved prediction, campaign plan, original results files, and readiness report. If multiple eligible validations show the same bounded miss, ask Audience Panel Builder to improve the saved panel from those results; provide the result exports, not hand-built calibration files. Read [Outputs and files](../reference/outputs-and-files.md) if you need to inspect the files produced at each step.
