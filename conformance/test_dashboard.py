@@ -677,7 +677,7 @@ def attach_v3_allocation_run(
         documents=documents,
         allow_directional=allow_directional,
         creative_count=2 if complete_exposure else 7,
-        maximum_synthetic_panelists=20 if complete_exposure else 40,
+        maximum_synthetic_panelists=40,
         requested_shortlist_size=2 if complete_exposure else 3,
     )
     source_audience = source_resolution.parent

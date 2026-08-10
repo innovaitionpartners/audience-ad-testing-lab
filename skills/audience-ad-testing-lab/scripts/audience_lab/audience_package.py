@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import datetime
 import csv
 import hashlib
 from html import escape
@@ -422,9 +423,16 @@ def _reject_output_symlink_components(path: Path) -> None:
                 raise PackageSafetyError(f"output path contains a symlink component: {current}")
 
 
-def build_audience_package(brief: Mapping[str, Any], panel: Mapping[str, Any], output_dir: Path | str, *, generator_version: str = DEFAULT_GENERATOR_VERSION) -> PackageBuildResult:
+def build_audience_package(
+    brief: Mapping[str, Any],
+    panel: Mapping[str, Any],
+    output_dir: Path | str,
+    *,
+    generator_version: str = DEFAULT_GENERATOR_VERSION,
+    now: datetime | None = None,
+) -> PackageBuildResult:
     """Validate inputs, then atomically materialize a deterministic package directory."""
-    require_valid_audience_research_pair(brief, panel)
+    require_valid_audience_research_pair(brief, panel, now=now)
     if generator_version not in SUPPORTED_GENERATOR_VERSIONS:
         supported = ", ".join(sorted(SUPPORTED_GENERATOR_VERSIONS))
         raise PackageValidationError(
@@ -451,7 +459,7 @@ def build_audience_package(brief: Mapping[str, Any], panel: Mapping[str, Any], o
         for name in ARCHIVE_FILES:
             _atomic_write(stage / name, files[name])
         _atomic_write(stage / "audience-panel-package.zip", zip_data)
-        validate_package_archive(stage / "audience-panel-package.zip")
+        validate_package_archive(stage / "audience-panel-package.zip", now=now)
         if root.exists():
             root.rmdir()
         os.replace(stage, root)
@@ -678,7 +686,11 @@ def _validate_manifest(value: Any) -> Mapping[str, Any]:
     return value
 
 
-def validate_package_archive(source: Path | str | bytes | bytearray | BinaryIO) -> dict[str, Any]:
+def validate_package_archive(
+    source: Path | str | bytes | bytearray | BinaryIO,
+    *,
+    now: datetime | None = None,
+) -> dict[str, Any]:
     """Validate an untrusted portable ZIP without extracting it."""
     raw = _archive_bytes(source)
     files = _safe_read_package_archive(raw)
@@ -699,7 +711,7 @@ def validate_package_archive(source: Path | str | bytes | bytearray | BinaryIO) 
     if files["persona-research-brief.json"] != canonical_brief or files["saved-audience-panel.json"] != canonical_panel:
         raise PackageValidationError("brief and panel must use canonical JSON encoding")
     try:
-        require_valid_audience_research_pair(brief, panel)
+        require_valid_audience_research_pair(brief, panel, now=now)
     except AudienceResearchValidationError as exc:
         raise PackageValidationError(f"brief/panel validation failed: {exc}") from exc
     if (manifest["panel_id"], manifest["panel_version"], manifest["brief_id"]) != (panel["panel_id"], panel["version"], brief["brief_id"]):
@@ -731,11 +743,13 @@ def validate_package_archive(source: Path | str | bytes | bytearray | BinaryIO) 
 
 def read_validated_package_archive(
     source: Path | str | bytes | bytearray | BinaryIO,
+    *,
+    now: datetime | None = None,
 ) -> dict[str, object]:
     """Read, validate, and return one immutable archive-byte snapshot."""
 
     archive_bytes = _archive_bytes(source)
-    validation = validate_package_archive(archive_bytes)
+    validation = validate_package_archive(archive_bytes, now=now)
     members = _safe_read_package_archive(archive_bytes)
     return {
         "archive_bytes": archive_bytes,

@@ -3248,6 +3248,7 @@ def validate_audience_research_v3(
     panel_review_manifest_sha256: str | None = None,
     current_report_inputs_sha256: str | None = None,
     current_report_manifest_sha256: str | None = None,
+    now: datetime | None = None,
 ) -> tuple[dict[str, object] | None, ...]:
     """Validate v3 documents, unchanged v2 semantics, and all source bindings."""
 
@@ -3255,7 +3256,7 @@ def validate_audience_research_v3(
     canonical_panel = _validate_v3_panel(panel)
     v2_brief = _v2_projection(canonical_brief, brief=True)
     v2_panel = _v2_projection(canonical_panel, brief=False)
-    require_valid_audience_research_pair(v2_brief, v2_panel)
+    require_valid_audience_research_pair(v2_brief, v2_panel, now=now)
     v2_brief_sha256 = _sha256_json(v2_brief).removeprefix("sha256:")
     v2_panel_sha256 = _sha256_json(v2_panel).removeprefix("sha256:")
 

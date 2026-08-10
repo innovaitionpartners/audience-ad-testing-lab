@@ -15,6 +15,7 @@ import json
 import math
 import os
 import stat
+import sys
 from itertools import combinations
 from pathlib import Path
 from typing import Mapping, Sequence
@@ -339,17 +340,18 @@ def _read_snapshot_bytes(path: Path, *, label: str) -> bytes:
     if not isinstance(path, Path) or not path.is_absolute():
         raise ContractError(f"{label} path must be absolute")
     # Darwin exposes these two system aliases as symlinks.  Canonicalize only
-    # the fixed OS aliases; never resolve a caller-controlled path.
-    for alias, canonical in (
-        (Path("/var"), Path("/private/var")),
-        (Path("/tmp"), Path("/private/tmp")),
-    ):
-        try:
-            relative = path.relative_to(alias)
-        except ValueError:
-            continue
-        path = canonical / relative
-        break
+    # the fixed OS aliases on Darwin; never resolve a caller-controlled path.
+    if sys.platform == "darwin":
+        for alias, canonical in (
+            (Path("/var"), Path("/private/var")),
+            (Path("/tmp"), Path("/private/tmp")),
+        ):
+            try:
+                relative = path.relative_to(alias)
+            except ValueError:
+                continue
+            path = canonical / relative
+            break
     components = path.parts[1:]
     if not components or any(item in {"", ".", ".."} for item in components):
         raise ContractError(f"{label} path is unsafe")

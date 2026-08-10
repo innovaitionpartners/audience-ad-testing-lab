@@ -75,7 +75,7 @@ PROTECTED_PRE_B2_SHA256 = {
         "0d09f97de44254c4419f2b24fcd11e997333b7a11cfc2c8de54cd2d1afbbd2c2"
     ),
     "maxdiff_results": (
-        "8eedc77965325924a2db9bda368e75acb8a44fa59751238bb6c095079aaef4d0"
+        "ab17525b481fd6c7dccb03a9095cde89cc4cfe56088934f033171409094413d1"
     ),
     "pairwise_results": (
         "dc3d8c45650bf0ee4b80ec2754797b8bc387eca1830d2c34e0a8f480b063f8bc"
@@ -95,7 +95,7 @@ GOLDEN_V3_PACKAGE_SHA256 = {
         "20d4ea51d92120dfa804cb937ef5619dacfde14121cc7c0ec16f907d056d993a"
     ),
     "authorized-tier-3": (
-        "ea726f4cfbc90f087a8e7ac0b66c0899ac6d1eb4f4f766249542955568682a9f"
+        "53dacc903ffde34141498f31085bfaaa641a21d224968fc6e8d3dae80a3ca94e"
     ),
 }
 

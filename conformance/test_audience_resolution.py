@@ -41,11 +41,12 @@ class AudienceResolutionTest(unittest.TestCase):
             for key in ("audience", "market", "geography", "category", "buying_context", "exclusions")
         }
 
-    def _package(self, root: Path, *, brief=None, panel=None):
+    def _package(self, root: Path, *, brief=None, panel=None, now=None):
         return build_audience_package(
             self.brief if brief is None else brief,
             self.panel if panel is None else panel,
             root,
+            now=now,
         )
 
     def test_intake_routes_are_exact_and_mutually_exclusive(self) -> None:
@@ -262,7 +263,12 @@ class AudienceResolutionTest(unittest.TestCase):
                 expires_at="2026-07-30T12:00:00Z", source_types=[], evidence_ids=[],
                 source_state="no_research_sources", coverage=brief["coverage"],
             )
-            package = self._package(base / "provisional", brief=brief, panel=panel)
+            package = self._package(
+                base / "provisional",
+                brief=brief,
+                panel=panel,
+                now=datetime(2026, 7, 22, tzinfo=timezone.utc),
+            )
             with self.assertRaises(AudienceResolutionBlocked) as caught:
                 resolve_audience_panel(
                     {"source": "file", "package_path": str(package.package_zip_path)},

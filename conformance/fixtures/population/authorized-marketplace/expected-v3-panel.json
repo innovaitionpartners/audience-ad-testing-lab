@@ -12,12 +12,12 @@
   },
   "audit_binding": {
     "applicability": "release_b1",
-    "audit_sha256": "656f1dd13fc79a592142fc38652e37f45a794e02141ba829a592e846c89c9dc3",
+    "audit_sha256": "8330d2071bb7d2c6423fe61296ec48f1bb6eb299e091b98d0945291d386adfe8",
     "auditor_run_id": "fictional-marketplace-construction-audit",
     "evidence_ledger_sha256": "c9d2c4dfb433569a9b8a93336fefcd410a43ba6c9ffa730f2fec61ce069a875c",
     "finding_support_sha256": "7d643d447b7d71b79b29606072de48ca9ec144d0371545d2f1ea8bd2abd17c8d",
-    "report_inputs_sha256": "28e0b51a6641d07d835a6de78a0c87fdd609d350aa7f0b70f7e3d8c487e26c9c",
-    "report_manifest_sha256": "6e4a8a20352da37090655df49aaf295df240fa7610e2a78b43e83e92c276cc1e",
+    "report_inputs_sha256": "8c19dcb8dc78190500fc665cb0e76afb9d54dd77e69d14c4342d07505c2201dc",
+    "report_manifest_sha256": "b85e0d974f8887dc970b9fdfcd83560715ab79254b4c9df09050b6cab50dc9d8",
     "synthesis_matrix_sha256": "48b78564d9db3fdc0e99e1618bff4b5a470c1d6217ef58cbbdc839bd9bdd60a5"
   },
   "authorized_handoff_sha256": "sha256:0351f2e144782b7accc5f101c480ebf3f84a93620edb60efa9f740e07c3028cf",
@@ -368,6 +368,6 @@
     }
   ],
   "updated_at": "2026-07-02T12:00:00Z",
-  "validity_profile_sha256": "sha256:4572cdbd5f7a1e134fc53454a9610dde0c0bea0c70412b16c39b1a2fc4395782",
+  "validity_profile_sha256": "sha256:5e00250875ef9a053e303913a42b5f0ef3ac7dd5f9ccc78f40347d09c63a3b1f",
   "version": "1.0.0"
 }

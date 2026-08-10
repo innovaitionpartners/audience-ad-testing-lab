@@ -65,7 +65,7 @@ EXPECTED_PROTECTED_PRE_C1_SHA256 = {
     "validated_response": "cf84bd3d0cd4ef8826e48af6526bc00ec7c378a0842f423135389a043f743ef3",
     "retry_decisions": "f3ee2c7ce53f9de798c537bd6eae43c545bc52f1ce7f2ec9cdbf9fe83030976c",
     "complete_exposure_scores": "0d09f97de44254c4419f2b24fcd11e997333b7a11cfc2c8de54cd2d1afbbd2c2",
-    "maxdiff_results": "8eedc77965325924a2db9bda368e75acb8a44fa59751238bb6c095079aaef4d0",
+    "maxdiff_results": "ab17525b481fd6c7dccb03a9095cde89cc4cfe56088934f033171409094413d1",
     "pairwise_results": "dc3d8c45650bf0ee4b80ec2754797b8bc387eca1830d2c34e0a8f480b063f8bc",
     "finalist_summaries": "6bff1388fb0e286451cb29d550c856ed33bd83afb65d574d372be22dccc89bd1",
     "verbatim_extraction": "b03f32502d699e5ffea9efffd82184f5bbc72c5f2f358e81def560c99cbf6bf1",

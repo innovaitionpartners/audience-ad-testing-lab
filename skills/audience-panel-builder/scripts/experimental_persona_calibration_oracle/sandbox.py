@@ -2365,17 +2365,22 @@ def _linux_vector(
         vector.extend(["--ro-bind", str(path), str(path)])
     for path in admitted:
         vector.extend(["--ro-bind", str(path), str(path)])
-    vector.extend(
-        [
-            "--bind",
-            str(output_stage.parent if output_is_directory else output_stage),
-            str(output_stage.parent if output_is_directory else output_stage),
-            "--chdir",
-            "/",
-            "--",
-            *child,
-        ]
-    )
+    if output_is_directory:
+        vector.extend(["--bind", str(output_stage), str(output_stage)])
+    else:
+        # Keep the staged parent read-only so sibling creates cannot escape the
+        # single allowed output file, matching the macOS literal-write profile.
+        vector.extend(
+            [
+                "--ro-bind",
+                str(output_stage.parent),
+                str(output_stage.parent),
+                "--bind",
+                str(output_stage),
+                str(output_stage),
+            ]
+        )
+    vector.extend(["--chdir", "/", "--", *child])
     return vector
 
 

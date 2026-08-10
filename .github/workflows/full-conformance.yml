@@ -54,6 +54,7 @@ jobs:
         run: |
           python3 - <<'PY'
           import stat
+          import subprocess
           import sys
           import sysconfig
           from pathlib import Path
@@ -65,7 +66,17 @@ jobs:
               Path(sysconfig.get_path("platstdlib")).resolve(strict=True),
           }
           for path in paths:
-              path.chmod(stat.S_IMODE(path.stat().st_mode) & ~0o022)
+              mode = stat.S_IMODE(path.stat().st_mode)
+              desired = mode & ~0o022
+              if mode == desired:
+                  continue
+              try:
+                  path.chmod(desired)
+              except PermissionError:
+                  # macOS setup-python installs into a root-owned Framework tree.
+                  subprocess.check_call(["sudo", "chmod", "go-w", str(path)])
+                  if stat.S_IMODE(path.stat().st_mode) & 0o022:
+                      raise SystemExit(f"failed to seal runtime path: {path}")
           PY
 
       - name: Run full conformance suite
@@ -142,6 +153,7 @@ jobs:
         run: |
           python3 - <<'PY'
           import stat
+          import subprocess
           import sys
           import sysconfig
           from pathlib import Path
@@ -153,7 +165,17 @@ jobs:
               Path(sysconfig.get_path("platstdlib")).resolve(strict=True),
           }
           for path in paths:
-              path.chmod(stat.S_IMODE(path.stat().st_mode) & ~0o022)
+              mode = stat.S_IMODE(path.stat().st_mode)
+              desired = mode & ~0o022
+              if mode == desired:
+                  continue
+              try:
+                  path.chmod(desired)
+              except PermissionError:
+                  # macOS setup-python installs into a root-owned Framework tree.
+                  subprocess.check_call(["sudo", "chmod", "go-w", str(path)])
+                  if stat.S_IMODE(path.stat().st_mode) & 0o022:
+                      raise SystemExit(f"failed to seal runtime path: {path}")
           PY
 
       - name: Run real producer replay and denied-second-write gates
@@ -211,6 +233,7 @@ jobs:
         run: |
           python3 - <<'PY'
           import stat
+          import subprocess
           import sys
           import sysconfig
           from pathlib import Path
@@ -222,7 +245,17 @@ jobs:
               Path(sysconfig.get_path("platstdlib")).resolve(strict=True),
           }
           for path in paths:
-              path.chmod(stat.S_IMODE(path.stat().st_mode) & ~0o022)
+              mode = stat.S_IMODE(path.stat().st_mode)
+              desired = mode & ~0o022
+              if mode == desired:
+                  continue
+              try:
+                  path.chmod(desired)
+              except PermissionError:
+                  # macOS setup-python installs into a root-owned Framework tree.
+                  subprocess.check_call(["sudo", "chmod", "go-w", str(path)])
+                  if stat.S_IMODE(path.stat().st_mode) & 0o022:
+                      raise SystemExit(f"failed to seal runtime path: {path}")
           PY
 
       - name: Run real producer replay and denied-second-write gates

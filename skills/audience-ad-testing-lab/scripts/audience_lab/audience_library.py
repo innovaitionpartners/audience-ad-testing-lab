@@ -1012,7 +1012,10 @@ def materialize_provisional_audience(
 
 
 def _package_for_source(
-    source: Mapping[str, Any], library_root: Path | str | None
+    source: Mapping[str, Any],
+    library_root: Path | str | None,
+    *,
+    now: datetime | None = None,
 ) -> tuple[bytes, dict[str, Any], dict[str, bytes]]:
     intake = validate_audience_intake({"audience_panel": source})["value"]
     if intake["source"] == "library":
@@ -1028,7 +1031,7 @@ def _package_for_source(
             raise LibrarySafetyError("portable package must be a real ZIP file")
     try:
         raw = _archive_bytes(package_path)
-        validation = validate_package_archive(raw)
+        validation = validate_package_archive(raw, now=now)
         files = _safe_read_package_archive(raw)
     except PackageSafetyError as exc:
         raise LibrarySafetyError(str(exc)) from exc
@@ -1172,7 +1175,9 @@ def resolve_audience_panel(
     if current.tzinfo is None or current.utcoffset() is None:
         raise ValueError("now must include a timezone")
     current = current.astimezone(timezone.utc)
-    raw, validation, files = _package_for_source(source, library_root)
+    raw, validation, files = _package_for_source(
+        source, library_root, now=current
+    )
     panel = json.loads(files["saved-audience-panel.json"].decode("utf-8"))
     status, reasons = _compare_scope(
         panel, scope, now=current, explicit_refresh_triggers=triggers
