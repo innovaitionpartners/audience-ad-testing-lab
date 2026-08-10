@@ -34,7 +34,13 @@ Every test needs an audience panel. Choose one of these three routes:
 
 - Before choosing or building the panel, use [Audience Data Lab](skills/audience-data-lab/README.md) only when permissioned CRM or performance data should shape the audience. It releases privacy-reviewed summaries while keeping raw private rows out of prompts and panels.
 - If you plan to run the tested ads in a real campaign, [Real-World Outcome Data Prep](skills/real-world-outcome-data-prep/README.md) records the panel's prediction and campaign plan before launch. After the campaign, it imports the platform's aggregate results and packages both sets of evidence for a separate check of whether the panel's ranking matched what happened. Data Prep does not run that comparison itself.
-- After repeated disjoint authenticated validation misses, [Audience Panel Builder](skills/audience-panel-builder/README.md) has an Experimental Real-World Panel Calibration route that can propose one bounded persona-behavior update, evaluate the complete new candidate against fresh held-out outcomes, and register it as a new version only after exact human approval. It never edits or silently activates the original panel.
+- When the same saved panel repeatedly ranks ads differently from eligible real campaign results, [Audience Panel Builder](skills/audience-panel-builder/README.md) can propose one narrow persona-behavior update, evaluate the complete new candidate against fresh results, and register it as a new version only after exact human approval. It never edits or silently activates the original panel.
+
+### Improve a panel from real campaign results
+
+Use Experimental Real-World Panel Calibration when the same saved panel has repeatedly ranked ads differently from what happened in eligible real campaigns. You provide or identify the aggregate campaign-result exports. The workflow routes new exports through Real-World Outcome Data Prep and Outcome Validation, confirms that the miss repeats across independent studies, checks whether delivery, tracking, targeting, timing, the offer, the landing page, or attribution better explains it, and—only when one narrow explanation survives—has Audience Panel Builder show you one proposed behavior change in one existing persona.
+
+The system then creates a complete new panel candidate and shows the exact before-and-after diff. It does not edit or register the original panel. Because the earlier results were used to diagnose the change, they cannot also prove that the new candidate works. The workflow pauses until you run a fresh held-out campaign and provide its aggregate results. If that separate validation supports the candidate and every evidence gate passes, the system asks you to approve the exact change and the exact new panel version. Approval registers a new version without overwriting or silently activating anything.
 
 Read [How the four capabilities work together](docs/how-it-works.md) for the complete sequence.
 
@@ -60,7 +66,7 @@ See the complete [end-to-end lifecycle](docs/how-it-works.md) or go directly to 
 - The campaign decision, goal, funnel stage, offer, audience, buying context, and success metric.
 - Enough direction to research a panel, a plain-language audience description for a provisional one-run panel, or a saved panel you created earlier.
 - Optional permissioned CRM or performance data for Audience Data Lab to summarize before panel building. Raw rows remain inside that controlled workflow.
-- Optional original results files exported from the ad platform after a campaign. These files must contain totals by ad rather than person-level rows, and the prediction and campaign plan must have been recorded before launch.
+- Optional original results files exported from the ad platform after a campaign. These files must contain totals by ad rather than person-level rows, and the prediction and campaign plan must have been recorded before launch. For experimental panel calibration, you provide the eligible result exports that show the repeated miss and later provide a separate fresh held-out result export; the system prepares the calibration evidence and candidate.
 - Inspectable imagery for image, carousel, or represented-video studies.
 
 Ad Testing Lab does not silently convert strategy notes, landing-page fragments, or message ideas into test-ready ads. The exact creative roster must be supplied or explicitly confirmed before testing.
@@ -74,6 +80,7 @@ Ad Testing Lab does not silently convert strategy notes, landing-page fragments,
 - A self-contained HTML dashboard with marketer-facing conclusions and downloadable source exports.
 - After you approve the finalists, heatmaps showing which parts of each image receive the most visual emphasis.
 - An optional validation package containing the panel's saved prediction, campaign plan, aggregate platform results, and reports showing whether the files are complete and each result maps to the correct ad.
+- For an eligible experimental calibration, a review of the repeated miss, one proposed persona-behavior change, the exact before-and-after diff, a complete new panel candidate, its fresh validation result, and the final approval request.
 
 Read [Outputs and files](docs/reference/outputs-and-files.md) for what each HTML, CSV, JSON, ZIP, and dashboard download is for.
 

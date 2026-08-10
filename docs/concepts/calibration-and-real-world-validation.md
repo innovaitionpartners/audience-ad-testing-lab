@@ -31,6 +31,8 @@ Validation does not create a master score, predict absolute performance, or rewr
 
 ## Experimental Real-World Panel Calibration
 
+From the user's perspective, this is a guided two-phase improvement workflow. The user selects the saved panel and provides or identifies aggregate results from eligible completed studies. Audience Panel Builder determines whether those results show a repeated panel-behavior miss, creates at most one bounded candidate, and shows the exact change. The user later provides aggregate results from a fresh held-out campaign and approves or rejects the exact new version. The user does not assemble the internal evidence graph or modify panel files.
+
 Repeated authenticated validation misses can begin a separate Audience Panel Builder route. It requires at least two disjoint negative validation packages that are bound to the same immutable base package and pass the non-result evidence gates. A creative-attribute registry frozen before outcomes must support exactly one existing-persona, one-field hypothesis, and the review must explicitly clear attribution, delivery, landing-page, offer, targeting, timing, and tracking explanations.
 
 The route diagnoses the repeated miss, proposes one bounded behavior update, and materializes a complete newer panel candidate with an exact diff and provenance. The original panel remains byte-for-byte unchanged. The candidate then needs a new, nonoverlapping held-out Real-World Outcome Validation evaluation. It can be registered as a new version only when the fresh evaluation supports the exact candidate package, every evidence gate passes, the claim remains active, and a human explicitly approves both the sealed calibration proposal and the exact package registration.
