@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 from copy import deepcopy
+from datetime import datetime
 import hashlib
 import json
 import math
@@ -896,13 +897,14 @@ def migrate_v2_to_v3(
     migrated_at: str,
     migrated_by: str,
     output_dir: Path,
+    now: datetime | None = None,
 ) -> dict[str, object]:
     """Migrate one exact v2 archive to five unpackaged, honest Tier 1 documents."""
 
     require_timestamp(migrated_at, "migrated_at")
     require_string(migrated_by, "migrated_by")
     try:
-        snapshot = read_validated_package_archive(v2_package_path)
+        snapshot = read_validated_package_archive(v2_package_path, now=now)
     except ValueError as exc:
         raise ContractError(f"v2 package validation failed: {exc}") from exc
     raw_package = snapshot["archive_bytes"]
@@ -952,6 +954,7 @@ def migrate_v2_to_v3(
         require_valid_audience_research_pair(
             migrated_brief_v2,
             migrated_panel_v2,
+            now=now,
         )
     except ValueError as exc:
         raise ContractError(
@@ -1120,7 +1123,7 @@ def migrate_v2_to_v3(
         "package_status": "unpackaged",
     }
     try:
-        panel_v3 = validate_saved_panel_v3(panel_v3)
+        panel_v3 = validate_saved_panel_v3(panel_v3, now=now)
     except ValueError as exc:
         raise ContractError(str(exc)) from exc
 
@@ -1141,6 +1144,7 @@ def migrate_v2_to_v3(
             validity=validity,
             workflow_state=None,
             construction_audit=None,
+            now=now,
         )
     except ValueError as exc:
         raise ContractError(str(exc)) from exc

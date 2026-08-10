@@ -62,7 +62,9 @@ PRIVATE_STAGE_SETUP_MARKERS = (
     'test -x /usr/bin/bwrap',
     'stat -c \'%u\' /usr/bin/bwrap',
     "Seal the private-stage Python runtime",
-    "stat.S_IMODE(path.stat().st_mode) & ~0o022",
+    "stat.S_IMODE(path.stat().st_mode)",
+    "desired = mode & ~0o022",
+    'subprocess.check_call(["sudo", "chmod", "go-w", str(path)])',
 )
 FULL_CONFORMANCE_MARKERS = (
     "workflow_dispatch",
@@ -71,7 +73,9 @@ FULL_CONFORMANCE_MARKERS = (
     'test -x /usr/bin/bwrap',
     'stat -c \'%u\' /usr/bin/bwrap',
     "Seal the private-stage Python runtime",
-    "stat.S_IMODE(path.stat().st_mode) & ~0o022",
+    "stat.S_IMODE(path.stat().st_mode)",
+    "desired = mode & ~0o022",
+    'subprocess.check_call(["sudo", "chmod", "go-w", str(path)])',
     "python3 -m unittest discover -s conformance -p 'test_*.py' -v",
     "env -u PYTHONPATH python3 conformance/run_large_library_e2e.py",
     "Verify two-study reuse proof",

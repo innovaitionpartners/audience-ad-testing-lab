@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+from datetime import datetime, timezone
 import io
 import json
 from pathlib import Path
@@ -34,12 +35,13 @@ class AudiencePackageTest(unittest.TestCase):
         self.brief = json.loads((FIXTURES / "approved-brief.json").read_text())
         self.panel = json.loads((FIXTURES / "approved-panel.json").read_text())
 
-    def _build(self, directory: Path, brief=None, panel=None):
+    def _build(self, directory: Path, brief=None, panel=None, *, now=None):
         return build_audience_package(
             self.brief if brief is None else brief,
             self.panel if panel is None else panel,
             directory,
             generator_version="1.0.0",
+            now=now,
         )
 
     def test_build_is_byte_deterministic_and_archive_validates(self) -> None:
@@ -162,7 +164,12 @@ class AudiencePackageTest(unittest.TestCase):
             source_types=[], evidence_ids=[], source_state="no_research_sources", coverage=brief["coverage"],
         )
         with tempfile.TemporaryDirectory() as temp:
-            result = self._build(Path(temp), brief, panel)
+            result = self._build(
+                Path(temp),
+                brief,
+                panel,
+                now=datetime(2026, 7, 22, 12, 0, tzinfo=timezone.utc),
+            )
             self.assertEqual(result.sources_csv_path.read_text().count("\n"), 1)
             self.assertIn("Provisional — no research sources", result.report_path.read_text())
 

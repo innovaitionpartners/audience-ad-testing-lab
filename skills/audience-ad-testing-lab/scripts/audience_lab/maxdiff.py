@@ -26,6 +26,32 @@ _MINIMUM_SUCCESSFUL_FIT_FLOOR = 0.95
 _CLEAR_FINALIST_THRESHOLD = 0.90
 _CLEAR_NON_FINALIST_THRESHOLD = 0.10
 _MINIMUM_UTILITY_TIE_TOLERANCE = 1e-12
+_SERIALIZED_FLOAT_DIGITS = 8
+
+
+def _canonical_float(value: float | None) -> float | None:
+    """Snap finite floats to a portable decimal grid for durable JSON identity."""
+
+    if value is None:
+        return None
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise TypeError("value must be a finite number")
+    number = float(value)
+    if not math.isfinite(number):
+        raise ValueError("value must be a finite number")
+    return float(f"{number:.{_SERIALIZED_FLOAT_DIGITS}f}")
+
+
+def _stabilize_json_floats(value: Any) -> Any:
+    if isinstance(value, float):
+        return _canonical_float(value)
+    if isinstance(value, dict):
+        return {key: _stabilize_json_floats(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_stabilize_json_floats(item) for item in value]
+    if isinstance(value, tuple):
+        return [_stabilize_json_floats(item) for item in value]
+    return value
 
 
 @dataclass(frozen=True)
@@ -121,20 +147,22 @@ class MaxDiffFit:
     creative_count: int
 
     def as_dict(self) -> dict[str, Any]:
-        return {
-            "utilities": dict(self.utilities),
-            "ranked_ids": list(self.ranked_ids),
-            "success": self.success,
-            "connected": self.connected,
-            "identified": self.identified,
-            "converged": self.converged,
-            "loss": self.loss,
-            "projected_gradient_norm": self.projected_gradient_norm,
-            "iterations": self.iterations,
-            "message": self.message,
-            "observation_count": self.observation_count,
-            "creative_count": self.creative_count,
-        }
+        return _stabilize_json_floats(
+            {
+                "utilities": dict(self.utilities),
+                "ranked_ids": list(self.ranked_ids),
+                "success": self.success,
+                "connected": self.connected,
+                "identified": self.identified,
+                "converged": self.converged,
+                "loss": self.loss,
+                "projected_gradient_norm": self.projected_gradient_norm,
+                "iterations": self.iterations,
+                "message": self.message,
+                "observation_count": self.observation_count,
+                "creative_count": self.creative_count,
+            }
+        )
 
 
 @dataclass(frozen=True)
@@ -153,25 +181,27 @@ class ScreeningResult:
     recovery_config_version: str
 
     def as_dict(self) -> dict[str, Any]:
-        return {
-            "estimand": "centered_protocol_relative_log_utility",
-            "stability_diagnostic": "conditional_within_run_top_k_inclusion_frequency",
-            "requested_top_k": self.requested_top_k,
-            "utilities": dict(self.utilities),
-            "ranked_ids": list(self.ranked_ids),
-            "top_k_inclusion_frequencies": dict(self.top_k_inclusion_frequencies),
-            "classifications": dict(self.classifications),
-            "archetype_sensitivity": self.archetype_sensitivity,
-            "model_diagnostics": self.diagnostics,
-            "recovery_config_version": self.recovery_config_version,
-            "validity_status": self.validity_status,
-            "validity_reasons": list(self.validity_reasons),
-            "interpretation_limits": [
-                "Utilities are centered and protocol-relative.",
-                "Conditional stability reflects this synthetic model-call run only.",
-                "Results do not establish human-response or campaign-performance validity.",
-            ],
-        }
+        return _stabilize_json_floats(
+            {
+                "estimand": "centered_protocol_relative_log_utility",
+                "stability_diagnostic": "conditional_within_run_top_k_inclusion_frequency",
+                "requested_top_k": self.requested_top_k,
+                "utilities": dict(self.utilities),
+                "ranked_ids": list(self.ranked_ids),
+                "top_k_inclusion_frequencies": dict(self.top_k_inclusion_frequencies),
+                "classifications": dict(self.classifications),
+                "archetype_sensitivity": self.archetype_sensitivity,
+                "model_diagnostics": self.diagnostics,
+                "recovery_config_version": self.recovery_config_version,
+                "validity_status": self.validity_status,
+                "validity_reasons": list(self.validity_reasons),
+                "interpretation_limits": [
+                    "Utilities are centered and protocol-relative.",
+                    "Conditional stability reflects this synthetic model-call run only.",
+                    "Results do not establish human-response or campaign-performance validity.",
+                ],
+            }
+        )
 
 
 def maxdiff_loss_and_gradient(

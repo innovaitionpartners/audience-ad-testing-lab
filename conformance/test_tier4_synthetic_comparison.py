@@ -1234,6 +1234,9 @@ class RealProducerWorld:
                 "creative_sha256": creative_sha,
             } for creative_id, creative_sha in sorted(hashes.items())],
         }
+        sealed_at = str(record["sealed_at"])
+        if str(registration["registered_at"]) < sealed_at:
+            registration["registered_at"] = sealed_at
         compact = {
             "surface": surface,
             "run_id": record["run_id"],
@@ -2241,6 +2244,8 @@ class Tier4SyntheticComparisonTests(unittest.TestCase):
                 )
             ],
         }
+        if str(registration["registered_at"]) < str(snapshot.frozen_at):
+            registration["registered_at"] = snapshot.frozen_at
         compact = {
             "surface": "complete_exposure_ordering",
             "run_id": "run-001",

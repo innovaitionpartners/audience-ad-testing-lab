@@ -44,7 +44,7 @@
   "predeclared_validation_design": null,
   "schema_version": "panel-validity-profile-v1",
   "source_bindings": {
-    "brief_sha256": "sha256:88b653e24d70e5dbf465cb46a6fe961f3812cc0097efe369ba8dd85aa4e861d8",
+    "brief_sha256": "sha256:2c3b1e0b84c864b1778c9c55edf6c796858a95220be7600efdc0f33636eae117",
     "composition_sha256": "sha256:3eacc026347364e07cfd5b7a77591c68eb6f646e8e535580d5dd6aa56a1c4c02",
     "frame_result_sha256": "sha256:132bd04ae85ca30105e0f37236e607610a6ab235c3916844ab93d73bbbf59ddc",
     "frame_sha256": "sha256:132bd04ae85ca30105e0f37236e607610a6ab235c3916844ab93d73bbbf59ddc",

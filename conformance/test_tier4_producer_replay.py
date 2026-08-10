@@ -494,7 +494,12 @@ class Tier4ProducerReplayTests(unittest.TestCase):
     def test_trusted_provider_rejects_unknown_os_path_lookup_and_bad_metadata(self):
         with self.assertRaises(ProducerRuntimeUnavailable):
             _trusted_provider(platform_system="Plan9")
-        good = os.stat("/usr/bin/sandbox-exec", follow_symlinks=False)
+        try:
+            good = os.stat("/usr/bin/sandbox-exec", follow_symlinks=False)
+        except FileNotFoundError:
+            # Linux CI has bwrap, not sandbox-exec. Fabricate a plausible
+            # Darwin provider mode so the metadata-mutation cases still run.
+            good = os.stat_result((stat.S_IFREG | 0o755, 0, 0, 1, 0, 0, 0, 0, 0, 0))
         for changed in (
             {"st_uid": 501},
             {"st_mode": good.st_mode | 0o022},

@@ -210,7 +210,7 @@
         "evidence-cohort-structure"
       ],
       "finding_id": "finding-cohort-structure",
-      "inference_boundary": "Exact only for the fixed authorized cohort denominator.",
+      "inference_boundary": "Exact only for the fixed authorized cohort denominator. Evidence scope: cross-audience.",
       "statement": "The authorized cohort contains distinct operations and finance structural groups."
     },
     {
@@ -224,7 +224,7 @@
         "social-evidence-operations"
       ],
       "finding_id": "finding-operations",
-      "inference_boundary": "Qualitative aggregate theme, not prevalence.",
+      "inference_boundary": "Qualitative aggregate theme, not prevalence. Evidence scope: cohort:operations-sellers.",
       "statement": "Operational reliability is a topic-bound concern."
     },
     {
@@ -238,7 +238,7 @@
         "social-evidence-pricing"
       ],
       "finding_id": "finding-pricing",
-      "inference_boundary": "Qualitative aggregate theme, not prevalence.",
+      "inference_boundary": "Qualitative aggregate theme, not prevalence. Evidence scope: cohort:finance-sellers.",
       "statement": "Pricing clarity is a topic-bound concern."
     },
     {
@@ -252,7 +252,7 @@
         "social-evidence-returns"
       ],
       "finding_id": "finding-returns",
-      "inference_boundary": "Qualitative aggregate theme, not prevalence.",
+      "inference_boundary": "Qualitative aggregate theme, not prevalence. Evidence scope: cohort:finance-sellers.",
       "statement": "Returns handling is a topic-bound concern."
     },
     {
@@ -266,7 +266,7 @@
         "social-evidence-customer-service"
       ],
       "finding_id": "finding-customer-service",
-      "inference_boundary": "Qualitative aggregate theme, not prevalence.",
+      "inference_boundary": "Qualitative aggregate theme, not prevalence. Evidence scope: cohort:operations-sellers.",
       "statement": "Customer-service responsiveness is a topic-bound concern."
     }
   ],
@@ -295,7 +295,7 @@
     {
       "scope": "evidence-synthesis",
       "status": "approved",
-      "target_sha256": "sha256:88b653e24d70e5dbf465cb46a6fe961f3812cc0097efe369ba8dd85aa4e861d8"
+      "target_sha256": "sha256:2c3b1e0b84c864b1778c9c55edf6c796858a95220be7600efdc0f33636eae117"
     },
     {
       "scope": "panel-construction",

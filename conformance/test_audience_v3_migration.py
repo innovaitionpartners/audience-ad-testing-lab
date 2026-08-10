@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 import copy
+from datetime import datetime, timezone
 import hashlib
 import json
 import os
@@ -148,11 +149,21 @@ class AudienceV3MigrationTests(unittest.TestCase):
         brief: dict[str, object] | None = None,
         panel: dict[str, object] | None = None,
     ) -> Path:
+        selected_brief = self.approved_brief if brief is None else brief
+        selected_panel = self.approved_panel if panel is None else panel
+        research = selected_panel.get("persona_research")
+        now = None
+        if (
+            isinstance(research, dict)
+            and research.get("status") == "provisional_no_research"
+        ):
+            now = datetime(2026, 7, 22, 12, 0, tzinfo=timezone.utc)
         result = build_audience_package(
-            self.approved_brief if brief is None else brief,
-            self.approved_panel if panel is None else panel,
+            selected_brief,
+            selected_panel,
             root,
             generator_version="1.0.0",
+            now=now,
         )
         return result.package_zip_path
 
@@ -162,6 +173,7 @@ class AudienceV3MigrationTests(unittest.TestCase):
         output: Path,
         *,
         version: str = "2.0.0",
+        now: datetime | None = None,
     ) -> dict[str, object]:
         return migrate_v2_to_v3(
             v2_package_path=package,
@@ -169,6 +181,7 @@ class AudienceV3MigrationTests(unittest.TestCase):
             migrated_at=MIGRATED_AT,
             migrated_by="migration-maintainer",
             output_dir=output,
+            now=now,
         )
 
     def read_outputs(self, output: Path) -> dict[str, dict[str, object]]:
@@ -181,6 +194,8 @@ class AudienceV3MigrationTests(unittest.TestCase):
     def assert_full_v3_migration_valid(
         self,
         documents: dict[str, dict[str, object]],
+        *,
+        now: datetime | None = None,
     ) -> None:
         provenance = documents["migration-provenance.json"]
         validated = validate_audience_research_v3(
@@ -191,6 +206,7 @@ class AudienceV3MigrationTests(unittest.TestCase):
             validity=documents["panel-validity-profile.json"],
             workflow_state=None,
             construction_audit=None,
+            now=now,
         )
         self.assertEqual(7, len(validated))
         self.assertIsNone(validated[-2])
@@ -306,7 +322,11 @@ class AudienceV3MigrationTests(unittest.TestCase):
                 brief=brief,
                 panel=panel,
             )
-            self.migrate(package, root / "v3")
+            self.migrate(
+                package,
+                root / "v3",
+                now=datetime(2026, 7, 22, 12, 0, tzinfo=timezone.utc),
+            )
             documents = self.read_outputs(root / "v3")
             migrated_brief = documents["audience-research-brief-v3.json"]
             migrated_panel = documents["saved-audience-panel-v3.json"]
@@ -346,7 +366,10 @@ class AudienceV3MigrationTests(unittest.TestCase):
                 "The v2 package contains no research sources.",
                 provenance["limitations"],
             )
-            self.assert_full_v3_migration_valid(documents)
+            self.assert_full_v3_migration_valid(
+                documents,
+                now=datetime(2026, 7, 22, 12, 0, tzinfo=timezone.utc),
+            )
 
     def test_planning_allocations_preserve_weights_and_minimum_profiles(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
