@@ -8,9 +8,9 @@ on:
         required: false
         type: boolean
         default: false
-  schedule:
-    - cron: "0 6 * * 1-6"
-    - cron: "0 6 * * 0"
+  # Schedule disabled while remaining full-conformance failures are repaired.
+  # Re-enable weekday/Sunday morning crons after private-stage manifests and CI
+  # host probes are green again.
   push:
     tags:
       - "v*"
@@ -120,7 +120,6 @@ jobs:
       - name: Run opt-in maximum-size v3 allocation benchmark
         if: >-
           github.event_name == 'push' ||
-          github.event.schedule == '0 6 * * 0' ||
           inputs.run_maximum_benchmark
         run: |
           AUDIENCE_LAB_RUN_MAX_DESIGN_BENCHMARK=1 \

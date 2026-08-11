@@ -1000,12 +1000,16 @@ def materialize_provisional_audience(
     brief, panel = _provisional_documents(provisional)
     stage_root = Path(tempfile.mkdtemp(prefix="audience-provisional-"))
     try:
-        built = build_audience_package(brief, panel, stage_root / "package")
+        built = build_audience_package(
+            brief, panel, stage_root / "package", now=current
+        )
         raw, validation, files = _package_for_source(
-            {"source": "file", "package_path": str(built.package_zip_path)}, None
+            {"source": "file", "package_path": str(built.package_zip_path)},
+            None,
+            now=current,
         )
         result = _resolution_payload(panel, validation, "ready", [])
-        _materialize_snapshot(run_dir, raw, files, result)
+        _materialize_snapshot(run_dir, raw, files, result, now=current)
         return result
     finally:
         shutil.rmtree(stage_root, ignore_errors=True)
@@ -1127,7 +1131,12 @@ def _snapshot_matches(snapshot: Path, files: Mapping[str, bytes], raw: bytes) ->
 
 
 def _materialize_snapshot(
-    run_dir: Path | str, raw: bytes, files: Mapping[str, bytes], result: Mapping[str, Any]
+    run_dir: Path | str,
+    raw: bytes,
+    files: Mapping[str, bytes],
+    result: Mapping[str, Any],
+    *,
+    now: datetime | None = None,
 ) -> None:
     run = Path(run_dir).expanduser()
     if not run.is_absolute():
@@ -1148,7 +1157,9 @@ def _materialize_snapshot(
         os.chmod(stage, 0o700)
         extracted = stage / "snapshot"
         try:
-            _safe_extract_package_archive(raw, extracted, allowed_root=stage)
+            _safe_extract_package_archive(
+                raw, extracted, allowed_root=stage, now=now
+            )
             _atomic_write(extracted / "audience-panel-package.zip", raw)
             os.replace(extracted, snapshot)
             os.chmod(snapshot, 0o700)
@@ -1194,7 +1205,7 @@ def resolve_audience_panel(
     result = _resolution_payload(panel, validation, status, reasons)
     if status != "ready":
         raise AudienceResolutionBlocked(result)
-    _materialize_snapshot(run_dir, raw, files, result)
+    _materialize_snapshot(run_dir, raw, files, result, now=current)
     return result
 
 

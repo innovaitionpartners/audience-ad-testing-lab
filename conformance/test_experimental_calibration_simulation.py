@@ -1924,10 +1924,12 @@ class ExperimentalCalibrationSimulationTests(unittest.TestCase):
                 canonical_json_bytes({"private": "denied"})
             )
             if platform.system() == "Darwin":
+                # Prefer host paths that exist on GitHub-hosted macOS runners
+                # and local developer machines, not machine-specific apps/dotfiles.
                 undeclared_paths = [
-                    Path("/opt/homebrew/.cursor/hooks.json"),
-                    Path("/Applications/Claude.app/Contents/Info.plist"),
-                    Path.home() / ".zshrc",
+                    Path("/System/Library/CoreServices/SystemVersion.plist"),
+                    Path("/private/etc/hosts"),
+                    Path("/usr/bin/sw_vers"),
                 ]
                 missing = [path for path in undeclared_paths if not path.is_file()]
                 if missing:
