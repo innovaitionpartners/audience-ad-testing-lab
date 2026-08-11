@@ -905,7 +905,7 @@ class AudienceV3MigrationTests(unittest.TestCase):
                 ) as brief_validator,
             ):
                 self.migrate(package, root / "v3")
-            archive_reader.assert_called_once_with(package)
+            archive_reader.assert_called_once_with(package, now=None)
             brief_validator.assert_called_once()
 
     def test_migration_does_not_invent_population_or_outcome_evidence(self) -> None:

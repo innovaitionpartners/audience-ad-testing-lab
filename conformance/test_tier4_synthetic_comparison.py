@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from contextlib import contextmanager
 from copy import deepcopy
+from datetime import datetime, timedelta
 import hashlib
 import inspect
 import json
@@ -1298,6 +1299,16 @@ class RealProducerWorld:
                 "success_count": 80 - index * 10,
                 "eligible_exposure_count": 100,
             }
+            # Live producer seals use wall-clock sealed_at; keep outcome access
+            # strictly after the bumped registration chronology.
+            registered_at = datetime.fromisoformat(
+                str(registration["registered_at"]).replace("Z", "+00:00")
+            )
+            document["outcome_accessed_at"] = (
+                (registered_at + timedelta(seconds=1))
+                .isoformat()
+                .replace("+00:00", "Z")
+            )
             shared = project_shared_outcome_evidence(document)
             document["shared_outcome_evidence_binding"] = {
                 "shared_evidence_id": shared["shared_evidence_id"],

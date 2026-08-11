@@ -763,10 +763,11 @@ def _safe_extract_package_archive(
     destination: Path | str,
     *,
     allowed_root: Path | str,
+    now: datetime | None = None,
 ) -> dict[str, Any]:
     """Private extraction API for trusted consumers after full validation."""
     raw = _archive_bytes(source)
-    validation = validate_package_archive(raw)
+    validation = validate_package_archive(raw, now=now)
     files = _safe_read_package_archive(raw)
     target = Path(destination)
     if target.exists():
