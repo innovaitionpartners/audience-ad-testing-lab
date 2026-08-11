@@ -1082,8 +1082,10 @@ class RuntimeAndPackageIntegrationTests(unittest.TestCase):
                 "kernel.apparmor_restrict_unprivileged_userns=0"
             ),
         )
-        self.assertIn('cron: "0 6 * * 1-6"', workflow)
-        self.assertIn('cron: "0 6 * * 0"', workflow)
+        # Cron schedule intentionally disabled until full-conformance is green again.
+        self.assertNotIn("\nschedule:\n", workflow)
+        self.assertNotIn('cron: "0 6 * * 1-6"', workflow)
+        self.assertNotIn('cron: "0 6 * * 0"', workflow)
         self.assertIn('tags:\n      - "v*"', workflow)
         self.assertIn("inputs.run_maximum_benchmark", workflow)
         self.assertEqual(
