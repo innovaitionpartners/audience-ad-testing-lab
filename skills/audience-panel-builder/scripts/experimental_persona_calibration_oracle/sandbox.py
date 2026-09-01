@@ -2366,7 +2366,17 @@ def _linux_vector(
     for path in admitted:
         vector.extend(["--ro-bind", str(path), str(path)])
     if output_is_directory:
-        vector.extend(["--bind", str(output_stage), str(output_stage)])
+        # The engine creates the result directory. Bubblewrap requires the
+        # bind source to exist before launch, so expose its already-created
+        # publication parent and authenticate that it contains only `result`
+        # after the child exits.
+        vector.extend(
+            [
+                "--bind",
+                str(output_stage.parent),
+                str(output_stage.parent),
+            ]
+        )
     else:
         # Keep the staged parent read-only so sibling creates cannot escape the
         # single allowed output file, matching the macOS literal-write profile.

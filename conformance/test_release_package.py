@@ -22,7 +22,7 @@ class ReleasePackageTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as first, tempfile.TemporaryDirectory() as second:
             archive_one = MODULE.build_archive(ROOT, Path(first))
             archive_two = MODULE.build_archive(ROOT, Path(second))
-            self.assertEqual(archive_one.name, "audience-ad-testing-lab-plugin-1.0.1.zip")
+            self.assertEqual(archive_one.name, "audience-ad-testing-lab-plugin-1.0.2.zip")
             self.assertLess(archive_one.stat().st_size, MODULE.MAX_CLAUDE_UPLOAD_BYTES)
             self.assertEqual(
                 hashlib.sha256(archive_one.read_bytes()).digest(),
