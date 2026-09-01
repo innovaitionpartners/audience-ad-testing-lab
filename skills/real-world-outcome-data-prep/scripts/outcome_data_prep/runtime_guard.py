@@ -34,6 +34,7 @@ _MAX_RELEASE_MANIFEST_BYTES = 1_048_576
 _EXCLUDED_ROOTS = frozenset(
     {
         PurePosixPath(".git"),
+        PurePosixPath("dist"),
         PurePosixPath("tmp"),
         PurePosixPath("tests/output"),
         PurePosixPath("tests/runs"),
