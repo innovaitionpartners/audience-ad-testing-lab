@@ -91,6 +91,12 @@ jobs:
       - name: Build deterministic plugin package
         run: python3 .github/scripts/build_release_package.py
 
+      - name: Add stable one-click download name
+        run: |
+          cp \
+            "dist/audience-ad-testing-lab-plugin-${GITHUB_REF_NAME#v}.zip" \
+            dist/audience-ad-testing-lab-plugin.zip
+
       - name: Verify archive contents
         run: python3 -m zipfile --test dist/audience-ad-testing-lab-plugin-*.zip
 

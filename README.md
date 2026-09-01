@@ -2,6 +2,12 @@
 
 Ad Testing Lab helps you test ads with synthetic audience panels: sets of audience profiles that AI uses as context. Give it 2–100 finished ads and a plain-language audience description, or use a saved panel if you already have one. It returns the AI's reactions and reasons, an HTML dashboard, and either a shortlist for a real-world test or an explanation that the responses did not support one. It does not predict clicks, conversions, revenue, or lift.
 
+## Download
+
+**[Download the latest Ad Testing Lab plugin ZIP](https://github.com/innovaitionpartners/audience-ad-testing-lab/releases/latest/download/audience-ad-testing-lab-plugin.zip)**
+
+For Claude Desktop or Cowork, keep the file zipped, then open **Customize → Plugins** and upload it as a custom plugin. No command line is required.
+
 **New here? Start with [Ad Testing Lab for marketers](docs/guides/marketer-guide.md).** It explains in plain language where panel research comes from, how research becomes audience profiles, how the ads are tested, what appears in the dashboard, and what the predicted-attention heatmaps show.
 
 ## How it works
@@ -118,7 +124,7 @@ The dashboard separates the decision summary from the underlying evidence. Its t
 
 ### Claude Desktop and Cowork (no command line)
 
-1. Download `audience-ad-testing-lab-plugin-<version>.zip` from the [latest GitHub release](https://github.com/innovaitionpartners/audience-ad-testing-lab/releases/latest). Do not unzip it.
+1. [Download the latest plugin ZIP](https://github.com/innovaitionpartners/audience-ad-testing-lab/releases/latest/download/audience-ad-testing-lab-plugin.zip). Do not unzip it.
 2. In Claude Desktop, open **Customize**, then **Plugins**.
 3. Choose the option to upload a custom plugin file and select the ZIP.
 4. Start a new chat or Cowork task.
