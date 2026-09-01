@@ -163,8 +163,8 @@ class RealWorldOutcomeDataPrepSkillContractTests(unittest.TestCase):
         self.assertIn("./skills/real-world-outcome-data-prep", plugin["skills"])
         self.assertEqual(4, len(plugin["skills"]))
         for path, expected_version in (
-            (".claude-plugin/plugin.json", "1.0.0"),
-            (".codex-plugin/plugin.json", "1.0.0"),
+            (".claude-plugin/plugin.json", "1.0.1"),
+            (".codex-plugin/plugin.json", "1.0.1"),
             ("gemini-extension.json", "0.3.1"),
         ):
             self.assertEqual(expected_version, json_document(path)["version"])

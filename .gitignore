@@ -2,6 +2,7 @@ __pycache__/
 *.py[cod]
 .DS_Store
 tmp/
+dist/
 *-workspace/
 
 # Product regression tests are public. Comparative evals, ablations, and

@@ -62,6 +62,16 @@ python3 skills/real-world-outcome-data-prep/scripts/generate-runtime-release-man
 
 Never hand-edit the manifest. After regeneration, run the runtime-guard and package tests that authenticate it.
 
+## Downloadable plugin archive
+
+Build the same deterministic ZIP that the tag workflow publishes to GitHub Releases:
+
+```bash
+python3 .github/scripts/build_release_package.py
+```
+
+The archive contains the complete authenticated runtime inventory, both supported plugin manifests, and the public README. The builder rejects missing or modified runtime bytes and enforces Claude's 50 MB custom-plugin upload limit.
+
 ## CI
 
 Fast private-stage validation on pull requests and `main` runs the contract/package lane only. Outcome-data and calibration release gates run from the version-tag release workflow after manifests are regenerated. Workflow contract tests must keep that split closed: heavy gates stay on the tag release path, and the reusable sealed private-stage setup action remains available for those gates.

@@ -116,6 +116,13 @@ The dashboard separates the decision summary from the underlying evidence. Its t
 
 ## Installation
 
+### Claude Desktop and Cowork (no command line)
+
+1. Download `audience-ad-testing-lab-plugin-<version>.zip` from the [latest GitHub release](https://github.com/innovaitionpartners/audience-ad-testing-lab/releases/latest). Do not unzip it.
+2. In Claude Desktop, open **Customize**, then **Plugins**.
+3. Choose the option to upload a custom plugin file and select the ZIP.
+4. Start a new chat or Cowork task.
+
 ### Claude Code
 
 ```text
