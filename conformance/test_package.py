@@ -596,8 +596,8 @@ class PackageTests(unittest.TestCase):
         )
 
         for relative_path, expected_version in (
-            (".claude-plugin/plugin.json", "1.0.1"),
-            (".codex-plugin/plugin.json", "1.0.1"),
+            (".claude-plugin/plugin.json", "1.0.2"),
+            (".codex-plugin/plugin.json", "1.0.2"),
             ("gemini-extension.json", "0.3.1"),
         ):
             self.assertEqual(expected_version, json.loads(source(relative_path))["version"])

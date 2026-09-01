@@ -1608,6 +1608,26 @@ class ExperimentalCalibrationSimulationTests(unittest.TestCase):
             if candidate.exists():
                 self.assertIn(candidate, roots)
 
+    def test_linux_directory_output_binds_existing_publication_parent(self):
+        output = Path("/tmp/private-stage/publication/result")
+        vector = sandbox_module._linux_vector(
+            provider=Path("/usr/bin/bwrap"),
+            child=[str(Path(sys.executable)), "-c", "pass"],
+            interpreter=Path(sys.executable),
+            admitted=[],
+            output_stage=output,
+            output_is_directory=True,
+        )
+        parent_binding = ["--bind", str(output.parent), str(output.parent)]
+        self.assertIn(
+            parent_binding,
+            [vector[index:index + 3] for index in range(len(vector) - 2)],
+        )
+        self.assertNotIn(
+            ["--bind", str(output), str(output)],
+            [vector[index:index + 3] for index in range(len(vector) - 2)],
+        )
+
     def test_private_stage_entrypoints_are_closed_and_completed(self):
         self.assertEqual(
             [
